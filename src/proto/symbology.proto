@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package symbology;
+
+import "st_trade.proto";
+option go_package="/datatype";
+
+enum SymbolType {
+  STOCK = 0;
+  INDEX = 1;
+  FUTURE_SW = 2;
+  FUTURE_SW_REV = 3;
+}
+
+enum Currency {
+  USD = 0;
+  USDT = 1;
+  BTC = 2;
+  ETH = 3;
+  XRP = 4;
+  EOS = 5;
+}
+
+message SymbolInfoPo {
+  string symbol_id = 1;     // 内部唯一标识
+  string inner_symbol = 2;  // 内部交易对名
+  string exchange_symbol = 3;  // 交易所交易对命名(api有关)
+  Currency base_curreny = 4;
+  Currency commodity_currency = 5;
+  SymbolType type = 6;  // stock index forex futures bitcoin expression spread cfd
+  string session = 7;  // 默认值要是 24x7
+  string holidays = 8;  // 24x7
+  st.Platform platform = 9;
+  string price_slot = 10;  // 小数位数
+  string size_slot = 11;  // 小数位数
+}

@@ -1,0 +1,305 @@
+syntax = "proto2";
+
+package tradebot.grpc_server.arbitrage;
+option go_package="/datatype";
+
+enum ErrorCode
+{
+    SUCCESS = 10001;
+    ARBITRAGE_OPENING_EXIST = 11002;
+    ARBITRAGE_OPEN_EXIST = 11003;
+    ARBITRAGE_SPOT_DEAL_FAILED = 12004;
+    ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL = 12005;
+    ARBITRAGE_CLOSE_INEXIST = 12006;
+    ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE = 12007;
+    ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE = 12008;
+    ARBITRAGE_ADD_HOLDING_INEXIST = 12009;
+    TRANSFER_AMOUNT_NOT_ENOUGH = 12010;
+    ARBITRAGE_OPEN_SPOT_FAILED = 11004;
+    REQUEST_IN_OPERATING = 30001;
+    TOO_MANY_OPEN_REQUEST = 30002;
+    REQUEST_ORDER_NOT_EXIST = 30003;
+    TAKER_ORDER_FILLED_ZERO = 30004;
+    MAKER_OPEN_FAILED = 30005;
+}
+
+enum OrderSide
+{
+    SELL = -1;
+    BUY = 1;
+}
+
+enum PositionType
+{
+    LONG = 1;
+    SHORT = -1;
+}
+
+enum FutureContractSide
+{
+    INVALID_FUTURE_SIDE = 0;
+    CLOSE = -1;
+    OPEN = 1;
+}
+
+enum PostOnlyType
+{
+    CANCEL_IF_NOT_POSSIBLE = 1;
+    CANCEL_WHEN_FORCE = 2;
+    CANCEL_EXCEED_BEST_ASK = 3;
+    CANCEL_LESS_BEST_ASK = 4;
+    CANCEL_EXCEED_BEST_BID = 5;
+    CANCEL_LESS_BEST_BID = 6;
+    FILLED_OR_CANCELED = 7;
+    TRY_CANCEL_MAKER = 8;
+    REPLACE_OPENING = 9;
+    CANCEL_OPENING = 10;
+};
+
+enum OrderActiveType
+{
+    WAITING_DEAL = 1;
+    ORDER_HEDGE_ACTIVE = 2;
+};
+
+enum FutureContractType
+{
+    INVALID_TYPE = 0;
+    THIS_WEEK = 1;
+    NEXT_WEEK = 2;
+    QUARTER = 3;
+    FOREVER = 4;
+}
+
+message Order
+{
+    required string contract = 1;
+    required string commodity = 2;
+    required string currency = 3;
+    required string price = 4;
+    required string quantity = 5;
+    required string turnover = 6;
+    required string fee = 7;
+    required OrderSide order_side = 8;
+    required int64 created_timestamp = 9;
+    optional int32 contract_volume = 10;
+    optional FutureContractSide future_contract_side = 11;
+    optional FutureContractType future_contract_type = 12;
+    optional string future_contract_code = 13;
+    optional int32 lever_rate = 14;
+    required string platform = 15;
+    optional string client_order_id = 16;
+}
+
+enum RequestType
+{
+    ADD_HOLDING_REQUEST = 1;
+    OPEN_REQUEST = 2;
+    CLOSE_REQUEST = 3;
+    OPEN_POSITION = 4;
+    CLOSE_POSITION = 5;
+}
+
+message Transaction
+{
+    required Order spot_order = 1;
+    required Order future_order = 2;
+    optional string min_basis_ratio = 3;
+    optional string max_basis_ratio = 4;
+    optional string open_position = 5;
+}
+
+enum TriggerSignal
+{
+    DEPTH_OPEN = 0;
+    SHORT_TERM_OPEN = 1;
+    TRADE_VOLUME_OPEN = 2;
+    PROFIT_CLOSE = 3;
+    STOP_LOSS_IMMEDIATE = 4;
+    TRY_STOP_LOSS = 5;
+    TRY_MIN_PROFIT = 6;
+    TRY_MIDDLE_PROFIT = 7;
+    TRY_RECOVER_MIDDLE_PROFIT = 8;
+    TRY_SAVE_CURRENT_PROFIT = 9;
+    TRY_REGAIN_MIDDLE_PROFIT = 10;
+    REBOUND_OPEN = 11;
+    GUARD_OPEN = 12;
+    REBOUND_MAKER_OPEN = 13;
+    GUARD_MAKER_OPEN = 14;
+    REBOUND_MAKER_GUESS = 15;
+    MARKET_MAKER_GUESS = 16;
+    REBOUND_MAKER_GUESS_CONTINUE = 17;
+    OPPOSITE_OPEN = 18;
+    REBOUND_MAKER_GUESS_HIGH = 19;
+}
+
+enum RequestCommand
+{
+    NEW_PLACE = 0;
+    REPLACE = 1;
+    QUERY = 2;
+    CANCEL_MAKER = 3;
+}
+
+enum PlaceOrderType
+{
+    BE_TAKER = 0;
+    BE_MAKER = 1;
+}
+
+message HighTradeRequest
+{
+    required string request_id = 1;
+    required int64 created_timestamp = 2;
+    required int64 request_timestamp = 23;
+
+    required string platform = 3;
+    required string contract = 4;
+    required string commodity = 5;
+    required string currency = 6;
+
+    required string price = 7;
+    required string quantity = 8;
+    optional int32 future_contract_volume = 9;
+
+    required OrderSide order_side = 10;
+    optional FutureContractSide future_contract_side = 11;
+    optional FutureContractType future_contract_type = 12;
+    optional string future_contract_code = 13;
+    optional int32 lever_rate = 14;
+
+    optional string client_order_id = 15;
+    optional string last_order_id = 19;
+
+    required PlaceOrderType place_order_type = 24;
+    required RequestCommand request_command = 25;
+
+    optional TriggerSignal trigger_signal = 20;
+    optional string trigger_reason = 21;
+    optional string predict_close_ratio = 22;
+}
+
+message HighTradeResponse
+{
+    required string request_id = 1;
+    required int64 request_timestamp = 2;
+    required int64 response_timestamp = 3;
+    required RequestCommand request_command = 4;
+
+    required string platform = 5;
+    required string contract = 6;
+
+    required string target_price = 7;
+    required int32 target_future_contract_volume = 8;
+
+    required string deal_price = 9;
+    required string deal_quantity = 10;
+    required string deal_turnover = 11;
+    required string deal_fee = 12;
+    optional string profit = 13;
+    optional int32 deal_future_contract_volume = 14;
+
+    required OrderSide order_side = 15;
+    optional FutureContractSide future_contract_side = 16;
+
+    optional string active_order_id = 17;
+    optional TriggerSignal trigger_signal = 18;
+    optional string trigger_reason = 19;
+    optional string err_msg = 20;
+    optional ErrorCode err_code = 21;
+}
+
+
+message HftState
+{
+    required string request_id = 1;
+    required string platform = 2;
+    required string contract = 3;
+    required double price = 4;
+    required double quantity = 5;
+    required double turnover = 6;
+    required double fee = 7;
+    required double profit = 8;
+    required int32 target_future_contract_volume = 9;
+    required int32 deal_future_contract_volume = 10;
+    required int64 created_timestamp = 11;
+    required OrderSide order_side = 12;
+    optional FutureContractSide future_contract_side = 13;
+    required string active_order_id = 14;
+    optional double last_place_price = 15;
+    required TriggerSignal trigger_signal = 16;
+    required string trigger_reason = 17;
+    optional double predict_close_ratio = 18;
+}
+
+message HftOpenState
+{
+    required HftState open_state = 1;
+    optional HftState close_state = 2;
+}
+
+message HftPositionInfo
+{
+    repeated HftOpenState open_list = 1;
+    repeated HftState opening_list = 2;
+}
+
+message AddHoldingRequest
+{
+    required string uuid = 1;
+    required Transaction transaction = 2;
+}
+
+message AddHoldingResponse
+{
+    required string uuid = 1;
+    required Transaction transaction = 2;
+}
+
+message ArbitrageRequest
+{
+    required Transaction transaction = 1;
+}
+
+message ArbitrageResponse
+{
+    required string uuid = 1;
+    required Transaction transaction = 2;
+    required ErrorCode error_code = 3;
+    optional string error_msg = 4;
+}
+
+message Level
+{
+    required int32 digit = 1;
+    required int64 px = 2;
+    required int64 qty = 3;
+}
+
+message Orderbook
+{
+    required string platform = 1;
+    required string contract = 2;
+    required string currency = 3;
+    required string commodity = 4;
+    optional string future_contract_code = 5;
+    repeated Level bid_level = 6;
+    repeated Level ask_level = 7;
+    required int64 ts = 8;
+    required int64 publish_ts = 9;
+}
+
+message HftMarketData
+{
+    required Orderbook orderbook = 1;
+    required HftPositionInfo position_info = 2;
+}
+
+service ArbitrageService
+{
+    rpc add_holding (ArbitrageRequest) returns (ArbitrageResponse);
+    rpc open_arbitrage (ArbitrageRequest) returns (ArbitrageResponse);
+    rpc close_arbitrage (ArbitrageRequest) returns (ArbitrageResponse);
+    rpc open_position (HighTradeRequest) returns (HighTradeResponse);
+    rpc close_position (HighTradeRequest) returns (HighTradeResponse);
+}

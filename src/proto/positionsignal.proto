@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "validator.proto";
+
+package st;
+option go_package="/datatype";
+
+enum PositionModifyType {
+  DEFAULT_POSITION_MODIFY_TYPE = 0;
+  INC_POSITION = 1;
+  DEC_POSITION = 2;
+  CLEAR_POSITION = 3;
+}
+
+enum PositionSignalPriority {
+  DEFAULT_PRIORITY = 0;
+  ONE_PRIORITY = 1;
+  TWO_PRIORITY = 2;
+}
+
+enum PositionModifySignalState {
+  DEFAULT_SIGNAL_STATE = 0;
+  SIGNAL_PREPARE = 1;   // 信号预备
+  SIGNAL_EXECUTING = 2; // 执行
+  SIGNAL_FINISH = 3;    // 信号完成
+}
+
+
+message PositionModifySignal {
+  option(redis_table_name) = "lft_strategy_position_modify_signal";
+  option(primary_key_field) = "signal_id";
+  string signal_id = 1;            //
+  uint32 type = 2;
+  uint32 priority = 3;
+  uint64 signal_ts = 4;
+  string reason = 5;
+  uint32 target_position_cont = 6; // 修改后的目标仓位
+  string modify_trade_id = 7;      // 修改仓位的交易号
+  uint32 state = 8;      // 修改仓位的交易号
+}

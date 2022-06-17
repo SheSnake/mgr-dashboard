@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+import "st_trade.proto";
+import "marketdata.proto";
+
+package st;
+option go_package="/datatype";
+
+enum CommandType {
+    DEFAULT = 0;
+    QUERY = 1;
+    CANCEL = 2;
+    PLACE = 3;
+    QUERY_KLINE = 4;
+}
+
+message CommandReq {
+  string identity = 1;
+  google.protobuf.Any request = 2;
+}
+
+message CommandResp {
+  google.protobuf.Any result = 1;
+  string error_message = 100;
+}
+
+message TradeCommandReq {
+    CommandType type = 1;
+    Trade trade = 2;
+}
+
+message TradeCommandResp {
+    Trade trade = 1;
+    string error_message = 2;
+}
+
+message QueryKlineReq {
+  marketdata.KlineType type = 1;
+  uint64 start_ts = 2;
+  string symbol = 3;
+  uint32 limit = 4;
+}
+
+message QueryKlineResp {
+  repeated marketdata.Kline klines = 1;
+}

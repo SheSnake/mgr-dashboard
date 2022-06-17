@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "st_trade.proto";
+
+package marketdata;
+option go_package="/datatype";
+
+enum TakerType {
+  DEFAULT_TAKER_TYPE = 0;
+  TAKER_BID = 1;
+  TAKER_ASK = 2; 
+}
+
+message TradeResult {
+  TakerType taker_type = 1;
+  st.CoinFuture coin_future = 2;
+  uint32 deal_cont = 3;
+  string deal_price = 4;
+  uint64 event_ts = 5;
+}
+
+
+enum KlineType {
+  DEFAULT_KLINE_TYPE = 0;
+  KLINE_MIN = 1;
+  KLINE_15MIN = 2;
+  KLINE_HOUR = 3;
+  KLINE_DAY = 4;
+  KLINE_WEEK = 5;
+  KLINE_MONTH = 6;
+}
+
+message Kline {
+  st.CoinFuture future = 1;
+  KlineType type = 2;
+  uint64 start_ts = 3;
+  uint64 end_ts = 4;
+  string open =  5;
+  string close = 6;
+  string high = 7;
+  string low = 8;
+  uint64 volume = 9;
+  string turnover = 10;
+  uint64 ts = 11;
+  bool confirm = 12;  // k线是否确认，过完整个时间区间才会确认
+}
+
+message HistoryMarketDataIndex {
+  string symbol_id = 1;
+  string save_path = 2;
+  string desc = 3;
+}

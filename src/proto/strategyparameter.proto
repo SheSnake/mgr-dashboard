@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+import "st_trade.proto";
+
+package strategyparameter;
+option go_package="/datatype";
+
+
+message RapidTradeTriggerParameter {
+  st.CoinFuture future = 1;
+  
+  // 前一个k线下穿bd的百分比
+  string pre_kline_down_bd_th = 2;
+  // 当前k线上穿bd的百分比
+  string cur_kline_up_bd_th = 3;
+
+  // 前一个k线下穿bd的百分比
+  string pre_kline_up_bu_th = 4;
+  // 当前k线上穿bd的百分比
+  string cur_kline_down_bu_th = 5;
+  uint32 base_cont = 6;
+  string target_profit_ratio = 7;
+  //
+  string rsi_exceed_bid_th = 8;
+  //
+  string rsi_exceed_ask_th = 9;
+  // 营收率大于比例开始正常平仓
+  string begin_close_profit_ratio = 10;
+  string can_add_loss_profit_ratio = 11;
+  uint32 max_open_cont = 12;
+  // 减仓后的等待间隔
+  uint64 dec_wait_interval = 13;
+  // 加仓后的等待间隔
+  uint64 add_wait_interval = 14;
+  // 开始减仓的时间间隔
+  uint64 begin_dec_interval = 15;
+
+  string can_dec_loss_profit_ratio = 16;
+  string should_quick_close_ratio = 17;
+}

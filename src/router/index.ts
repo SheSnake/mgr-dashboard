@@ -89,6 +89,22 @@ export const constantRoutes: RouteConfig[] = [
       }
     ]
   },
+  {
+    path: '/tradingview_chart',
+    component: Layout,
+    children: [
+      {
+        path: 'chart',
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/tradingview-chart/index.vue'),
+        name: 'tradingview',
+        meta: {
+          title: 'charts',
+          icon: 'dashboard',
+          affix: true
+        }
+      }
+    ]
+  },
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -351,6 +367,12 @@ export const asyncRoutes: RouteConfig[] = [
     children: [
       {
         path: 'download',
+        component: () => import(/* webpackChunkName: "zip" */ '@/views/zip/index.vue'),
+        name: 'ExportZip',
+        meta: { title: 'exportZip' }
+      },
+      {
+        path: 'download2',
         component: () => import(/* webpackChunkName: "zip" */ '@/views/zip/index.vue'),
         name: 'ExportZip',
         meta: { title: 'exportZip' }

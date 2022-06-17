@@ -2,3 +2,7 @@ dist/*.js
 src/assets
 tests/unit/coverage
 public/**/*.js
+public/**/*/*
+public/**/*
+src/views/tradingview-chart/components/*
+public/datafeeds/udf/src/*

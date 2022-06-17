@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "st_trade.proto";
+import "st_plan.proto";
+import "marketdata.proto";
+option go_package = "/datatype";
+
+package st;
+
+enum TradeLogType {
+  NORMAL_LOG = 0;
+  CREATE_TRADE = 1;
+  CANCEL_TRADE = 2;
+  DEAL_TRADE = 3;
+  PLAN_OPEN = 4;
+  PLAN_OVER = 5;
+}
+
+message TradeLog {
+  string id = 1;
+  string symbol_id = 2;
+  TradeLogType type = 3;
+  TradeSubState trade_sub_state = 4;
+  string info = 5;
+  uint64 ts_usec = 6;
+  string date = 7;
+  string target_price = 8;
+  string deal_price = 9;
+  string target_qty = 10;
+  string deal_qty = 11;
+  string cur_profit = 12; // 本次操作收益
+  st.FutureOpenType future_open_type = 13;
+  st.TradeDir trade_dir = 14;
+  string acc_profit = 15; // 累计收益
+}
+
+message TradeSummary {
+  string summary_id = 1;
+  string profit = 2;
+  repeated string releated_symbol_id = 3; // 交易策略涉及的交易对id
+  repeated marketdata.HistoryMarketDataIndex data_index = 4;
+  repeated TradeLog logs = 5;
+  uint32 total_cnt = 6;
+  uint32 success_cnt = 7;
+  double success_ratio = 8;
+  double avg_profit = 9;
+  double avg_loss = 10;
+  double profit_loss_ratio = 11;
+  uint64 start_usec = 12;
+  uint64 end_usec = 13;
+}
+
+message TradeMeta {
+  string ticker = 1; // 唯一标识
+  string summary_id = 2;
+  string symbol_info = 3;
+}

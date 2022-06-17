@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+import "validator.proto";
+import "st_trade.proto";
+import "strategyparameter.proto";
+
+package tradeconfig;
+option go_package="/datatype";
+
+
+enum LogLevel {
+    TRACE = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
+    CRITICAL = 5;
+    OFF = 6;
+}
+
+message LogConfig {
+    string log_path = 1 [
+        (st.must_not_empty) = true
+    ];
+    LogLevel log_level = 2;
+    uint32 flush_second_interval = 3;
+}
+
+message FakeServerConfig {
+  string datapath = 1 [
+      (st.must_not_empty) = true
+  ];
+  string fileformat = 2 [
+      (st.must_not_empty) = true
+  ];
+  uint64 first_file_ts = 3;
+  uint32 test_day = 4;
+  string summary_save_path = 5 [
+      (st.must_not_empty) = true
+  ];
+  string symbol_id = 6 [
+      (st.must_not_empty) = true
+  ];
+}
+
+
+message ServerConfig {
+    string publish_addr = 1 [
+        (st.must_not_empty) = true
+    ];
+    string request_addr = 2 [
+        (st.must_not_empty) = true
+    ];
+    st.Platform platform = 3;
+    string contract = 4 [
+        (st.must_not_empty) = true
+    ];
+    string future_contract_code = 5 [
+        (st.must_not_empty) = true
+    ];
+    st.CoinFuture coin_future = 6;
+    uint32 base_cont = 7;
+    string random_target_profit_ratio = 8;
+    uint32 poll_interval = 9;
+    RandomStrategyConfig random_strategy_config = 10;
+    strategyparameter.RapidTradeTriggerParameter rapid_trade_parameter = 11; 
+
+    FakeServerConfig fake_server_config = 12;
+}
+
+message ParameterConfig {
+    string apollo_addr = 1 [
+        (st.must_not_empty) = true
+    ];
+}
+
+message RandomStrategyConfig {
+  string target_profit = 1;
+  st.CoinFuture future = 2;
+}
+
+message RedisConfig {
+    string addr = 1 [
+        (st.must_not_empty) = true
+    ];
+    string port = 2 [
+        (st.must_not_empty) = true
+    ];
+    string password = 3;
+}
+
+message SetUpConfig {
+    LogConfig log_config = 1;
+    ServerConfig server_config = 2;
+    ParameterConfig parameter_config = 3;
+    RedisConfig redis_config = 4;
+}
+
+

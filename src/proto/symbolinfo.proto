@@ -1,0 +1,205 @@
+syntax = "proto3";
+
+package datatype;
+import "tradelog.proto";
+
+option go_package="/datatype";
+
+message Exchange {
+  string value = 1;
+  string name = 2;
+  string desc = 3;
+}
+
+message ConfigReq {
+  string source = 100;
+}
+
+message ConfigResp {
+  bool supports_search = 1;
+  bool supports_group_request = 2;
+  repeated string supported_resolutions = 3; // ["1", "5", "15", "30", "60", "1D", "1W", "1M"],
+  bool supports_marks = 4;
+  bool supports_time = 5;
+  repeated Exchange exchanges = 6;
+  repeated string symbols_types = 7; // index,spot,future ...
+  repeated string currency_codes = 8;  // ["USD", "EUR", ...]
+  bool supports_timescale_mark = 9;
+  string futures_regex = 10;
+}
+
+message SymbolGroupInfoReq {
+  string group = 1;
+  string source = 100;
+}
+
+message SymbolGroupInfoResp {
+  repeated string symbol = 1;
+  repeated string desceiption = 2;
+  string exchange_listed = 3;
+  int32 minmov = 4;
+  int32 minmov2 = 5;
+  repeated int32 pricescale = 6;
+  bool has_dwm = 7;
+  bool has_intraday = 8;
+  repeated bool has_no_volume = 9;
+  repeated string type = 10;
+  repeated string ticker = 11;
+  string timezone = 12;
+  string session_regular = 13;
+}
+
+message SymbolInfoReq {
+	// @inject_tag: form:"symbol"
+  string symbol = 1;
+  // @inject_tag: form:"source"
+  string source = 100;
+}
+
+message SymbolInfo {
+  string name = 1;  // 交易对名 + 类型
+  string ticker = 2; // 唯一标识,  {交易对}-{类型}-{平台类型}
+  string description = 3;
+  string type = 4;  // stock index forex futures bitcoin expression spread cfd
+  string session = 5;  // 24x7
+  string holidays = 6;  // 24x7
+  string corrections = 7;  // 24x7
+  string exchange = 8;
+  string timezone = 9; // “America/New_York”,
+  string format = 10;  // price,volume
+  uint32 minmov = 11;  // 最小波动
+  uint32 pricescale = 12;
+  uint32 minmove2 = 13;
+  bool has_dwm = 14;
+  bool has_intraday = 15;
+  repeated string supported_resolutions = 16;
+  bool has_seconds = 17;
+  bool has_daily = 18;
+  bool has_weekly_and_monthly = 19;
+  bool has_empty_bars = 20;
+  bool force_session_rebuild = 21;
+  bool has_no_volume = 22;
+  string symbol = 23;
+  string full_name = 24;
+}
+
+message GetHistoryKlineReq {
+	// @inject_tag: form:"symbol"
+  string symbol = 1;
+	// @inject_tag: form:"from"
+  uint64 from = 2;
+	// @inject_tag: form:"to"
+  uint64 to = 3;
+	// @inject_tag: form:"resolution"
+  string resolution = 4;
+	// @inject_tag: form:"first"
+  bool first = 5;
+	// @inject_tag: form:"source"
+  string source = 100;
+}
+
+message TvKline {
+  uint64 t = 1;
+  double o = 2;
+  double c = 3;
+  double h = 4;
+  double l = 5;
+}
+
+message GetHistoryKlineResp {
+  string s = 1;  // ok, no_data
+  repeated double o = 2;
+  repeated double c = 3;
+  repeated double h = 4;
+  repeated double l = 5;
+  repeated uint64 t = 6;
+  uint64 next_time = 7;
+}
+
+message GetMarkReq {
+	// @inject_tag: form:"symbol"
+  string symbol = 1;
+	// @inject_tag: form:"from"
+  uint64 from = 2;
+	// @inject_tag: form:"to"
+  uint64 to = 3;
+	// @inject_tag: form:"resolution"
+  string resolution = 4;
+	// @inject_tag: form:"first"
+  string source = 100;
+}
+
+message Mark {
+  string id = 1;  // 唯一标识
+  uint64 time = 2;  // ms ts
+  string color = 3;  //"blue",
+  string text = 4; // "Hello world", html
+  string label = 5;  //: "B",
+  string label_font_color = 6; // "yellow",
+  uint32 min_size = 7; //         minSize: 20,
+}
+
+message GetMarkResp {
+  repeated string id = 1;  // 唯一标识
+  repeated uint64 time = 2;  // ms ts
+  repeated string color = 3;  //"blue",
+  repeated string text = 4; // "Hello world", html
+  repeated string label = 5;  //: "B",
+  repeated string label_font_color = 6; // "yellow",
+  repeated uint32 min_size = 7; //         minSize: 20,
+}
+
+message SearchSymbolReq {
+	// @inject_tag: form:"query"
+  string query = 1;
+	// @inject_tag: form:"exchange"
+  string exchange = 2;
+	// @inject_tag: form:"limit"
+  uint32 limit = 3;
+	// @inject_tag: form:"type"
+  string type = 4;
+  // @inject_tag: form:"source"
+  string source = 100;
+}
+
+message SearchSymbolResp {
+  repeated SymbolInfo result = 1;
+}
+
+enum PlatformType {
+  DEFAULT_TYPE = 0;
+  BYBIT_X = 1;
+}
+
+enum TradeSymbol {
+  DEFAULT_SYMBOL = 0;
+  BTCUSDT_FU = 1;
+}
+
+enum ActionType {
+  DEFAULT_ACTION = 0;
+  ADD = 1;
+}
+
+message QueryTradeLogReq {
+  string symbol = 1;
+  uint64 limit = 2;
+  int64 cursor = 3;
+  string source = 100;
+}
+
+message TradeLogDo {
+  uint64 ts_usec = 1;
+  ActionType action_type = 2;
+  PlatformType platform_type = 3;
+  TradeSymbol trade_symbol = 4;
+  string info = 5;
+}
+
+message QueryTradeLogResp {
+  repeated st.TradeLog logs = 1;
+  uint64 nextCursor = 2;
+  bool more = 3;
+  uint64 max_can_found = 4;
+}
+

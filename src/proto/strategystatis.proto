@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package strategystatis;
+option go_package="/datatype";
+
+message TradeTrendStatis {
+  uint32 trade_cnt = 1;
+  uint32 taker_bid_cnt = 2;
+  uint32 taker_ask_cnt = 3;
+  uint32 bid_ask_vary_cnt = 4;
+  string price_vary_ratio = 5; 
+}
+
+message TradeTrendWindowStatis {
+  uint32 vary_window_cnt = 1;
+  uint32 price_vary_ratio = 2;
+}

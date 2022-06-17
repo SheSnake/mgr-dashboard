@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+option go_package="/datatype";
+
+package st;
+
+extend google.protobuf.FieldOptions {
+  bool must_not_empty           = 50000;
+  uint32 length_min           = 50001;
+  uint32 length_max           = 50002;
+}
+
+extend google.protobuf.MessageOptions {
+    string redis_table_name = 51234;
+    string primary_key_field = 51235;
+    string redis_unfinished_set_name = 51236;
+    string redis_finished_set_name = 51237;
+}
+

@@ -1,0 +1,36 @@
+package trade;
+syntax = "proto3";
+
+message Signal {
+  string signal_id = 1;
+  uint64 ts = 2;
+}
+
+enum PlatformType {
+  BYBIT = 1;
+}
+
+enum TradeSymbol {
+  BTCUSDT_FU = 1;
+}
+
+enum ActionType {
+  ADD = 1;
+}
+
+message TradeLog {
+  uint64 ts_usec = 1;
+  ActionType action_type = 2;
+  PlatformType platform = 3;
+  TradeSymbol trade_symbol = 4;
+  string info = 5;
+}
+
+message QueryTradeLogReq {
+  string symbol = 1;
+  string source = 100;
+}
+
+message QueryTradeLogResp {
+  repeated TradeLog logs = 1;
+}

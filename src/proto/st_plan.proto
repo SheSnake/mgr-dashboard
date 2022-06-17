@@ -1,0 +1,161 @@
+syntax = "proto3";
+
+import "validator.proto";
+
+import 'st_trade.proto';
+import 'positionsignal.proto';
+
+package st;
+option go_package="/datatype";
+
+enum PlanState {
+    DEFAULT_PLAN_STATE = 0;
+    OPENING = 1;
+    STOP_OPENING = 2;
+    OPEN_FINISH = 3;
+    CLOSING = 4;        // 仓位等待平仓
+    CLOSE_FINISH = 5;
+    CANCELED = 6;
+    QUICK_CLOSING = 7;  // 仓位需要快速平仓
+    FUNDING_RATE_RESUME = 8;
+    FUNDING_RATE_RESTORE = 9;
+    ADD_OPENING = 10;  // 关仓转加仓的中间态
+    SUB_CLOSING = 11;  // 关仓转减仓的中间态
+}
+
+enum FutureOpenType {
+    DEFAULT_OPEN_TYPE = 0;
+    FUTURE_LONG = 1;
+    FUTURE_SHORT = 2;
+}
+
+enum StrategyActionType {
+  DEFAULT_ACTION_TYPE = 0;
+  KEEP = 1;  // 保持现状
+  CONTINUE_TRADE = 2;  // 继续交易
+  ADD = 3;  // 加仓
+  STOP = 4;  // 关仓（进入正常清仓模式）
+  STOP_SOON = 5;  // 行情异常，迅速关仓(取消当前开仓交易，并迅速清仓)
+  DEC = 6;  // 减仓
+}
+
+enum FundingRateResumeState {
+  DEFAULT_FUNDING_RATE_STATE = 0;
+}
+
+message FundingRateSettle {
+  option(redis_table_name) = "future_plan_funding";
+  option(primary_key_field) = "record_id";
+  string record_id = 1;
+  string plan_id = 2;
+  string settle_utc8_date = 3;
+  string settle_funding_rate = 4;
+  string settle_fee = 5;
+  string settle_cont = 6;
+  FutureOpenType settle_position_type = 7;  // 结算时的持仓类型
+}
+
+message FundingRateResumeContext {
+  option(redis_table_name) = "funding_rate_resume_context";
+  option(primary_key_field) = "context_id";
+  string plan_id = 1;
+  string context_id = 2;
+  string resume_cont = 3;
+  string resume_price = 4;
+  FutureOpenType resume_position_type = 5;
+  FundingRateResumeState resume_state = 6;
+}
+
+message AddPositionAction {
+  option(redis_table_name) = "lft_strategy_add_position";
+  option(primary_key_field) = "action_id";
+  string action_id = 1;
+  uint32 add_cont = 2;
+  string cur_profit_ratio = 3;
+  uint32 priority = 4;
+  uint64 end_ts = 5;
+}
+
+message DecPositionAction {
+  option(redis_table_name) = "lft_strategy_dec_position";
+  option(primary_key_field) = "action_id";
+  string action_id = 1;
+  uint32 dec_cont = 2;
+  string cur_profit_ratio = 3;
+  uint32 priority = 4;
+  uint64 end_ts = 5;
+  Trade to_close_trade = 6;  // 需要减仓的交易
+}
+
+// 开仓状态的行动
+message OpenAction {
+  option(redis_table_name) = "lft_strategy_open_action";
+  option(primary_key_field) = "action_id";
+  string action_id = 1;
+  StrategyActionType action_type = 2;
+  Trade to_add_trade = 3;  // 需要加仓的交易
+}
+
+// 关仓状态的行动
+message CloseAction {
+  option(redis_table_name) = "lft_strategy_close_action";
+  option(primary_key_field) = "action_id";
+  string action_id = 1;
+  StrategyActionType action_type = 2;
+  Trade to_close_trade = 3;  // 需要加仓的交易
+  PositionModifySignal signal = 4;
+}
+
+message Action {
+  option(redis_table_name) = "lft_strategy_action";
+  option(primary_key_field) = "action_id";
+  string action_id = 1;
+  StrategyActionType action_type = 2;
+  string reason = 3;
+  OpenAction open_action = 4;
+  CloseAction close_action = 5;
+  AddPositionAction add_action = 6;
+  DecPositionAction dec_action = 7;
+  PositionModifySignal signal = 8;
+  string cur_profit_ratio = 9;
+}
+
+message FuturePlan {
+  option(redis_table_name) = "future_plan";
+  option(redis_unfinished_set_name) = "future_plan_unfinished_set";
+  option(redis_finished_set_name) = "future_plan_finished_set";
+  option(primary_key_field) = "plan_id";
+
+  string plan_id = 1;
+  FutureOpenType open_type = 2;
+  CoinFuture coin_future = 3;
+  uint32 plan_cont = 4;
+  uint32 deal_cont = 5;
+
+  string plan_open_price = 6;
+  string deal_open_price = 7;
+
+  string plan_close_price = 8;
+  string deal_close_price = 9;
+
+  string plan_profit_ratio = 10;
+
+  string open_fee = 11;
+  string close_fee = 12;
+
+  repeated Trade open_trade_list = 13;
+  repeated Trade close_trade_list = 14;
+  PlanState state = 15;
+  uint64 create_ts = 16;
+  uint64 finish_ts = 17;
+  uint32 data_version = 18;
+  string platform = 19;
+  string profit = 20;
+
+  repeated FundingRateSettle settle_list = 21;
+  repeated Action action_list = 22;
+  uint32 still_in_open_cont = 23;
+  uint32 already_close_cont = 24;
+  // repeated PositionModifySignal signal_list = 25;
+  repeated string signal_list = 25;
+}

@@ -18,6 +18,9 @@ import '@/utils/error-log'
 import '@/pwa/register-service-worker'
 import * as directives from '@/directives'
 import * as filters from '@/filters'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+// import ElementPlus from 'element-plus'
 
 Vue.use(ElementUI, {
   size: AppModule.size, // Set element-ui default size
@@ -41,6 +44,10 @@ Object.keys(filters).forEach(key => {
 })
 
 Vue.config.productionTip = false
+
+// const app = createApp(App)
+// App.use(ElementPlus)
+App.use(VueAxios, axios)
 
 new Vue({
   router,

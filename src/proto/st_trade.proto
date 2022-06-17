@@ -1,0 +1,100 @@
+syntax = "proto3";
+
+import "validator.proto";
+
+package st;
+option go_package="/datatype";
+
+enum TradeState {
+    DEFAULT_TRADE_STATE = 0;
+    TRADE_UNSUBMIT = 1;
+    TRADE_SUBMITTED = 2;
+    TRADE_EXECUTING = 3;
+    TRADE_FINISHED = 4;
+    TRADE_CLOSING = 5;
+}
+
+enum TradeSubState {
+  DEFAULT_TRADE_SUB_STATE = 0;
+  TRADE_SUB_UNSUBMIT = 1;  // 未提交
+  TRADE_SUB_SUBMITTED = 2;       //已提交
+  TRADE_SUB_PARTIAL_FILLED = 3;  // 部分成交
+  TRADE_SUB_FULL_FILLED = 4;     // 全部成交
+  TRADE_SUB_CANCELING = 5;       // 取消中
+  TRADE_SUB_CANCELED = 6;        // 已取消
+  TRADE_SUB_REJECTED = 7;        // 已被拒绝
+  TRADE_SUB_EXECUTING = 8;        // 等待交易中
+  TRADE_TIMEOUT_CLOSED = 9;        // 超时关单
+}
+
+enum TradeDir {
+    DEFAULT_TRADE_DIR = 0;
+    BID = 1;
+    ASK = 2;
+}
+
+enum TradeType {
+    DEFAULT_TRADE_TYPE = 0;
+    POSITIVE = 1;  // 正向合约
+    NEG = 2;       // 反向合约
+}
+
+enum TradeTargetType {
+    DEFAULT_TARGET_TYPE = 0;
+    OPEN = 1;  // 开仓
+    CLOSE = 2;       // 关仓
+}
+
+enum Platform {
+    FAKE = 0;
+    HUOBI = 2;
+    BYBIT = 3;
+}
+
+enum TradeCommandType {
+    DEFAULT_COMMAND_TYPE = 0;
+    LIMIT_MAKER = 1;
+    FOK_TAKER = 2;
+}
+
+// USD反向合约
+message CoinFuture {
+    option(redis_table_name) = "coin_future";
+    option(primary_key_field) = "symbol";
+
+    string symbol = 1;
+    string currency = 2;
+    string commodity = 3;
+    uint32 cont_unit = 4;  // 单张合约USD值
+    string price_slot = 5;  // 最小价格变化量
+    Platform platform = 6;  // 合约所属平台
+}
+
+// 目前只实现反向合约
+message Trade {
+    option(redis_table_name) = "trade";
+    option(primary_key_field) = "order_id";
+
+    string order_id = 1;  // 交易单号
+    string out_order_id = 2;   // 交易所的交易单号
+    TradeState state = 3;  // 交易状态
+    TradeDir trade_dir = 4;
+    uint32 cont = 5;  // 合约张数
+    uint32 deal_cont = 6;  // 合约张数
+    CoinFuture future = 7;
+    string target_price = 8;
+    string deal_price = 9;
+    string fee = 10;
+    Platform platform = 11;
+    TradeCommandType trade_type = 12;    
+    int32 lever_rate = 13;
+    uint64 create_ts = 14;
+    string plan_id = 15;
+    uint64 update_ts = 16;
+    uint32 data_version = 17;
+    TradeTargetType target_type = 18;
+    TradeSubState sub_state = 19;  // 交易子状态
+    string exe_trade_reason = 20;  // 执行交易原因
+    string del_trade_reason = 21;  // 取消交易原因
+    uint64 recv_micro_window = 22;  // 可执行窗口
+}
