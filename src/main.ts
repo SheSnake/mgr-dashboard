@@ -20,6 +20,7 @@ import * as directives from '@/directives'
 import * as filters from '@/filters'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import { InnerService } from '@/api/innerservice'
 // import ElementPlus from 'element-plus'
 
 Vue.use(ElementUI, {
@@ -32,6 +33,8 @@ Vue.use(SvgIcon, {
   defaultWidth: '1em',
   defaultHeight: '1em'
 })
+
+Vue.use(InnerService)
 
 // Register global directives
 Object.keys(directives).forEach(key => {

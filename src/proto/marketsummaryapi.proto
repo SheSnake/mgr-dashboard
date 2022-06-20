@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package innerapi;
+
+option go_package = "/datatype";
+
+message GetBuySellVolumeReq {
+  // @inject_tag: form:"symbol_id"
+  string symbol_id = 1;
+  // @inject_tag: form:"start_sec"
+  uint64 start_sec = 2;
+  // @inject_tag: form:"aggr_interval_sec"
+  uint64 aggr_interval_sec = 3;
+  // @inject_tag: form:"source"
+  string source = 100;
+}
+
+message BuySellVolume {
+  // @inject_tag: db:"buy_volume"
+  double buy_volume = 1;
+  // @inject_tag: db:"sell_volume"
+  double sell_volume = 2;
+  // @inject_tag: db:"buy_turnover"
+  double buy_turnover = 3;
+  // @inject_tag: db:"sell_turnover"
+  double sell_turnover = 4;
+  // @inject_tag: db:"buy_cnt"
+  int32 buy_cnt = 5;
+  // @inject_tag: db:"sell_cnt"
+  int32 sell_cnt = 6;
+  // @inject_tag: db:"start_sec"
+  uint64 start_sec = 7;
+}
+
+message GetBuySellVolumeResp {
+  // @inject_tag: form:"statistics"
+  repeated BuySellVolume statistics = 1;
+  // @inject_tag: form:"base64encoded_data"
+  string base64encoded_data = 2;
+}

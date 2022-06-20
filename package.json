@@ -10,7 +10,8 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
-    "mock": "cd mock && ts-node-dev mock-server.ts"
+    "mock": "cd mock && ts-node-dev mock-server.ts",
+    "proto": "pbjs -p proto -t static-module --force-number -w es6 -o src/proto/proto.js  src/proto/*.proto && pbts -o src/proto/proto.d.ts src/proto/proto.js"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.6",
@@ -32,6 +33,7 @@
     "jszip": "^3.6.0",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
+    "moment": "^2.29.3",
     "morgan": "^1.10.0",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",

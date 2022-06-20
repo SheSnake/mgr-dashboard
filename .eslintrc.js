@@ -20,11 +20,12 @@ module.exports = {
           delimiter: 'none'
         },
         singleline: {
-          delimiter: 'comma'
+          // delimiter: 'comma'
         }
       }],
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    'comma-dangle': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'space-before-function-paren': ['error', 'never'],
@@ -33,7 +34,7 @@ module.exports = {
     'vue/block-spacing': 'error',
     'vue/brace-style': 'error',
     'vue/camelcase': 'error',
-    'vue/comma-dangle': 'error',
+    'vue/comma-dangle': 'off',
     'vue/component-name-in-template-casing': ['error', 'kebab-case'],
     'vue/eqeqeq': 'error',
     'vue/key-spacing': 'error',

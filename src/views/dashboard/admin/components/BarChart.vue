@@ -1,92 +1,63 @@
 <template>
-  <div
-    :class="className"
-    :style="{height: height, width: width}"
-  />
+  <div>
+    <el-row :gutter="10">
+      <el-col :span="8">
+        <el-date-picker
+          v-model="dataRange"
+          @change="onSelect"
+          type="datetimerange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+        >
+        </el-date-picker>
+      </el-col>
+
+      <el-col :span="6">
+        <el-select v-model="curSymbolId" placeholder="请选择">
+          <el-option
+            v-for="item in symbolOptions"
+            :key="item.symbolId"
+            :label="item.innerSymbol"
+            :value="item.symbolId"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+
+      <el-col :span="6">
+        <el-select v-model="aggrIntervalSec" placeholder="请选择">
+          <el-option
+            v-for="item in aggrIntervalSecOptions"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-col>
+
+      <el-col :span="4">
+         <el-button @click="onSelect">确认</el-button>
+      </el-col>
+    </el-row>
+    <el-row :gutter="20">
+      <div
+        ref="chartsDiv"
+        :style="{height: height, width: width}"
+        :class="className"
+      ></div>
+    </el-row>
+  </div>
 </template>
 
-<script lang="ts">
-import * as echarts from 'echarts'
-import { Component, Prop } from 'vue-property-decorator'
-import { mixins } from 'vue-class-component'
-import ResizeMixin from '@/components/Charts/mixins/resize'
+<script lang="ts" src="./buysellchart.ts"></script>
 
-const animationDuration = 6000
-
-@Component({
-  name: 'BarChart'
-})
-export default class extends mixins(ResizeMixin) {
-  @Prop({ default: 'chart' }) private className!: string
-  @Prop({ default: '100%' }) private width!: string
-  @Prop({ default: '300px' }) private height!: string
-
-  mounted() {
-    this.$nextTick(() => {
-      this.initChart()
-    })
-  }
-
-  beforeDestroy() {
-    if (!this.chart) {
-      return
-    }
-    this.chart.dispose()
-    this.chart = null
-  }
-
-  private initChart() {
-    this.chart = echarts.init(this.$el as HTMLDivElement, 'macarons')
-    this.chart.setOption({
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      grid: {
-        top: 10,
-        left: '2%',
-        right: '2%',
-        bottom: '3%',
-        containLabel: true
-      },
-      xAxis: [{
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        axisTick: {
-          alignWithLabel: true
-        }
-      }],
-      yAxis: [{
-        type: 'value',
-        axisTick: {
-          show: false
-        }
-      }],
-      series: [{
-        name: 'pageA',
-        type: 'bar',
-        stack: 'vistors',
-        // barWidth: '60%',
-        data: [79, 52, 200, 334, 390, 330, 220],
-        animationDuration
-      }, {
-        name: 'pageB',
-        type: 'bar',
-        stack: 'vistors',
-        // barWidth: '60%',
-        data: [80, 52, 200, 334, 390, 330, 220],
-        animationDuration
-      }, {
-        name: 'pageC',
-        type: 'bar',
-        stack: 'vistors',
-        // barWidth: '60%',
-        data: [30, 52, 200, 334, 390, 330, 220],
-        animationDuration
-      }]
-    })
+<style>
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
-</script>
+</style>

@@ -1,5 +1,5 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { bus, SymbolChangeEvent, TradeLogFocusEvent } from "@/utils/bus";
+import { bus, SymbolChangeEvent, TradeLogFocusEvent } from '@/utils/bus'
 import { TradeApi } from "@/api/TradeApi";
 
 import { datatype, st } from "@/proto/proto";

@@ -1,7 +1,9 @@
+/* eslint-disable vue/no-parsing-error */
 <template>
   <div class="dashboard-editor-container">
     <github-corner class="github-corner" />
 
+<!--
     <panel-group @handle-set-line-chart-data="handleSetLineChartData" />
 
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
@@ -25,15 +27,6 @@
       >
         <div class="chart-wrapper">
           <pie-chart />
-        </div>
-      </el-col>
-      <el-col
-        :xs="24"
-        :sm="24"
-        :lg="8"
-      >
-        <div class="chart-wrapper">
-          <bar-chart />
         </div>
       </el-col>
     </el-row>
@@ -68,6 +61,18 @@
         style="margin-bottom:30px;"
       >
         <box-card />
+      </el-col>
+    </el-row>
+  -->
+    <el-row>
+      <el-col
+        :xs="48"
+        :sm="48"
+        :lg="24"
+      >
+        <div class="chart-wrapper">
+          <bar-chart />
+        </div>
       </el-col>
     </el-row>
   </div>

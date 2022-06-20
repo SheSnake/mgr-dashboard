@@ -6,3 +6,4 @@ public/**/*/*
 public/**/*
 src/views/tradingview-chart/components/*
 public/datafeeds/udf/src/*
+src/proto/*

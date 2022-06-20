@@ -1,6 +1,4 @@
-/* eslint-disable */
-// @ts-nocheck
-/* eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars */
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
 import * as $protobuf from "protobufjs/minimal";
 
 // Common aliases
@@ -8,6214 +6,6 @@ const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.
 
 // Exported root namespace
 const $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
-
-export const tradebot = $root.tradebot = (() => {
-
-    /**
-     * Namespace tradebot.
-     * @exports tradebot
-     * @namespace
-     */
-    const tradebot = {};
-
-    tradebot.grpc_server = (function() {
-
-        /**
-         * Namespace grpc_server.
-         * @memberof tradebot
-         * @namespace
-         */
-        const grpc_server = {};
-
-        grpc_server.arbitrage = (function() {
-
-            /**
-             * Namespace arbitrage.
-             * @memberof tradebot.grpc_server
-             * @namespace
-             */
-            const arbitrage = {};
-
-            /**
-             * ErrorCode enum.
-             * @name tradebot.grpc_server.arbitrage.ErrorCode
-             * @enum {number}
-             * @property {number} SUCCESS=10001 SUCCESS value
-             * @property {number} ARBITRAGE_OPENING_EXIST=11002 ARBITRAGE_OPENING_EXIST value
-             * @property {number} ARBITRAGE_OPEN_EXIST=11003 ARBITRAGE_OPEN_EXIST value
-             * @property {number} ARBITRAGE_SPOT_DEAL_FAILED=12004 ARBITRAGE_SPOT_DEAL_FAILED value
-             * @property {number} ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL=12005 ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL value
-             * @property {number} ARBITRAGE_CLOSE_INEXIST=12006 ARBITRAGE_CLOSE_INEXIST value
-             * @property {number} ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE=12007 ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE value
-             * @property {number} ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE=12008 ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE value
-             * @property {number} ARBITRAGE_ADD_HOLDING_INEXIST=12009 ARBITRAGE_ADD_HOLDING_INEXIST value
-             * @property {number} TRANSFER_AMOUNT_NOT_ENOUGH=12010 TRANSFER_AMOUNT_NOT_ENOUGH value
-             * @property {number} ARBITRAGE_OPEN_SPOT_FAILED=11004 ARBITRAGE_OPEN_SPOT_FAILED value
-             * @property {number} REQUEST_IN_OPERATING=30001 REQUEST_IN_OPERATING value
-             * @property {number} TOO_MANY_OPEN_REQUEST=30002 TOO_MANY_OPEN_REQUEST value
-             * @property {number} REQUEST_ORDER_NOT_EXIST=30003 REQUEST_ORDER_NOT_EXIST value
-             * @property {number} TAKER_ORDER_FILLED_ZERO=30004 TAKER_ORDER_FILLED_ZERO value
-             * @property {number} MAKER_OPEN_FAILED=30005 MAKER_OPEN_FAILED value
-             */
-            arbitrage.ErrorCode = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[10001] = "SUCCESS"] = 10001;
-                values[valuesById[11002] = "ARBITRAGE_OPENING_EXIST"] = 11002;
-                values[valuesById[11003] = "ARBITRAGE_OPEN_EXIST"] = 11003;
-                values[valuesById[12004] = "ARBITRAGE_SPOT_DEAL_FAILED"] = 12004;
-                values[valuesById[12005] = "ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL"] = 12005;
-                values[valuesById[12006] = "ARBITRAGE_CLOSE_INEXIST"] = 12006;
-                values[valuesById[12007] = "ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE"] = 12007;
-                values[valuesById[12008] = "ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE"] = 12008;
-                values[valuesById[12009] = "ARBITRAGE_ADD_HOLDING_INEXIST"] = 12009;
-                values[valuesById[12010] = "TRANSFER_AMOUNT_NOT_ENOUGH"] = 12010;
-                values[valuesById[11004] = "ARBITRAGE_OPEN_SPOT_FAILED"] = 11004;
-                values[valuesById[30001] = "REQUEST_IN_OPERATING"] = 30001;
-                values[valuesById[30002] = "TOO_MANY_OPEN_REQUEST"] = 30002;
-                values[valuesById[30003] = "REQUEST_ORDER_NOT_EXIST"] = 30003;
-                values[valuesById[30004] = "TAKER_ORDER_FILLED_ZERO"] = 30004;
-                values[valuesById[30005] = "MAKER_OPEN_FAILED"] = 30005;
-                return values;
-            })();
-
-            /**
-             * OrderSide enum.
-             * @name tradebot.grpc_server.arbitrage.OrderSide
-             * @enum {number}
-             * @property {number} SELL=-1 SELL value
-             * @property {number} BUY=1 BUY value
-             */
-            arbitrage.OrderSide = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[-1] = "SELL"] = -1;
-                values[valuesById[1] = "BUY"] = 1;
-                return values;
-            })();
-
-            /**
-             * PositionType enum.
-             * @name tradebot.grpc_server.arbitrage.PositionType
-             * @enum {number}
-             * @property {number} LONG=1 LONG value
-             * @property {number} SHORT=-1 SHORT value
-             */
-            arbitrage.PositionType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[1] = "LONG"] = 1;
-                values[valuesById[-1] = "SHORT"] = -1;
-                return values;
-            })();
-
-            /**
-             * FutureContractSide enum.
-             * @name tradebot.grpc_server.arbitrage.FutureContractSide
-             * @enum {number}
-             * @property {number} INVALID_FUTURE_SIDE=0 INVALID_FUTURE_SIDE value
-             * @property {number} CLOSE=-1 CLOSE value
-             * @property {number} OPEN=1 OPEN value
-             */
-            arbitrage.FutureContractSide = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "INVALID_FUTURE_SIDE"] = 0;
-                values[valuesById[-1] = "CLOSE"] = -1;
-                values[valuesById[1] = "OPEN"] = 1;
-                return values;
-            })();
-
-            /**
-             * PostOnlyType enum.
-             * @name tradebot.grpc_server.arbitrage.PostOnlyType
-             * @enum {number}
-             * @property {number} CANCEL_IF_NOT_POSSIBLE=1 CANCEL_IF_NOT_POSSIBLE value
-             * @property {number} CANCEL_WHEN_FORCE=2 CANCEL_WHEN_FORCE value
-             * @property {number} CANCEL_EXCEED_BEST_ASK=3 CANCEL_EXCEED_BEST_ASK value
-             * @property {number} CANCEL_LESS_BEST_ASK=4 CANCEL_LESS_BEST_ASK value
-             * @property {number} CANCEL_EXCEED_BEST_BID=5 CANCEL_EXCEED_BEST_BID value
-             * @property {number} CANCEL_LESS_BEST_BID=6 CANCEL_LESS_BEST_BID value
-             * @property {number} FILLED_OR_CANCELED=7 FILLED_OR_CANCELED value
-             * @property {number} TRY_CANCEL_MAKER=8 TRY_CANCEL_MAKER value
-             * @property {number} REPLACE_OPENING=9 REPLACE_OPENING value
-             * @property {number} CANCEL_OPENING=10 CANCEL_OPENING value
-             */
-            arbitrage.PostOnlyType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[1] = "CANCEL_IF_NOT_POSSIBLE"] = 1;
-                values[valuesById[2] = "CANCEL_WHEN_FORCE"] = 2;
-                values[valuesById[3] = "CANCEL_EXCEED_BEST_ASK"] = 3;
-                values[valuesById[4] = "CANCEL_LESS_BEST_ASK"] = 4;
-                values[valuesById[5] = "CANCEL_EXCEED_BEST_BID"] = 5;
-                values[valuesById[6] = "CANCEL_LESS_BEST_BID"] = 6;
-                values[valuesById[7] = "FILLED_OR_CANCELED"] = 7;
-                values[valuesById[8] = "TRY_CANCEL_MAKER"] = 8;
-                values[valuesById[9] = "REPLACE_OPENING"] = 9;
-                values[valuesById[10] = "CANCEL_OPENING"] = 10;
-                return values;
-            })();
-
-            /**
-             * OrderActiveType enum.
-             * @name tradebot.grpc_server.arbitrage.OrderActiveType
-             * @enum {number}
-             * @property {number} WAITING_DEAL=1 WAITING_DEAL value
-             * @property {number} ORDER_HEDGE_ACTIVE=2 ORDER_HEDGE_ACTIVE value
-             */
-            arbitrage.OrderActiveType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[1] = "WAITING_DEAL"] = 1;
-                values[valuesById[2] = "ORDER_HEDGE_ACTIVE"] = 2;
-                return values;
-            })();
-
-            /**
-             * FutureContractType enum.
-             * @name tradebot.grpc_server.arbitrage.FutureContractType
-             * @enum {number}
-             * @property {number} INVALID_TYPE=0 INVALID_TYPE value
-             * @property {number} THIS_WEEK=1 THIS_WEEK value
-             * @property {number} NEXT_WEEK=2 NEXT_WEEK value
-             * @property {number} QUARTER=3 QUARTER value
-             * @property {number} FOREVER=4 FOREVER value
-             */
-            arbitrage.FutureContractType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "INVALID_TYPE"] = 0;
-                values[valuesById[1] = "THIS_WEEK"] = 1;
-                values[valuesById[2] = "NEXT_WEEK"] = 2;
-                values[valuesById[3] = "QUARTER"] = 3;
-                values[valuesById[4] = "FOREVER"] = 4;
-                return values;
-            })();
-
-            arbitrage.Order = (function() {
-
-                /**
-                 * Properties of an Order.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IOrder
-                 * @property {string} contract Order contract
-                 * @property {string} commodity Order commodity
-                 * @property {string} currency Order currency
-                 * @property {string} price Order price
-                 * @property {string} quantity Order quantity
-                 * @property {string} turnover Order turnover
-                 * @property {string} fee Order fee
-                 * @property {tradebot.grpc_server.arbitrage.OrderSide} orderSide Order orderSide
-                 * @property {number} createdTimestamp Order createdTimestamp
-                 * @property {number|null} [contractVolume] Order contractVolume
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractSide|null} [futureContractSide] Order futureContractSide
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractType|null} [futureContractType] Order futureContractType
-                 * @property {string|null} [futureContractCode] Order futureContractCode
-                 * @property {number|null} [leverRate] Order leverRate
-                 * @property {string} platform Order platform
-                 * @property {string|null} [clientOrderId] Order clientOrderId
-                 */
-
-                /**
-                 * Constructs a new Order.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an Order.
-                 * @implements IOrder
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IOrder=} [properties] Properties to set
-                 */
-                function Order(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * Order contract.
-                 * @member {string} contract
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.contract = "";
-
-                /**
-                 * Order commodity.
-                 * @member {string} commodity
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.commodity = "";
-
-                /**
-                 * Order currency.
-                 * @member {string} currency
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.currency = "";
-
-                /**
-                 * Order price.
-                 * @member {string} price
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.price = "";
-
-                /**
-                 * Order quantity.
-                 * @member {string} quantity
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.quantity = "";
-
-                /**
-                 * Order turnover.
-                 * @member {string} turnover
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.turnover = "";
-
-                /**
-                 * Order fee.
-                 * @member {string} fee
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.fee = "";
-
-                /**
-                 * Order orderSide.
-                 * @member {tradebot.grpc_server.arbitrage.OrderSide} orderSide
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.orderSide = -1;
-
-                /**
-                 * Order createdTimestamp.
-                 * @member {number} createdTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.createdTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * Order contractVolume.
-                 * @member {number} contractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.contractVolume = 0;
-
-                /**
-                 * Order futureContractSide.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractSide} futureContractSide
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.futureContractSide = 0;
-
-                /**
-                 * Order futureContractType.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractType} futureContractType
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.futureContractType = 0;
-
-                /**
-                 * Order futureContractCode.
-                 * @member {string} futureContractCode
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.futureContractCode = "";
-
-                /**
-                 * Order leverRate.
-                 * @member {number} leverRate
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.leverRate = 0;
-
-                /**
-                 * Order platform.
-                 * @member {string} platform
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.platform = "";
-
-                /**
-                 * Order clientOrderId.
-                 * @member {string} clientOrderId
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 */
-                Order.prototype.clientOrderId = "";
-
-                /**
-                 * Creates a new Order instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrder=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.Order} Order instance
-                 */
-                Order.create = function create(properties) {
-                    return new Order(properties);
-                };
-
-                /**
-                 * Encodes the specified Order message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Order.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrder} message Order message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Order.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.contract);
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.commodity);
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.currency);
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.price);
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.quantity);
-                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.turnover);
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.fee);
-                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.orderSide);
-                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.createdTimestamp);
-                    if (message.contractVolume != null && Object.hasOwnProperty.call(message, "contractVolume"))
-                        writer.uint32(/* id 10, wireType 0 =*/80).int32(message.contractVolume);
-                    if (message.futureContractSide != null && Object.hasOwnProperty.call(message, "futureContractSide"))
-                        writer.uint32(/* id 11, wireType 0 =*/88).int32(message.futureContractSide);
-                    if (message.futureContractType != null && Object.hasOwnProperty.call(message, "futureContractType"))
-                        writer.uint32(/* id 12, wireType 0 =*/96).int32(message.futureContractType);
-                    if (message.futureContractCode != null && Object.hasOwnProperty.call(message, "futureContractCode"))
-                        writer.uint32(/* id 13, wireType 2 =*/106).string(message.futureContractCode);
-                    if (message.leverRate != null && Object.hasOwnProperty.call(message, "leverRate"))
-                        writer.uint32(/* id 14, wireType 0 =*/112).int32(message.leverRate);
-                    writer.uint32(/* id 15, wireType 2 =*/122).string(message.platform);
-                    if (message.clientOrderId != null && Object.hasOwnProperty.call(message, "clientOrderId"))
-                        writer.uint32(/* id 16, wireType 2 =*/130).string(message.clientOrderId);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified Order message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Order.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrder} message Order message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Order.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an Order message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.Order} Order
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Order.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.Order();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.contract = reader.string();
-                            break;
-                        case 2:
-                            message.commodity = reader.string();
-                            break;
-                        case 3:
-                            message.currency = reader.string();
-                            break;
-                        case 4:
-                            message.price = reader.string();
-                            break;
-                        case 5:
-                            message.quantity = reader.string();
-                            break;
-                        case 6:
-                            message.turnover = reader.string();
-                            break;
-                        case 7:
-                            message.fee = reader.string();
-                            break;
-                        case 8:
-                            message.orderSide = reader.int32();
-                            break;
-                        case 9:
-                            message.createdTimestamp = reader.int64();
-                            break;
-                        case 10:
-                            message.contractVolume = reader.int32();
-                            break;
-                        case 11:
-                            message.futureContractSide = reader.int32();
-                            break;
-                        case 12:
-                            message.futureContractType = reader.int32();
-                            break;
-                        case 13:
-                            message.futureContractCode = reader.string();
-                            break;
-                        case 14:
-                            message.leverRate = reader.int32();
-                            break;
-                        case 15:
-                            message.platform = reader.string();
-                            break;
-                        case 16:
-                            message.clientOrderId = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("contract"))
-                        throw $util.ProtocolError("missing required 'contract'", { instance: message });
-                    if (!message.hasOwnProperty("commodity"))
-                        throw $util.ProtocolError("missing required 'commodity'", { instance: message });
-                    if (!message.hasOwnProperty("currency"))
-                        throw $util.ProtocolError("missing required 'currency'", { instance: message });
-                    if (!message.hasOwnProperty("price"))
-                        throw $util.ProtocolError("missing required 'price'", { instance: message });
-                    if (!message.hasOwnProperty("quantity"))
-                        throw $util.ProtocolError("missing required 'quantity'", { instance: message });
-                    if (!message.hasOwnProperty("turnover"))
-                        throw $util.ProtocolError("missing required 'turnover'", { instance: message });
-                    if (!message.hasOwnProperty("fee"))
-                        throw $util.ProtocolError("missing required 'fee'", { instance: message });
-                    if (!message.hasOwnProperty("orderSide"))
-                        throw $util.ProtocolError("missing required 'orderSide'", { instance: message });
-                    if (!message.hasOwnProperty("createdTimestamp"))
-                        throw $util.ProtocolError("missing required 'createdTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("platform"))
-                        throw $util.ProtocolError("missing required 'platform'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an Order message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.Order} Order
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Order.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an Order message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Order.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.contract))
-                        return "contract: string expected";
-                    if (!$util.isString(message.commodity))
-                        return "commodity: string expected";
-                    if (!$util.isString(message.currency))
-                        return "currency: string expected";
-                    if (!$util.isString(message.price))
-                        return "price: string expected";
-                    if (!$util.isString(message.quantity))
-                        return "quantity: string expected";
-                    if (!$util.isString(message.turnover))
-                        return "turnover: string expected";
-                    if (!$util.isString(message.fee))
-                        return "fee: string expected";
-                    switch (message.orderSide) {
-                    default:
-                        return "orderSide: enum value expected";
-                    case -1:
-                    case 1:
-                        break;
-                    }
-                    if (!$util.isInteger(message.createdTimestamp) && !(message.createdTimestamp && $util.isInteger(message.createdTimestamp.low) && $util.isInteger(message.createdTimestamp.high)))
-                        return "createdTimestamp: integer|Long expected";
-                    if (message.contractVolume != null && message.hasOwnProperty("contractVolume"))
-                        if (!$util.isInteger(message.contractVolume))
-                            return "contractVolume: integer expected";
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        switch (message.futureContractSide) {
-                        default:
-                            return "futureContractSide: enum value expected";
-                        case 0:
-                        case -1:
-                        case 1:
-                            break;
-                        }
-                    if (message.futureContractType != null && message.hasOwnProperty("futureContractType"))
-                        switch (message.futureContractType) {
-                        default:
-                            return "futureContractType: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                            break;
-                        }
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        if (!$util.isString(message.futureContractCode))
-                            return "futureContractCode: string expected";
-                    if (message.leverRate != null && message.hasOwnProperty("leverRate"))
-                        if (!$util.isInteger(message.leverRate))
-                            return "leverRate: integer expected";
-                    if (!$util.isString(message.platform))
-                        return "platform: string expected";
-                    if (message.clientOrderId != null && message.hasOwnProperty("clientOrderId"))
-                        if (!$util.isString(message.clientOrderId))
-                            return "clientOrderId: string expected";
-                    return null;
-                };
-
-                /**
-                 * Creates an Order message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.Order} Order
-                 */
-                Order.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.Order)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.Order();
-                    if (object.contract != null)
-                        message.contract = String(object.contract);
-                    if (object.commodity != null)
-                        message.commodity = String(object.commodity);
-                    if (object.currency != null)
-                        message.currency = String(object.currency);
-                    if (object.price != null)
-                        message.price = String(object.price);
-                    if (object.quantity != null)
-                        message.quantity = String(object.quantity);
-                    if (object.turnover != null)
-                        message.turnover = String(object.turnover);
-                    if (object.fee != null)
-                        message.fee = String(object.fee);
-                    switch (object.orderSide) {
-                    case "SELL":
-                    case -1:
-                        message.orderSide = -1;
-                        break;
-                    case "BUY":
-                    case 1:
-                        message.orderSide = 1;
-                        break;
-                    }
-                    if (object.createdTimestamp != null)
-                        if ($util.Long)
-                            (message.createdTimestamp = $util.Long.fromValue(object.createdTimestamp)).unsigned = false;
-                        else if (typeof object.createdTimestamp === "string")
-                            message.createdTimestamp = parseInt(object.createdTimestamp, 10);
-                        else if (typeof object.createdTimestamp === "number")
-                            message.createdTimestamp = object.createdTimestamp;
-                        else if (typeof object.createdTimestamp === "object")
-                            message.createdTimestamp = new $util.LongBits(object.createdTimestamp.low >>> 0, object.createdTimestamp.high >>> 0).toNumber();
-                    if (object.contractVolume != null)
-                        message.contractVolume = object.contractVolume | 0;
-                    switch (object.futureContractSide) {
-                    case "INVALID_FUTURE_SIDE":
-                    case 0:
-                        message.futureContractSide = 0;
-                        break;
-                    case "CLOSE":
-                    case -1:
-                        message.futureContractSide = -1;
-                        break;
-                    case "OPEN":
-                    case 1:
-                        message.futureContractSide = 1;
-                        break;
-                    }
-                    switch (object.futureContractType) {
-                    case "INVALID_TYPE":
-                    case 0:
-                        message.futureContractType = 0;
-                        break;
-                    case "THIS_WEEK":
-                    case 1:
-                        message.futureContractType = 1;
-                        break;
-                    case "NEXT_WEEK":
-                    case 2:
-                        message.futureContractType = 2;
-                        break;
-                    case "QUARTER":
-                    case 3:
-                        message.futureContractType = 3;
-                        break;
-                    case "FOREVER":
-                    case 4:
-                        message.futureContractType = 4;
-                        break;
-                    }
-                    if (object.futureContractCode != null)
-                        message.futureContractCode = String(object.futureContractCode);
-                    if (object.leverRate != null)
-                        message.leverRate = object.leverRate | 0;
-                    if (object.platform != null)
-                        message.platform = String(object.platform);
-                    if (object.clientOrderId != null)
-                        message.clientOrderId = String(object.clientOrderId);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an Order message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.Order} message Order
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Order.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.contract = "";
-                        object.commodity = "";
-                        object.currency = "";
-                        object.price = "";
-                        object.quantity = "";
-                        object.turnover = "";
-                        object.fee = "";
-                        object.orderSide = options.enums === String ? "SELL" : -1;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.createdTimestamp = options.longs === String ? "0" : 0;
-                        object.contractVolume = 0;
-                        object.futureContractSide = options.enums === String ? "INVALID_FUTURE_SIDE" : 0;
-                        object.futureContractType = options.enums === String ? "INVALID_TYPE" : 0;
-                        object.futureContractCode = "";
-                        object.leverRate = 0;
-                        object.platform = "";
-                        object.clientOrderId = "";
-                    }
-                    if (message.contract != null && message.hasOwnProperty("contract"))
-                        object.contract = message.contract;
-                    if (message.commodity != null && message.hasOwnProperty("commodity"))
-                        object.commodity = message.commodity;
-                    if (message.currency != null && message.hasOwnProperty("currency"))
-                        object.currency = message.currency;
-                    if (message.price != null && message.hasOwnProperty("price"))
-                        object.price = message.price;
-                    if (message.quantity != null && message.hasOwnProperty("quantity"))
-                        object.quantity = message.quantity;
-                    if (message.turnover != null && message.hasOwnProperty("turnover"))
-                        object.turnover = message.turnover;
-                    if (message.fee != null && message.hasOwnProperty("fee"))
-                        object.fee = message.fee;
-                    if (message.orderSide != null && message.hasOwnProperty("orderSide"))
-                        object.orderSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.OrderSide[message.orderSide] : message.orderSide;
-                    if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                        if (typeof message.createdTimestamp === "number")
-                            object.createdTimestamp = options.longs === String ? String(message.createdTimestamp) : message.createdTimestamp;
-                        else
-                            object.createdTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createdTimestamp) : options.longs === Number ? new $util.LongBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0).toNumber() : message.createdTimestamp;
-                    if (message.contractVolume != null && message.hasOwnProperty("contractVolume"))
-                        object.contractVolume = message.contractVolume;
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        object.futureContractSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractSide[message.futureContractSide] : message.futureContractSide;
-                    if (message.futureContractType != null && message.hasOwnProperty("futureContractType"))
-                        object.futureContractType = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractType[message.futureContractType] : message.futureContractType;
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        object.futureContractCode = message.futureContractCode;
-                    if (message.leverRate != null && message.hasOwnProperty("leverRate"))
-                        object.leverRate = message.leverRate;
-                    if (message.platform != null && message.hasOwnProperty("platform"))
-                        object.platform = message.platform;
-                    if (message.clientOrderId != null && message.hasOwnProperty("clientOrderId"))
-                        object.clientOrderId = message.clientOrderId;
-                    return object;
-                };
-
-                /**
-                 * Converts this Order to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.Order
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Order.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return Order;
-            })();
-
-            /**
-             * RequestType enum.
-             * @name tradebot.grpc_server.arbitrage.RequestType
-             * @enum {number}
-             * @property {number} ADD_HOLDING_REQUEST=1 ADD_HOLDING_REQUEST value
-             * @property {number} OPEN_REQUEST=2 OPEN_REQUEST value
-             * @property {number} CLOSE_REQUEST=3 CLOSE_REQUEST value
-             * @property {number} OPEN_POSITION=4 OPEN_POSITION value
-             * @property {number} CLOSE_POSITION=5 CLOSE_POSITION value
-             */
-            arbitrage.RequestType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[1] = "ADD_HOLDING_REQUEST"] = 1;
-                values[valuesById[2] = "OPEN_REQUEST"] = 2;
-                values[valuesById[3] = "CLOSE_REQUEST"] = 3;
-                values[valuesById[4] = "OPEN_POSITION"] = 4;
-                values[valuesById[5] = "CLOSE_POSITION"] = 5;
-                return values;
-            })();
-
-            arbitrage.Transaction = (function() {
-
-                /**
-                 * Properties of a Transaction.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface ITransaction
-                 * @property {tradebot.grpc_server.arbitrage.IOrder} spotOrder Transaction spotOrder
-                 * @property {tradebot.grpc_server.arbitrage.IOrder} futureOrder Transaction futureOrder
-                 * @property {string|null} [minBasisRatio] Transaction minBasisRatio
-                 * @property {string|null} [maxBasisRatio] Transaction maxBasisRatio
-                 * @property {string|null} [openPosition] Transaction openPosition
-                 */
-
-                /**
-                 * Constructs a new Transaction.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a Transaction.
-                 * @implements ITransaction
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.ITransaction=} [properties] Properties to set
-                 */
-                function Transaction(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * Transaction spotOrder.
-                 * @member {tradebot.grpc_server.arbitrage.IOrder} spotOrder
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 */
-                Transaction.prototype.spotOrder = null;
-
-                /**
-                 * Transaction futureOrder.
-                 * @member {tradebot.grpc_server.arbitrage.IOrder} futureOrder
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 */
-                Transaction.prototype.futureOrder = null;
-
-                /**
-                 * Transaction minBasisRatio.
-                 * @member {string} minBasisRatio
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 */
-                Transaction.prototype.minBasisRatio = "";
-
-                /**
-                 * Transaction maxBasisRatio.
-                 * @member {string} maxBasisRatio
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 */
-                Transaction.prototype.maxBasisRatio = "";
-
-                /**
-                 * Transaction openPosition.
-                 * @member {string} openPosition
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 */
-                Transaction.prototype.openPosition = "";
-
-                /**
-                 * Creates a new Transaction instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ITransaction=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.Transaction} Transaction instance
-                 */
-                Transaction.create = function create(properties) {
-                    return new Transaction(properties);
-                };
-
-                /**
-                 * Encodes the specified Transaction message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Transaction.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ITransaction} message Transaction message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Transaction.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    $root.tradebot.grpc_server.arbitrage.Order.encode(message.spotOrder, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    $root.tradebot.grpc_server.arbitrage.Order.encode(message.futureOrder, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    if (message.minBasisRatio != null && Object.hasOwnProperty.call(message, "minBasisRatio"))
-                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.minBasisRatio);
-                    if (message.maxBasisRatio != null && Object.hasOwnProperty.call(message, "maxBasisRatio"))
-                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.maxBasisRatio);
-                    if (message.openPosition != null && Object.hasOwnProperty.call(message, "openPosition"))
-                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.openPosition);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified Transaction message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Transaction.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ITransaction} message Transaction message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Transaction.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a Transaction message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.Transaction} Transaction
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Transaction.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.Transaction();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.spotOrder = $root.tradebot.grpc_server.arbitrage.Order.decode(reader, reader.uint32());
-                            break;
-                        case 2:
-                            message.futureOrder = $root.tradebot.grpc_server.arbitrage.Order.decode(reader, reader.uint32());
-                            break;
-                        case 3:
-                            message.minBasisRatio = reader.string();
-                            break;
-                        case 4:
-                            message.maxBasisRatio = reader.string();
-                            break;
-                        case 5:
-                            message.openPosition = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("spotOrder"))
-                        throw $util.ProtocolError("missing required 'spotOrder'", { instance: message });
-                    if (!message.hasOwnProperty("futureOrder"))
-                        throw $util.ProtocolError("missing required 'futureOrder'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a Transaction message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.Transaction} Transaction
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Transaction.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a Transaction message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Transaction.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Order.verify(message.spotOrder);
-                        if (error)
-                            return "spotOrder." + error;
-                    }
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Order.verify(message.futureOrder);
-                        if (error)
-                            return "futureOrder." + error;
-                    }
-                    if (message.minBasisRatio != null && message.hasOwnProperty("minBasisRatio"))
-                        if (!$util.isString(message.minBasisRatio))
-                            return "minBasisRatio: string expected";
-                    if (message.maxBasisRatio != null && message.hasOwnProperty("maxBasisRatio"))
-                        if (!$util.isString(message.maxBasisRatio))
-                            return "maxBasisRatio: string expected";
-                    if (message.openPosition != null && message.hasOwnProperty("openPosition"))
-                        if (!$util.isString(message.openPosition))
-                            return "openPosition: string expected";
-                    return null;
-                };
-
-                /**
-                 * Creates a Transaction message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.Transaction} Transaction
-                 */
-                Transaction.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.Transaction)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.Transaction();
-                    if (object.spotOrder != null) {
-                        if (typeof object.spotOrder !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.Transaction.spotOrder: object expected");
-                        message.spotOrder = $root.tradebot.grpc_server.arbitrage.Order.fromObject(object.spotOrder);
-                    }
-                    if (object.futureOrder != null) {
-                        if (typeof object.futureOrder !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.Transaction.futureOrder: object expected");
-                        message.futureOrder = $root.tradebot.grpc_server.arbitrage.Order.fromObject(object.futureOrder);
-                    }
-                    if (object.minBasisRatio != null)
-                        message.minBasisRatio = String(object.minBasisRatio);
-                    if (object.maxBasisRatio != null)
-                        message.maxBasisRatio = String(object.maxBasisRatio);
-                    if (object.openPosition != null)
-                        message.openPosition = String(object.openPosition);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a Transaction message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.Transaction} message Transaction
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Transaction.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.spotOrder = null;
-                        object.futureOrder = null;
-                        object.minBasisRatio = "";
-                        object.maxBasisRatio = "";
-                        object.openPosition = "";
-                    }
-                    if (message.spotOrder != null && message.hasOwnProperty("spotOrder"))
-                        object.spotOrder = $root.tradebot.grpc_server.arbitrage.Order.toObject(message.spotOrder, options);
-                    if (message.futureOrder != null && message.hasOwnProperty("futureOrder"))
-                        object.futureOrder = $root.tradebot.grpc_server.arbitrage.Order.toObject(message.futureOrder, options);
-                    if (message.minBasisRatio != null && message.hasOwnProperty("minBasisRatio"))
-                        object.minBasisRatio = message.minBasisRatio;
-                    if (message.maxBasisRatio != null && message.hasOwnProperty("maxBasisRatio"))
-                        object.maxBasisRatio = message.maxBasisRatio;
-                    if (message.openPosition != null && message.hasOwnProperty("openPosition"))
-                        object.openPosition = message.openPosition;
-                    return object;
-                };
-
-                /**
-                 * Converts this Transaction to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.Transaction
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Transaction.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return Transaction;
-            })();
-
-            /**
-             * TriggerSignal enum.
-             * @name tradebot.grpc_server.arbitrage.TriggerSignal
-             * @enum {number}
-             * @property {number} DEPTH_OPEN=0 DEPTH_OPEN value
-             * @property {number} SHORT_TERM_OPEN=1 SHORT_TERM_OPEN value
-             * @property {number} TRADE_VOLUME_OPEN=2 TRADE_VOLUME_OPEN value
-             * @property {number} PROFIT_CLOSE=3 PROFIT_CLOSE value
-             * @property {number} STOP_LOSS_IMMEDIATE=4 STOP_LOSS_IMMEDIATE value
-             * @property {number} TRY_STOP_LOSS=5 TRY_STOP_LOSS value
-             * @property {number} TRY_MIN_PROFIT=6 TRY_MIN_PROFIT value
-             * @property {number} TRY_MIDDLE_PROFIT=7 TRY_MIDDLE_PROFIT value
-             * @property {number} TRY_RECOVER_MIDDLE_PROFIT=8 TRY_RECOVER_MIDDLE_PROFIT value
-             * @property {number} TRY_SAVE_CURRENT_PROFIT=9 TRY_SAVE_CURRENT_PROFIT value
-             * @property {number} TRY_REGAIN_MIDDLE_PROFIT=10 TRY_REGAIN_MIDDLE_PROFIT value
-             * @property {number} REBOUND_OPEN=11 REBOUND_OPEN value
-             * @property {number} GUARD_OPEN=12 GUARD_OPEN value
-             * @property {number} REBOUND_MAKER_OPEN=13 REBOUND_MAKER_OPEN value
-             * @property {number} GUARD_MAKER_OPEN=14 GUARD_MAKER_OPEN value
-             * @property {number} REBOUND_MAKER_GUESS=15 REBOUND_MAKER_GUESS value
-             * @property {number} MARKET_MAKER_GUESS=16 MARKET_MAKER_GUESS value
-             * @property {number} REBOUND_MAKER_GUESS_CONTINUE=17 REBOUND_MAKER_GUESS_CONTINUE value
-             * @property {number} OPPOSITE_OPEN=18 OPPOSITE_OPEN value
-             * @property {number} REBOUND_MAKER_GUESS_HIGH=19 REBOUND_MAKER_GUESS_HIGH value
-             */
-            arbitrage.TriggerSignal = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "DEPTH_OPEN"] = 0;
-                values[valuesById[1] = "SHORT_TERM_OPEN"] = 1;
-                values[valuesById[2] = "TRADE_VOLUME_OPEN"] = 2;
-                values[valuesById[3] = "PROFIT_CLOSE"] = 3;
-                values[valuesById[4] = "STOP_LOSS_IMMEDIATE"] = 4;
-                values[valuesById[5] = "TRY_STOP_LOSS"] = 5;
-                values[valuesById[6] = "TRY_MIN_PROFIT"] = 6;
-                values[valuesById[7] = "TRY_MIDDLE_PROFIT"] = 7;
-                values[valuesById[8] = "TRY_RECOVER_MIDDLE_PROFIT"] = 8;
-                values[valuesById[9] = "TRY_SAVE_CURRENT_PROFIT"] = 9;
-                values[valuesById[10] = "TRY_REGAIN_MIDDLE_PROFIT"] = 10;
-                values[valuesById[11] = "REBOUND_OPEN"] = 11;
-                values[valuesById[12] = "GUARD_OPEN"] = 12;
-                values[valuesById[13] = "REBOUND_MAKER_OPEN"] = 13;
-                values[valuesById[14] = "GUARD_MAKER_OPEN"] = 14;
-                values[valuesById[15] = "REBOUND_MAKER_GUESS"] = 15;
-                values[valuesById[16] = "MARKET_MAKER_GUESS"] = 16;
-                values[valuesById[17] = "REBOUND_MAKER_GUESS_CONTINUE"] = 17;
-                values[valuesById[18] = "OPPOSITE_OPEN"] = 18;
-                values[valuesById[19] = "REBOUND_MAKER_GUESS_HIGH"] = 19;
-                return values;
-            })();
-
-            /**
-             * RequestCommand enum.
-             * @name tradebot.grpc_server.arbitrage.RequestCommand
-             * @enum {number}
-             * @property {number} NEW_PLACE=0 NEW_PLACE value
-             * @property {number} REPLACE=1 REPLACE value
-             * @property {number} QUERY=2 QUERY value
-             * @property {number} CANCEL_MAKER=3 CANCEL_MAKER value
-             */
-            arbitrage.RequestCommand = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "NEW_PLACE"] = 0;
-                values[valuesById[1] = "REPLACE"] = 1;
-                values[valuesById[2] = "QUERY"] = 2;
-                values[valuesById[3] = "CANCEL_MAKER"] = 3;
-                return values;
-            })();
-
-            /**
-             * PlaceOrderType enum.
-             * @name tradebot.grpc_server.arbitrage.PlaceOrderType
-             * @enum {number}
-             * @property {number} BE_TAKER=0 BE_TAKER value
-             * @property {number} BE_MAKER=1 BE_MAKER value
-             */
-            arbitrage.PlaceOrderType = (function() {
-                const valuesById = {}, values = Object.create(valuesById);
-                values[valuesById[0] = "BE_TAKER"] = 0;
-                values[valuesById[1] = "BE_MAKER"] = 1;
-                return values;
-            })();
-
-            arbitrage.HighTradeRequest = (function() {
-
-                /**
-                 * Properties of a HighTradeRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHighTradeRequest
-                 * @property {string} requestId HighTradeRequest requestId
-                 * @property {number} createdTimestamp HighTradeRequest createdTimestamp
-                 * @property {number} requestTimestamp HighTradeRequest requestTimestamp
-                 * @property {string} platform HighTradeRequest platform
-                 * @property {string} contract HighTradeRequest contract
-                 * @property {string} commodity HighTradeRequest commodity
-                 * @property {string} currency HighTradeRequest currency
-                 * @property {string} price HighTradeRequest price
-                 * @property {string} quantity HighTradeRequest quantity
-                 * @property {number|null} [futureContractVolume] HighTradeRequest futureContractVolume
-                 * @property {tradebot.grpc_server.arbitrage.OrderSide} orderSide HighTradeRequest orderSide
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractSide|null} [futureContractSide] HighTradeRequest futureContractSide
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractType|null} [futureContractType] HighTradeRequest futureContractType
-                 * @property {string|null} [futureContractCode] HighTradeRequest futureContractCode
-                 * @property {number|null} [leverRate] HighTradeRequest leverRate
-                 * @property {string|null} [clientOrderId] HighTradeRequest clientOrderId
-                 * @property {string|null} [lastOrderId] HighTradeRequest lastOrderId
-                 * @property {tradebot.grpc_server.arbitrage.PlaceOrderType} placeOrderType HighTradeRequest placeOrderType
-                 * @property {tradebot.grpc_server.arbitrage.RequestCommand} requestCommand HighTradeRequest requestCommand
-                 * @property {tradebot.grpc_server.arbitrage.TriggerSignal|null} [triggerSignal] HighTradeRequest triggerSignal
-                 * @property {string|null} [triggerReason] HighTradeRequest triggerReason
-                 * @property {string|null} [predictCloseRatio] HighTradeRequest predictCloseRatio
-                 */
-
-                /**
-                 * Constructs a new HighTradeRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HighTradeRequest.
-                 * @implements IHighTradeRequest
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest=} [properties] Properties to set
-                 */
-                function HighTradeRequest(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HighTradeRequest requestId.
-                 * @member {string} requestId
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.requestId = "";
-
-                /**
-                 * HighTradeRequest createdTimestamp.
-                 * @member {number} createdTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.createdTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * HighTradeRequest requestTimestamp.
-                 * @member {number} requestTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.requestTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * HighTradeRequest platform.
-                 * @member {string} platform
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.platform = "";
-
-                /**
-                 * HighTradeRequest contract.
-                 * @member {string} contract
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.contract = "";
-
-                /**
-                 * HighTradeRequest commodity.
-                 * @member {string} commodity
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.commodity = "";
-
-                /**
-                 * HighTradeRequest currency.
-                 * @member {string} currency
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.currency = "";
-
-                /**
-                 * HighTradeRequest price.
-                 * @member {string} price
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.price = "";
-
-                /**
-                 * HighTradeRequest quantity.
-                 * @member {string} quantity
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.quantity = "";
-
-                /**
-                 * HighTradeRequest futureContractVolume.
-                 * @member {number} futureContractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.futureContractVolume = 0;
-
-                /**
-                 * HighTradeRequest orderSide.
-                 * @member {tradebot.grpc_server.arbitrage.OrderSide} orderSide
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.orderSide = -1;
-
-                /**
-                 * HighTradeRequest futureContractSide.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractSide} futureContractSide
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.futureContractSide = 0;
-
-                /**
-                 * HighTradeRequest futureContractType.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractType} futureContractType
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.futureContractType = 0;
-
-                /**
-                 * HighTradeRequest futureContractCode.
-                 * @member {string} futureContractCode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.futureContractCode = "";
-
-                /**
-                 * HighTradeRequest leverRate.
-                 * @member {number} leverRate
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.leverRate = 0;
-
-                /**
-                 * HighTradeRequest clientOrderId.
-                 * @member {string} clientOrderId
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.clientOrderId = "";
-
-                /**
-                 * HighTradeRequest lastOrderId.
-                 * @member {string} lastOrderId
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.lastOrderId = "";
-
-                /**
-                 * HighTradeRequest placeOrderType.
-                 * @member {tradebot.grpc_server.arbitrage.PlaceOrderType} placeOrderType
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.placeOrderType = 0;
-
-                /**
-                 * HighTradeRequest requestCommand.
-                 * @member {tradebot.grpc_server.arbitrage.RequestCommand} requestCommand
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.requestCommand = 0;
-
-                /**
-                 * HighTradeRequest triggerSignal.
-                 * @member {tradebot.grpc_server.arbitrage.TriggerSignal} triggerSignal
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.triggerSignal = 0;
-
-                /**
-                 * HighTradeRequest triggerReason.
-                 * @member {string} triggerReason
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.triggerReason = "";
-
-                /**
-                 * HighTradeRequest predictCloseRatio.
-                 * @member {string} predictCloseRatio
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 */
-                HighTradeRequest.prototype.predictCloseRatio = "";
-
-                /**
-                 * Creates a new HighTradeRequest instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeRequest} HighTradeRequest instance
-                 */
-                HighTradeRequest.create = function create(properties) {
-                    return new HighTradeRequest(properties);
-                };
-
-                /**
-                 * Encodes the specified HighTradeRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} message HighTradeRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HighTradeRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.requestId);
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.createdTimestamp);
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.platform);
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.contract);
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.commodity);
-                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.currency);
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.price);
-                    writer.uint32(/* id 8, wireType 2 =*/66).string(message.quantity);
-                    if (message.futureContractVolume != null && Object.hasOwnProperty.call(message, "futureContractVolume"))
-                        writer.uint32(/* id 9, wireType 0 =*/72).int32(message.futureContractVolume);
-                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.orderSide);
-                    if (message.futureContractSide != null && Object.hasOwnProperty.call(message, "futureContractSide"))
-                        writer.uint32(/* id 11, wireType 0 =*/88).int32(message.futureContractSide);
-                    if (message.futureContractType != null && Object.hasOwnProperty.call(message, "futureContractType"))
-                        writer.uint32(/* id 12, wireType 0 =*/96).int32(message.futureContractType);
-                    if (message.futureContractCode != null && Object.hasOwnProperty.call(message, "futureContractCode"))
-                        writer.uint32(/* id 13, wireType 2 =*/106).string(message.futureContractCode);
-                    if (message.leverRate != null && Object.hasOwnProperty.call(message, "leverRate"))
-                        writer.uint32(/* id 14, wireType 0 =*/112).int32(message.leverRate);
-                    if (message.clientOrderId != null && Object.hasOwnProperty.call(message, "clientOrderId"))
-                        writer.uint32(/* id 15, wireType 2 =*/122).string(message.clientOrderId);
-                    if (message.lastOrderId != null && Object.hasOwnProperty.call(message, "lastOrderId"))
-                        writer.uint32(/* id 19, wireType 2 =*/154).string(message.lastOrderId);
-                    if (message.triggerSignal != null && Object.hasOwnProperty.call(message, "triggerSignal"))
-                        writer.uint32(/* id 20, wireType 0 =*/160).int32(message.triggerSignal);
-                    if (message.triggerReason != null && Object.hasOwnProperty.call(message, "triggerReason"))
-                        writer.uint32(/* id 21, wireType 2 =*/170).string(message.triggerReason);
-                    if (message.predictCloseRatio != null && Object.hasOwnProperty.call(message, "predictCloseRatio"))
-                        writer.uint32(/* id 22, wireType 2 =*/178).string(message.predictCloseRatio);
-                    writer.uint32(/* id 23, wireType 0 =*/184).int64(message.requestTimestamp);
-                    writer.uint32(/* id 24, wireType 0 =*/192).int32(message.placeOrderType);
-                    writer.uint32(/* id 25, wireType 0 =*/200).int32(message.requestCommand);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HighTradeRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} message HighTradeRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HighTradeRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HighTradeRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeRequest} HighTradeRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HighTradeRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HighTradeRequest();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.requestId = reader.string();
-                            break;
-                        case 2:
-                            message.createdTimestamp = reader.int64();
-                            break;
-                        case 23:
-                            message.requestTimestamp = reader.int64();
-                            break;
-                        case 3:
-                            message.platform = reader.string();
-                            break;
-                        case 4:
-                            message.contract = reader.string();
-                            break;
-                        case 5:
-                            message.commodity = reader.string();
-                            break;
-                        case 6:
-                            message.currency = reader.string();
-                            break;
-                        case 7:
-                            message.price = reader.string();
-                            break;
-                        case 8:
-                            message.quantity = reader.string();
-                            break;
-                        case 9:
-                            message.futureContractVolume = reader.int32();
-                            break;
-                        case 10:
-                            message.orderSide = reader.int32();
-                            break;
-                        case 11:
-                            message.futureContractSide = reader.int32();
-                            break;
-                        case 12:
-                            message.futureContractType = reader.int32();
-                            break;
-                        case 13:
-                            message.futureContractCode = reader.string();
-                            break;
-                        case 14:
-                            message.leverRate = reader.int32();
-                            break;
-                        case 15:
-                            message.clientOrderId = reader.string();
-                            break;
-                        case 19:
-                            message.lastOrderId = reader.string();
-                            break;
-                        case 24:
-                            message.placeOrderType = reader.int32();
-                            break;
-                        case 25:
-                            message.requestCommand = reader.int32();
-                            break;
-                        case 20:
-                            message.triggerSignal = reader.int32();
-                            break;
-                        case 21:
-                            message.triggerReason = reader.string();
-                            break;
-                        case 22:
-                            message.predictCloseRatio = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("requestId"))
-                        throw $util.ProtocolError("missing required 'requestId'", { instance: message });
-                    if (!message.hasOwnProperty("createdTimestamp"))
-                        throw $util.ProtocolError("missing required 'createdTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("requestTimestamp"))
-                        throw $util.ProtocolError("missing required 'requestTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("platform"))
-                        throw $util.ProtocolError("missing required 'platform'", { instance: message });
-                    if (!message.hasOwnProperty("contract"))
-                        throw $util.ProtocolError("missing required 'contract'", { instance: message });
-                    if (!message.hasOwnProperty("commodity"))
-                        throw $util.ProtocolError("missing required 'commodity'", { instance: message });
-                    if (!message.hasOwnProperty("currency"))
-                        throw $util.ProtocolError("missing required 'currency'", { instance: message });
-                    if (!message.hasOwnProperty("price"))
-                        throw $util.ProtocolError("missing required 'price'", { instance: message });
-                    if (!message.hasOwnProperty("quantity"))
-                        throw $util.ProtocolError("missing required 'quantity'", { instance: message });
-                    if (!message.hasOwnProperty("orderSide"))
-                        throw $util.ProtocolError("missing required 'orderSide'", { instance: message });
-                    if (!message.hasOwnProperty("placeOrderType"))
-                        throw $util.ProtocolError("missing required 'placeOrderType'", { instance: message });
-                    if (!message.hasOwnProperty("requestCommand"))
-                        throw $util.ProtocolError("missing required 'requestCommand'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a HighTradeRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeRequest} HighTradeRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HighTradeRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HighTradeRequest message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HighTradeRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.requestId))
-                        return "requestId: string expected";
-                    if (!$util.isInteger(message.createdTimestamp) && !(message.createdTimestamp && $util.isInteger(message.createdTimestamp.low) && $util.isInteger(message.createdTimestamp.high)))
-                        return "createdTimestamp: integer|Long expected";
-                    if (!$util.isInteger(message.requestTimestamp) && !(message.requestTimestamp && $util.isInteger(message.requestTimestamp.low) && $util.isInteger(message.requestTimestamp.high)))
-                        return "requestTimestamp: integer|Long expected";
-                    if (!$util.isString(message.platform))
-                        return "platform: string expected";
-                    if (!$util.isString(message.contract))
-                        return "contract: string expected";
-                    if (!$util.isString(message.commodity))
-                        return "commodity: string expected";
-                    if (!$util.isString(message.currency))
-                        return "currency: string expected";
-                    if (!$util.isString(message.price))
-                        return "price: string expected";
-                    if (!$util.isString(message.quantity))
-                        return "quantity: string expected";
-                    if (message.futureContractVolume != null && message.hasOwnProperty("futureContractVolume"))
-                        if (!$util.isInteger(message.futureContractVolume))
-                            return "futureContractVolume: integer expected";
-                    switch (message.orderSide) {
-                    default:
-                        return "orderSide: enum value expected";
-                    case -1:
-                    case 1:
-                        break;
-                    }
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        switch (message.futureContractSide) {
-                        default:
-                            return "futureContractSide: enum value expected";
-                        case 0:
-                        case -1:
-                        case 1:
-                            break;
-                        }
-                    if (message.futureContractType != null && message.hasOwnProperty("futureContractType"))
-                        switch (message.futureContractType) {
-                        default:
-                            return "futureContractType: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                            break;
-                        }
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        if (!$util.isString(message.futureContractCode))
-                            return "futureContractCode: string expected";
-                    if (message.leverRate != null && message.hasOwnProperty("leverRate"))
-                        if (!$util.isInteger(message.leverRate))
-                            return "leverRate: integer expected";
-                    if (message.clientOrderId != null && message.hasOwnProperty("clientOrderId"))
-                        if (!$util.isString(message.clientOrderId))
-                            return "clientOrderId: string expected";
-                    if (message.lastOrderId != null && message.hasOwnProperty("lastOrderId"))
-                        if (!$util.isString(message.lastOrderId))
-                            return "lastOrderId: string expected";
-                    switch (message.placeOrderType) {
-                    default:
-                        return "placeOrderType: enum value expected";
-                    case 0:
-                    case 1:
-                        break;
-                    }
-                    switch (message.requestCommand) {
-                    default:
-                        return "requestCommand: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        break;
-                    }
-                    if (message.triggerSignal != null && message.hasOwnProperty("triggerSignal"))
-                        switch (message.triggerSignal) {
-                        default:
-                            return "triggerSignal: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                        case 12:
-                        case 13:
-                        case 14:
-                        case 15:
-                        case 16:
-                        case 17:
-                        case 18:
-                        case 19:
-                            break;
-                        }
-                    if (message.triggerReason != null && message.hasOwnProperty("triggerReason"))
-                        if (!$util.isString(message.triggerReason))
-                            return "triggerReason: string expected";
-                    if (message.predictCloseRatio != null && message.hasOwnProperty("predictCloseRatio"))
-                        if (!$util.isString(message.predictCloseRatio))
-                            return "predictCloseRatio: string expected";
-                    return null;
-                };
-
-                /**
-                 * Creates a HighTradeRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeRequest} HighTradeRequest
-                 */
-                HighTradeRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HighTradeRequest)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HighTradeRequest();
-                    if (object.requestId != null)
-                        message.requestId = String(object.requestId);
-                    if (object.createdTimestamp != null)
-                        if ($util.Long)
-                            (message.createdTimestamp = $util.Long.fromValue(object.createdTimestamp)).unsigned = false;
-                        else if (typeof object.createdTimestamp === "string")
-                            message.createdTimestamp = parseInt(object.createdTimestamp, 10);
-                        else if (typeof object.createdTimestamp === "number")
-                            message.createdTimestamp = object.createdTimestamp;
-                        else if (typeof object.createdTimestamp === "object")
-                            message.createdTimestamp = new $util.LongBits(object.createdTimestamp.low >>> 0, object.createdTimestamp.high >>> 0).toNumber();
-                    if (object.requestTimestamp != null)
-                        if ($util.Long)
-                            (message.requestTimestamp = $util.Long.fromValue(object.requestTimestamp)).unsigned = false;
-                        else if (typeof object.requestTimestamp === "string")
-                            message.requestTimestamp = parseInt(object.requestTimestamp, 10);
-                        else if (typeof object.requestTimestamp === "number")
-                            message.requestTimestamp = object.requestTimestamp;
-                        else if (typeof object.requestTimestamp === "object")
-                            message.requestTimestamp = new $util.LongBits(object.requestTimestamp.low >>> 0, object.requestTimestamp.high >>> 0).toNumber();
-                    if (object.platform != null)
-                        message.platform = String(object.platform);
-                    if (object.contract != null)
-                        message.contract = String(object.contract);
-                    if (object.commodity != null)
-                        message.commodity = String(object.commodity);
-                    if (object.currency != null)
-                        message.currency = String(object.currency);
-                    if (object.price != null)
-                        message.price = String(object.price);
-                    if (object.quantity != null)
-                        message.quantity = String(object.quantity);
-                    if (object.futureContractVolume != null)
-                        message.futureContractVolume = object.futureContractVolume | 0;
-                    switch (object.orderSide) {
-                    case "SELL":
-                    case -1:
-                        message.orderSide = -1;
-                        break;
-                    case "BUY":
-                    case 1:
-                        message.orderSide = 1;
-                        break;
-                    }
-                    switch (object.futureContractSide) {
-                    case "INVALID_FUTURE_SIDE":
-                    case 0:
-                        message.futureContractSide = 0;
-                        break;
-                    case "CLOSE":
-                    case -1:
-                        message.futureContractSide = -1;
-                        break;
-                    case "OPEN":
-                    case 1:
-                        message.futureContractSide = 1;
-                        break;
-                    }
-                    switch (object.futureContractType) {
-                    case "INVALID_TYPE":
-                    case 0:
-                        message.futureContractType = 0;
-                        break;
-                    case "THIS_WEEK":
-                    case 1:
-                        message.futureContractType = 1;
-                        break;
-                    case "NEXT_WEEK":
-                    case 2:
-                        message.futureContractType = 2;
-                        break;
-                    case "QUARTER":
-                    case 3:
-                        message.futureContractType = 3;
-                        break;
-                    case "FOREVER":
-                    case 4:
-                        message.futureContractType = 4;
-                        break;
-                    }
-                    if (object.futureContractCode != null)
-                        message.futureContractCode = String(object.futureContractCode);
-                    if (object.leverRate != null)
-                        message.leverRate = object.leverRate | 0;
-                    if (object.clientOrderId != null)
-                        message.clientOrderId = String(object.clientOrderId);
-                    if (object.lastOrderId != null)
-                        message.lastOrderId = String(object.lastOrderId);
-                    switch (object.placeOrderType) {
-                    case "BE_TAKER":
-                    case 0:
-                        message.placeOrderType = 0;
-                        break;
-                    case "BE_MAKER":
-                    case 1:
-                        message.placeOrderType = 1;
-                        break;
-                    }
-                    switch (object.requestCommand) {
-                    case "NEW_PLACE":
-                    case 0:
-                        message.requestCommand = 0;
-                        break;
-                    case "REPLACE":
-                    case 1:
-                        message.requestCommand = 1;
-                        break;
-                    case "QUERY":
-                    case 2:
-                        message.requestCommand = 2;
-                        break;
-                    case "CANCEL_MAKER":
-                    case 3:
-                        message.requestCommand = 3;
-                        break;
-                    }
-                    switch (object.triggerSignal) {
-                    case "DEPTH_OPEN":
-                    case 0:
-                        message.triggerSignal = 0;
-                        break;
-                    case "SHORT_TERM_OPEN":
-                    case 1:
-                        message.triggerSignal = 1;
-                        break;
-                    case "TRADE_VOLUME_OPEN":
-                    case 2:
-                        message.triggerSignal = 2;
-                        break;
-                    case "PROFIT_CLOSE":
-                    case 3:
-                        message.triggerSignal = 3;
-                        break;
-                    case "STOP_LOSS_IMMEDIATE":
-                    case 4:
-                        message.triggerSignal = 4;
-                        break;
-                    case "TRY_STOP_LOSS":
-                    case 5:
-                        message.triggerSignal = 5;
-                        break;
-                    case "TRY_MIN_PROFIT":
-                    case 6:
-                        message.triggerSignal = 6;
-                        break;
-                    case "TRY_MIDDLE_PROFIT":
-                    case 7:
-                        message.triggerSignal = 7;
-                        break;
-                    case "TRY_RECOVER_MIDDLE_PROFIT":
-                    case 8:
-                        message.triggerSignal = 8;
-                        break;
-                    case "TRY_SAVE_CURRENT_PROFIT":
-                    case 9:
-                        message.triggerSignal = 9;
-                        break;
-                    case "TRY_REGAIN_MIDDLE_PROFIT":
-                    case 10:
-                        message.triggerSignal = 10;
-                        break;
-                    case "REBOUND_OPEN":
-                    case 11:
-                        message.triggerSignal = 11;
-                        break;
-                    case "GUARD_OPEN":
-                    case 12:
-                        message.triggerSignal = 12;
-                        break;
-                    case "REBOUND_MAKER_OPEN":
-                    case 13:
-                        message.triggerSignal = 13;
-                        break;
-                    case "GUARD_MAKER_OPEN":
-                    case 14:
-                        message.triggerSignal = 14;
-                        break;
-                    case "REBOUND_MAKER_GUESS":
-                    case 15:
-                        message.triggerSignal = 15;
-                        break;
-                    case "MARKET_MAKER_GUESS":
-                    case 16:
-                        message.triggerSignal = 16;
-                        break;
-                    case "REBOUND_MAKER_GUESS_CONTINUE":
-                    case 17:
-                        message.triggerSignal = 17;
-                        break;
-                    case "OPPOSITE_OPEN":
-                    case 18:
-                        message.triggerSignal = 18;
-                        break;
-                    case "REBOUND_MAKER_GUESS_HIGH":
-                    case 19:
-                        message.triggerSignal = 19;
-                        break;
-                    }
-                    if (object.triggerReason != null)
-                        message.triggerReason = String(object.triggerReason);
-                    if (object.predictCloseRatio != null)
-                        message.predictCloseRatio = String(object.predictCloseRatio);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HighTradeRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HighTradeRequest} message HighTradeRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HighTradeRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.requestId = "";
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.createdTimestamp = options.longs === String ? "0" : 0;
-                        object.platform = "";
-                        object.contract = "";
-                        object.commodity = "";
-                        object.currency = "";
-                        object.price = "";
-                        object.quantity = "";
-                        object.futureContractVolume = 0;
-                        object.orderSide = options.enums === String ? "SELL" : -1;
-                        object.futureContractSide = options.enums === String ? "INVALID_FUTURE_SIDE" : 0;
-                        object.futureContractType = options.enums === String ? "INVALID_TYPE" : 0;
-                        object.futureContractCode = "";
-                        object.leverRate = 0;
-                        object.clientOrderId = "";
-                        object.lastOrderId = "";
-                        object.triggerSignal = options.enums === String ? "DEPTH_OPEN" : 0;
-                        object.triggerReason = "";
-                        object.predictCloseRatio = "";
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.requestTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.requestTimestamp = options.longs === String ? "0" : 0;
-                        object.placeOrderType = options.enums === String ? "BE_TAKER" : 0;
-                        object.requestCommand = options.enums === String ? "NEW_PLACE" : 0;
-                    }
-                    if (message.requestId != null && message.hasOwnProperty("requestId"))
-                        object.requestId = message.requestId;
-                    if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                        if (typeof message.createdTimestamp === "number")
-                            object.createdTimestamp = options.longs === String ? String(message.createdTimestamp) : message.createdTimestamp;
-                        else
-                            object.createdTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createdTimestamp) : options.longs === Number ? new $util.LongBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0).toNumber() : message.createdTimestamp;
-                    if (message.platform != null && message.hasOwnProperty("platform"))
-                        object.platform = message.platform;
-                    if (message.contract != null && message.hasOwnProperty("contract"))
-                        object.contract = message.contract;
-                    if (message.commodity != null && message.hasOwnProperty("commodity"))
-                        object.commodity = message.commodity;
-                    if (message.currency != null && message.hasOwnProperty("currency"))
-                        object.currency = message.currency;
-                    if (message.price != null && message.hasOwnProperty("price"))
-                        object.price = message.price;
-                    if (message.quantity != null && message.hasOwnProperty("quantity"))
-                        object.quantity = message.quantity;
-                    if (message.futureContractVolume != null && message.hasOwnProperty("futureContractVolume"))
-                        object.futureContractVolume = message.futureContractVolume;
-                    if (message.orderSide != null && message.hasOwnProperty("orderSide"))
-                        object.orderSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.OrderSide[message.orderSide] : message.orderSide;
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        object.futureContractSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractSide[message.futureContractSide] : message.futureContractSide;
-                    if (message.futureContractType != null && message.hasOwnProperty("futureContractType"))
-                        object.futureContractType = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractType[message.futureContractType] : message.futureContractType;
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        object.futureContractCode = message.futureContractCode;
-                    if (message.leverRate != null && message.hasOwnProperty("leverRate"))
-                        object.leverRate = message.leverRate;
-                    if (message.clientOrderId != null && message.hasOwnProperty("clientOrderId"))
-                        object.clientOrderId = message.clientOrderId;
-                    if (message.lastOrderId != null && message.hasOwnProperty("lastOrderId"))
-                        object.lastOrderId = message.lastOrderId;
-                    if (message.triggerSignal != null && message.hasOwnProperty("triggerSignal"))
-                        object.triggerSignal = options.enums === String ? $root.tradebot.grpc_server.arbitrage.TriggerSignal[message.triggerSignal] : message.triggerSignal;
-                    if (message.triggerReason != null && message.hasOwnProperty("triggerReason"))
-                        object.triggerReason = message.triggerReason;
-                    if (message.predictCloseRatio != null && message.hasOwnProperty("predictCloseRatio"))
-                        object.predictCloseRatio = message.predictCloseRatio;
-                    if (message.requestTimestamp != null && message.hasOwnProperty("requestTimestamp"))
-                        if (typeof message.requestTimestamp === "number")
-                            object.requestTimestamp = options.longs === String ? String(message.requestTimestamp) : message.requestTimestamp;
-                        else
-                            object.requestTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.requestTimestamp) : options.longs === Number ? new $util.LongBits(message.requestTimestamp.low >>> 0, message.requestTimestamp.high >>> 0).toNumber() : message.requestTimestamp;
-                    if (message.placeOrderType != null && message.hasOwnProperty("placeOrderType"))
-                        object.placeOrderType = options.enums === String ? $root.tradebot.grpc_server.arbitrage.PlaceOrderType[message.placeOrderType] : message.placeOrderType;
-                    if (message.requestCommand != null && message.hasOwnProperty("requestCommand"))
-                        object.requestCommand = options.enums === String ? $root.tradebot.grpc_server.arbitrage.RequestCommand[message.requestCommand] : message.requestCommand;
-                    return object;
-                };
-
-                /**
-                 * Converts this HighTradeRequest to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HighTradeRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HighTradeRequest;
-            })();
-
-            arbitrage.HighTradeResponse = (function() {
-
-                /**
-                 * Properties of a HighTradeResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHighTradeResponse
-                 * @property {string} requestId HighTradeResponse requestId
-                 * @property {number} requestTimestamp HighTradeResponse requestTimestamp
-                 * @property {number} responseTimestamp HighTradeResponse responseTimestamp
-                 * @property {tradebot.grpc_server.arbitrage.RequestCommand} requestCommand HighTradeResponse requestCommand
-                 * @property {string} platform HighTradeResponse platform
-                 * @property {string} contract HighTradeResponse contract
-                 * @property {string} targetPrice HighTradeResponse targetPrice
-                 * @property {number} targetFutureContractVolume HighTradeResponse targetFutureContractVolume
-                 * @property {string} dealPrice HighTradeResponse dealPrice
-                 * @property {string} dealQuantity HighTradeResponse dealQuantity
-                 * @property {string} dealTurnover HighTradeResponse dealTurnover
-                 * @property {string} dealFee HighTradeResponse dealFee
-                 * @property {string|null} [profit] HighTradeResponse profit
-                 * @property {number|null} [dealFutureContractVolume] HighTradeResponse dealFutureContractVolume
-                 * @property {tradebot.grpc_server.arbitrage.OrderSide} orderSide HighTradeResponse orderSide
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractSide|null} [futureContractSide] HighTradeResponse futureContractSide
-                 * @property {string|null} [activeOrderId] HighTradeResponse activeOrderId
-                 * @property {tradebot.grpc_server.arbitrage.TriggerSignal|null} [triggerSignal] HighTradeResponse triggerSignal
-                 * @property {string|null} [triggerReason] HighTradeResponse triggerReason
-                 * @property {string|null} [errMsg] HighTradeResponse errMsg
-                 * @property {tradebot.grpc_server.arbitrage.ErrorCode|null} [errCode] HighTradeResponse errCode
-                 */
-
-                /**
-                 * Constructs a new HighTradeResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HighTradeResponse.
-                 * @implements IHighTradeResponse
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeResponse=} [properties] Properties to set
-                 */
-                function HighTradeResponse(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HighTradeResponse requestId.
-                 * @member {string} requestId
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.requestId = "";
-
-                /**
-                 * HighTradeResponse requestTimestamp.
-                 * @member {number} requestTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.requestTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * HighTradeResponse responseTimestamp.
-                 * @member {number} responseTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.responseTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * HighTradeResponse requestCommand.
-                 * @member {tradebot.grpc_server.arbitrage.RequestCommand} requestCommand
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.requestCommand = 0;
-
-                /**
-                 * HighTradeResponse platform.
-                 * @member {string} platform
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.platform = "";
-
-                /**
-                 * HighTradeResponse contract.
-                 * @member {string} contract
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.contract = "";
-
-                /**
-                 * HighTradeResponse targetPrice.
-                 * @member {string} targetPrice
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.targetPrice = "";
-
-                /**
-                 * HighTradeResponse targetFutureContractVolume.
-                 * @member {number} targetFutureContractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.targetFutureContractVolume = 0;
-
-                /**
-                 * HighTradeResponse dealPrice.
-                 * @member {string} dealPrice
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.dealPrice = "";
-
-                /**
-                 * HighTradeResponse dealQuantity.
-                 * @member {string} dealQuantity
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.dealQuantity = "";
-
-                /**
-                 * HighTradeResponse dealTurnover.
-                 * @member {string} dealTurnover
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.dealTurnover = "";
-
-                /**
-                 * HighTradeResponse dealFee.
-                 * @member {string} dealFee
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.dealFee = "";
-
-                /**
-                 * HighTradeResponse profit.
-                 * @member {string} profit
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.profit = "";
-
-                /**
-                 * HighTradeResponse dealFutureContractVolume.
-                 * @member {number} dealFutureContractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.dealFutureContractVolume = 0;
-
-                /**
-                 * HighTradeResponse orderSide.
-                 * @member {tradebot.grpc_server.arbitrage.OrderSide} orderSide
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.orderSide = -1;
-
-                /**
-                 * HighTradeResponse futureContractSide.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractSide} futureContractSide
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.futureContractSide = 0;
-
-                /**
-                 * HighTradeResponse activeOrderId.
-                 * @member {string} activeOrderId
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.activeOrderId = "";
-
-                /**
-                 * HighTradeResponse triggerSignal.
-                 * @member {tradebot.grpc_server.arbitrage.TriggerSignal} triggerSignal
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.triggerSignal = 0;
-
-                /**
-                 * HighTradeResponse triggerReason.
-                 * @member {string} triggerReason
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.triggerReason = "";
-
-                /**
-                 * HighTradeResponse errMsg.
-                 * @member {string} errMsg
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.errMsg = "";
-
-                /**
-                 * HighTradeResponse errCode.
-                 * @member {tradebot.grpc_server.arbitrage.ErrorCode} errCode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 */
-                HighTradeResponse.prototype.errCode = 10001;
-
-                /**
-                 * Creates a new HighTradeResponse instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeResponse=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeResponse} HighTradeResponse instance
-                 */
-                HighTradeResponse.create = function create(properties) {
-                    return new HighTradeResponse(properties);
-                };
-
-                /**
-                 * Encodes the specified HighTradeResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeResponse.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeResponse} message HighTradeResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HighTradeResponse.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.requestId);
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.requestTimestamp);
-                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.responseTimestamp);
-                    writer.uint32(/* id 4, wireType 0 =*/32).int32(message.requestCommand);
-                    writer.uint32(/* id 5, wireType 2 =*/42).string(message.platform);
-                    writer.uint32(/* id 6, wireType 2 =*/50).string(message.contract);
-                    writer.uint32(/* id 7, wireType 2 =*/58).string(message.targetPrice);
-                    writer.uint32(/* id 8, wireType 0 =*/64).int32(message.targetFutureContractVolume);
-                    writer.uint32(/* id 9, wireType 2 =*/74).string(message.dealPrice);
-                    writer.uint32(/* id 10, wireType 2 =*/82).string(message.dealQuantity);
-                    writer.uint32(/* id 11, wireType 2 =*/90).string(message.dealTurnover);
-                    writer.uint32(/* id 12, wireType 2 =*/98).string(message.dealFee);
-                    if (message.profit != null && Object.hasOwnProperty.call(message, "profit"))
-                        writer.uint32(/* id 13, wireType 2 =*/106).string(message.profit);
-                    if (message.dealFutureContractVolume != null && Object.hasOwnProperty.call(message, "dealFutureContractVolume"))
-                        writer.uint32(/* id 14, wireType 0 =*/112).int32(message.dealFutureContractVolume);
-                    writer.uint32(/* id 15, wireType 0 =*/120).int32(message.orderSide);
-                    if (message.futureContractSide != null && Object.hasOwnProperty.call(message, "futureContractSide"))
-                        writer.uint32(/* id 16, wireType 0 =*/128).int32(message.futureContractSide);
-                    if (message.activeOrderId != null && Object.hasOwnProperty.call(message, "activeOrderId"))
-                        writer.uint32(/* id 17, wireType 2 =*/138).string(message.activeOrderId);
-                    if (message.triggerSignal != null && Object.hasOwnProperty.call(message, "triggerSignal"))
-                        writer.uint32(/* id 18, wireType 0 =*/144).int32(message.triggerSignal);
-                    if (message.triggerReason != null && Object.hasOwnProperty.call(message, "triggerReason"))
-                        writer.uint32(/* id 19, wireType 2 =*/154).string(message.triggerReason);
-                    if (message.errMsg != null && Object.hasOwnProperty.call(message, "errMsg"))
-                        writer.uint32(/* id 20, wireType 2 =*/162).string(message.errMsg);
-                    if (message.errCode != null && Object.hasOwnProperty.call(message, "errCode"))
-                        writer.uint32(/* id 21, wireType 0 =*/168).int32(message.errCode);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HighTradeResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeResponse.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeResponse} message HighTradeResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HighTradeResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HighTradeResponse message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeResponse} HighTradeResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HighTradeResponse.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HighTradeResponse();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.requestId = reader.string();
-                            break;
-                        case 2:
-                            message.requestTimestamp = reader.int64();
-                            break;
-                        case 3:
-                            message.responseTimestamp = reader.int64();
-                            break;
-                        case 4:
-                            message.requestCommand = reader.int32();
-                            break;
-                        case 5:
-                            message.platform = reader.string();
-                            break;
-                        case 6:
-                            message.contract = reader.string();
-                            break;
-                        case 7:
-                            message.targetPrice = reader.string();
-                            break;
-                        case 8:
-                            message.targetFutureContractVolume = reader.int32();
-                            break;
-                        case 9:
-                            message.dealPrice = reader.string();
-                            break;
-                        case 10:
-                            message.dealQuantity = reader.string();
-                            break;
-                        case 11:
-                            message.dealTurnover = reader.string();
-                            break;
-                        case 12:
-                            message.dealFee = reader.string();
-                            break;
-                        case 13:
-                            message.profit = reader.string();
-                            break;
-                        case 14:
-                            message.dealFutureContractVolume = reader.int32();
-                            break;
-                        case 15:
-                            message.orderSide = reader.int32();
-                            break;
-                        case 16:
-                            message.futureContractSide = reader.int32();
-                            break;
-                        case 17:
-                            message.activeOrderId = reader.string();
-                            break;
-                        case 18:
-                            message.triggerSignal = reader.int32();
-                            break;
-                        case 19:
-                            message.triggerReason = reader.string();
-                            break;
-                        case 20:
-                            message.errMsg = reader.string();
-                            break;
-                        case 21:
-                            message.errCode = reader.int32();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("requestId"))
-                        throw $util.ProtocolError("missing required 'requestId'", { instance: message });
-                    if (!message.hasOwnProperty("requestTimestamp"))
-                        throw $util.ProtocolError("missing required 'requestTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("responseTimestamp"))
-                        throw $util.ProtocolError("missing required 'responseTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("requestCommand"))
-                        throw $util.ProtocolError("missing required 'requestCommand'", { instance: message });
-                    if (!message.hasOwnProperty("platform"))
-                        throw $util.ProtocolError("missing required 'platform'", { instance: message });
-                    if (!message.hasOwnProperty("contract"))
-                        throw $util.ProtocolError("missing required 'contract'", { instance: message });
-                    if (!message.hasOwnProperty("targetPrice"))
-                        throw $util.ProtocolError("missing required 'targetPrice'", { instance: message });
-                    if (!message.hasOwnProperty("targetFutureContractVolume"))
-                        throw $util.ProtocolError("missing required 'targetFutureContractVolume'", { instance: message });
-                    if (!message.hasOwnProperty("dealPrice"))
-                        throw $util.ProtocolError("missing required 'dealPrice'", { instance: message });
-                    if (!message.hasOwnProperty("dealQuantity"))
-                        throw $util.ProtocolError("missing required 'dealQuantity'", { instance: message });
-                    if (!message.hasOwnProperty("dealTurnover"))
-                        throw $util.ProtocolError("missing required 'dealTurnover'", { instance: message });
-                    if (!message.hasOwnProperty("dealFee"))
-                        throw $util.ProtocolError("missing required 'dealFee'", { instance: message });
-                    if (!message.hasOwnProperty("orderSide"))
-                        throw $util.ProtocolError("missing required 'orderSide'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a HighTradeResponse message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeResponse} HighTradeResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HighTradeResponse.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HighTradeResponse message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HighTradeResponse.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.requestId))
-                        return "requestId: string expected";
-                    if (!$util.isInteger(message.requestTimestamp) && !(message.requestTimestamp && $util.isInteger(message.requestTimestamp.low) && $util.isInteger(message.requestTimestamp.high)))
-                        return "requestTimestamp: integer|Long expected";
-                    if (!$util.isInteger(message.responseTimestamp) && !(message.responseTimestamp && $util.isInteger(message.responseTimestamp.low) && $util.isInteger(message.responseTimestamp.high)))
-                        return "responseTimestamp: integer|Long expected";
-                    switch (message.requestCommand) {
-                    default:
-                        return "requestCommand: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                        break;
-                    }
-                    if (!$util.isString(message.platform))
-                        return "platform: string expected";
-                    if (!$util.isString(message.contract))
-                        return "contract: string expected";
-                    if (!$util.isString(message.targetPrice))
-                        return "targetPrice: string expected";
-                    if (!$util.isInteger(message.targetFutureContractVolume))
-                        return "targetFutureContractVolume: integer expected";
-                    if (!$util.isString(message.dealPrice))
-                        return "dealPrice: string expected";
-                    if (!$util.isString(message.dealQuantity))
-                        return "dealQuantity: string expected";
-                    if (!$util.isString(message.dealTurnover))
-                        return "dealTurnover: string expected";
-                    if (!$util.isString(message.dealFee))
-                        return "dealFee: string expected";
-                    if (message.profit != null && message.hasOwnProperty("profit"))
-                        if (!$util.isString(message.profit))
-                            return "profit: string expected";
-                    if (message.dealFutureContractVolume != null && message.hasOwnProperty("dealFutureContractVolume"))
-                        if (!$util.isInteger(message.dealFutureContractVolume))
-                            return "dealFutureContractVolume: integer expected";
-                    switch (message.orderSide) {
-                    default:
-                        return "orderSide: enum value expected";
-                    case -1:
-                    case 1:
-                        break;
-                    }
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        switch (message.futureContractSide) {
-                        default:
-                            return "futureContractSide: enum value expected";
-                        case 0:
-                        case -1:
-                        case 1:
-                            break;
-                        }
-                    if (message.activeOrderId != null && message.hasOwnProperty("activeOrderId"))
-                        if (!$util.isString(message.activeOrderId))
-                            return "activeOrderId: string expected";
-                    if (message.triggerSignal != null && message.hasOwnProperty("triggerSignal"))
-                        switch (message.triggerSignal) {
-                        default:
-                            return "triggerSignal: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                        case 12:
-                        case 13:
-                        case 14:
-                        case 15:
-                        case 16:
-                        case 17:
-                        case 18:
-                        case 19:
-                            break;
-                        }
-                    if (message.triggerReason != null && message.hasOwnProperty("triggerReason"))
-                        if (!$util.isString(message.triggerReason))
-                            return "triggerReason: string expected";
-                    if (message.errMsg != null && message.hasOwnProperty("errMsg"))
-                        if (!$util.isString(message.errMsg))
-                            return "errMsg: string expected";
-                    if (message.errCode != null && message.hasOwnProperty("errCode"))
-                        switch (message.errCode) {
-                        default:
-                            return "errCode: enum value expected";
-                        case 10001:
-                        case 11002:
-                        case 11003:
-                        case 12004:
-                        case 12005:
-                        case 12006:
-                        case 12007:
-                        case 12008:
-                        case 12009:
-                        case 12010:
-                        case 11004:
-                        case 30001:
-                        case 30002:
-                        case 30003:
-                        case 30004:
-                        case 30005:
-                            break;
-                        }
-                    return null;
-                };
-
-                /**
-                 * Creates a HighTradeResponse message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HighTradeResponse} HighTradeResponse
-                 */
-                HighTradeResponse.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HighTradeResponse)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HighTradeResponse();
-                    if (object.requestId != null)
-                        message.requestId = String(object.requestId);
-                    if (object.requestTimestamp != null)
-                        if ($util.Long)
-                            (message.requestTimestamp = $util.Long.fromValue(object.requestTimestamp)).unsigned = false;
-                        else if (typeof object.requestTimestamp === "string")
-                            message.requestTimestamp = parseInt(object.requestTimestamp, 10);
-                        else if (typeof object.requestTimestamp === "number")
-                            message.requestTimestamp = object.requestTimestamp;
-                        else if (typeof object.requestTimestamp === "object")
-                            message.requestTimestamp = new $util.LongBits(object.requestTimestamp.low >>> 0, object.requestTimestamp.high >>> 0).toNumber();
-                    if (object.responseTimestamp != null)
-                        if ($util.Long)
-                            (message.responseTimestamp = $util.Long.fromValue(object.responseTimestamp)).unsigned = false;
-                        else if (typeof object.responseTimestamp === "string")
-                            message.responseTimestamp = parseInt(object.responseTimestamp, 10);
-                        else if (typeof object.responseTimestamp === "number")
-                            message.responseTimestamp = object.responseTimestamp;
-                        else if (typeof object.responseTimestamp === "object")
-                            message.responseTimestamp = new $util.LongBits(object.responseTimestamp.low >>> 0, object.responseTimestamp.high >>> 0).toNumber();
-                    switch (object.requestCommand) {
-                    case "NEW_PLACE":
-                    case 0:
-                        message.requestCommand = 0;
-                        break;
-                    case "REPLACE":
-                    case 1:
-                        message.requestCommand = 1;
-                        break;
-                    case "QUERY":
-                    case 2:
-                        message.requestCommand = 2;
-                        break;
-                    case "CANCEL_MAKER":
-                    case 3:
-                        message.requestCommand = 3;
-                        break;
-                    }
-                    if (object.platform != null)
-                        message.platform = String(object.platform);
-                    if (object.contract != null)
-                        message.contract = String(object.contract);
-                    if (object.targetPrice != null)
-                        message.targetPrice = String(object.targetPrice);
-                    if (object.targetFutureContractVolume != null)
-                        message.targetFutureContractVolume = object.targetFutureContractVolume | 0;
-                    if (object.dealPrice != null)
-                        message.dealPrice = String(object.dealPrice);
-                    if (object.dealQuantity != null)
-                        message.dealQuantity = String(object.dealQuantity);
-                    if (object.dealTurnover != null)
-                        message.dealTurnover = String(object.dealTurnover);
-                    if (object.dealFee != null)
-                        message.dealFee = String(object.dealFee);
-                    if (object.profit != null)
-                        message.profit = String(object.profit);
-                    if (object.dealFutureContractVolume != null)
-                        message.dealFutureContractVolume = object.dealFutureContractVolume | 0;
-                    switch (object.orderSide) {
-                    case "SELL":
-                    case -1:
-                        message.orderSide = -1;
-                        break;
-                    case "BUY":
-                    case 1:
-                        message.orderSide = 1;
-                        break;
-                    }
-                    switch (object.futureContractSide) {
-                    case "INVALID_FUTURE_SIDE":
-                    case 0:
-                        message.futureContractSide = 0;
-                        break;
-                    case "CLOSE":
-                    case -1:
-                        message.futureContractSide = -1;
-                        break;
-                    case "OPEN":
-                    case 1:
-                        message.futureContractSide = 1;
-                        break;
-                    }
-                    if (object.activeOrderId != null)
-                        message.activeOrderId = String(object.activeOrderId);
-                    switch (object.triggerSignal) {
-                    case "DEPTH_OPEN":
-                    case 0:
-                        message.triggerSignal = 0;
-                        break;
-                    case "SHORT_TERM_OPEN":
-                    case 1:
-                        message.triggerSignal = 1;
-                        break;
-                    case "TRADE_VOLUME_OPEN":
-                    case 2:
-                        message.triggerSignal = 2;
-                        break;
-                    case "PROFIT_CLOSE":
-                    case 3:
-                        message.triggerSignal = 3;
-                        break;
-                    case "STOP_LOSS_IMMEDIATE":
-                    case 4:
-                        message.triggerSignal = 4;
-                        break;
-                    case "TRY_STOP_LOSS":
-                    case 5:
-                        message.triggerSignal = 5;
-                        break;
-                    case "TRY_MIN_PROFIT":
-                    case 6:
-                        message.triggerSignal = 6;
-                        break;
-                    case "TRY_MIDDLE_PROFIT":
-                    case 7:
-                        message.triggerSignal = 7;
-                        break;
-                    case "TRY_RECOVER_MIDDLE_PROFIT":
-                    case 8:
-                        message.triggerSignal = 8;
-                        break;
-                    case "TRY_SAVE_CURRENT_PROFIT":
-                    case 9:
-                        message.triggerSignal = 9;
-                        break;
-                    case "TRY_REGAIN_MIDDLE_PROFIT":
-                    case 10:
-                        message.triggerSignal = 10;
-                        break;
-                    case "REBOUND_OPEN":
-                    case 11:
-                        message.triggerSignal = 11;
-                        break;
-                    case "GUARD_OPEN":
-                    case 12:
-                        message.triggerSignal = 12;
-                        break;
-                    case "REBOUND_MAKER_OPEN":
-                    case 13:
-                        message.triggerSignal = 13;
-                        break;
-                    case "GUARD_MAKER_OPEN":
-                    case 14:
-                        message.triggerSignal = 14;
-                        break;
-                    case "REBOUND_MAKER_GUESS":
-                    case 15:
-                        message.triggerSignal = 15;
-                        break;
-                    case "MARKET_MAKER_GUESS":
-                    case 16:
-                        message.triggerSignal = 16;
-                        break;
-                    case "REBOUND_MAKER_GUESS_CONTINUE":
-                    case 17:
-                        message.triggerSignal = 17;
-                        break;
-                    case "OPPOSITE_OPEN":
-                    case 18:
-                        message.triggerSignal = 18;
-                        break;
-                    case "REBOUND_MAKER_GUESS_HIGH":
-                    case 19:
-                        message.triggerSignal = 19;
-                        break;
-                    }
-                    if (object.triggerReason != null)
-                        message.triggerReason = String(object.triggerReason);
-                    if (object.errMsg != null)
-                        message.errMsg = String(object.errMsg);
-                    switch (object.errCode) {
-                    case "SUCCESS":
-                    case 10001:
-                        message.errCode = 10001;
-                        break;
-                    case "ARBITRAGE_OPENING_EXIST":
-                    case 11002:
-                        message.errCode = 11002;
-                        break;
-                    case "ARBITRAGE_OPEN_EXIST":
-                    case 11003:
-                        message.errCode = 11003;
-                        break;
-                    case "ARBITRAGE_SPOT_DEAL_FAILED":
-                    case 12004:
-                        message.errCode = 12004;
-                        break;
-                    case "ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL":
-                    case 12005:
-                        message.errCode = 12005;
-                        break;
-                    case "ARBITRAGE_CLOSE_INEXIST":
-                    case 12006:
-                        message.errCode = 12006;
-                        break;
-                    case "ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE":
-                    case 12007:
-                        message.errCode = 12007;
-                        break;
-                    case "ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE":
-                    case 12008:
-                        message.errCode = 12008;
-                        break;
-                    case "ARBITRAGE_ADD_HOLDING_INEXIST":
-                    case 12009:
-                        message.errCode = 12009;
-                        break;
-                    case "TRANSFER_AMOUNT_NOT_ENOUGH":
-                    case 12010:
-                        message.errCode = 12010;
-                        break;
-                    case "ARBITRAGE_OPEN_SPOT_FAILED":
-                    case 11004:
-                        message.errCode = 11004;
-                        break;
-                    case "REQUEST_IN_OPERATING":
-                    case 30001:
-                        message.errCode = 30001;
-                        break;
-                    case "TOO_MANY_OPEN_REQUEST":
-                    case 30002:
-                        message.errCode = 30002;
-                        break;
-                    case "REQUEST_ORDER_NOT_EXIST":
-                    case 30003:
-                        message.errCode = 30003;
-                        break;
-                    case "TAKER_ORDER_FILLED_ZERO":
-                    case 30004:
-                        message.errCode = 30004;
-                        break;
-                    case "MAKER_OPEN_FAILED":
-                    case 30005:
-                        message.errCode = 30005;
-                        break;
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HighTradeResponse message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HighTradeResponse} message HighTradeResponse
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HighTradeResponse.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.requestId = "";
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.requestTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.requestTimestamp = options.longs === String ? "0" : 0;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.responseTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.responseTimestamp = options.longs === String ? "0" : 0;
-                        object.requestCommand = options.enums === String ? "NEW_PLACE" : 0;
-                        object.platform = "";
-                        object.contract = "";
-                        object.targetPrice = "";
-                        object.targetFutureContractVolume = 0;
-                        object.dealPrice = "";
-                        object.dealQuantity = "";
-                        object.dealTurnover = "";
-                        object.dealFee = "";
-                        object.profit = "";
-                        object.dealFutureContractVolume = 0;
-                        object.orderSide = options.enums === String ? "SELL" : -1;
-                        object.futureContractSide = options.enums === String ? "INVALID_FUTURE_SIDE" : 0;
-                        object.activeOrderId = "";
-                        object.triggerSignal = options.enums === String ? "DEPTH_OPEN" : 0;
-                        object.triggerReason = "";
-                        object.errMsg = "";
-                        object.errCode = options.enums === String ? "SUCCESS" : 10001;
-                    }
-                    if (message.requestId != null && message.hasOwnProperty("requestId"))
-                        object.requestId = message.requestId;
-                    if (message.requestTimestamp != null && message.hasOwnProperty("requestTimestamp"))
-                        if (typeof message.requestTimestamp === "number")
-                            object.requestTimestamp = options.longs === String ? String(message.requestTimestamp) : message.requestTimestamp;
-                        else
-                            object.requestTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.requestTimestamp) : options.longs === Number ? new $util.LongBits(message.requestTimestamp.low >>> 0, message.requestTimestamp.high >>> 0).toNumber() : message.requestTimestamp;
-                    if (message.responseTimestamp != null && message.hasOwnProperty("responseTimestamp"))
-                        if (typeof message.responseTimestamp === "number")
-                            object.responseTimestamp = options.longs === String ? String(message.responseTimestamp) : message.responseTimestamp;
-                        else
-                            object.responseTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.responseTimestamp) : options.longs === Number ? new $util.LongBits(message.responseTimestamp.low >>> 0, message.responseTimestamp.high >>> 0).toNumber() : message.responseTimestamp;
-                    if (message.requestCommand != null && message.hasOwnProperty("requestCommand"))
-                        object.requestCommand = options.enums === String ? $root.tradebot.grpc_server.arbitrage.RequestCommand[message.requestCommand] : message.requestCommand;
-                    if (message.platform != null && message.hasOwnProperty("platform"))
-                        object.platform = message.platform;
-                    if (message.contract != null && message.hasOwnProperty("contract"))
-                        object.contract = message.contract;
-                    if (message.targetPrice != null && message.hasOwnProperty("targetPrice"))
-                        object.targetPrice = message.targetPrice;
-                    if (message.targetFutureContractVolume != null && message.hasOwnProperty("targetFutureContractVolume"))
-                        object.targetFutureContractVolume = message.targetFutureContractVolume;
-                    if (message.dealPrice != null && message.hasOwnProperty("dealPrice"))
-                        object.dealPrice = message.dealPrice;
-                    if (message.dealQuantity != null && message.hasOwnProperty("dealQuantity"))
-                        object.dealQuantity = message.dealQuantity;
-                    if (message.dealTurnover != null && message.hasOwnProperty("dealTurnover"))
-                        object.dealTurnover = message.dealTurnover;
-                    if (message.dealFee != null && message.hasOwnProperty("dealFee"))
-                        object.dealFee = message.dealFee;
-                    if (message.profit != null && message.hasOwnProperty("profit"))
-                        object.profit = message.profit;
-                    if (message.dealFutureContractVolume != null && message.hasOwnProperty("dealFutureContractVolume"))
-                        object.dealFutureContractVolume = message.dealFutureContractVolume;
-                    if (message.orderSide != null && message.hasOwnProperty("orderSide"))
-                        object.orderSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.OrderSide[message.orderSide] : message.orderSide;
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        object.futureContractSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractSide[message.futureContractSide] : message.futureContractSide;
-                    if (message.activeOrderId != null && message.hasOwnProperty("activeOrderId"))
-                        object.activeOrderId = message.activeOrderId;
-                    if (message.triggerSignal != null && message.hasOwnProperty("triggerSignal"))
-                        object.triggerSignal = options.enums === String ? $root.tradebot.grpc_server.arbitrage.TriggerSignal[message.triggerSignal] : message.triggerSignal;
-                    if (message.triggerReason != null && message.hasOwnProperty("triggerReason"))
-                        object.triggerReason = message.triggerReason;
-                    if (message.errMsg != null && message.hasOwnProperty("errMsg"))
-                        object.errMsg = message.errMsg;
-                    if (message.errCode != null && message.hasOwnProperty("errCode"))
-                        object.errCode = options.enums === String ? $root.tradebot.grpc_server.arbitrage.ErrorCode[message.errCode] : message.errCode;
-                    return object;
-                };
-
-                /**
-                 * Converts this HighTradeResponse to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HighTradeResponse
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HighTradeResponse.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HighTradeResponse;
-            })();
-
-            arbitrage.HftState = (function() {
-
-                /**
-                 * Properties of a HftState.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHftState
-                 * @property {string} requestId HftState requestId
-                 * @property {string} platform HftState platform
-                 * @property {string} contract HftState contract
-                 * @property {number} price HftState price
-                 * @property {number} quantity HftState quantity
-                 * @property {number} turnover HftState turnover
-                 * @property {number} fee HftState fee
-                 * @property {number} profit HftState profit
-                 * @property {number} targetFutureContractVolume HftState targetFutureContractVolume
-                 * @property {number} dealFutureContractVolume HftState dealFutureContractVolume
-                 * @property {number} createdTimestamp HftState createdTimestamp
-                 * @property {tradebot.grpc_server.arbitrage.OrderSide} orderSide HftState orderSide
-                 * @property {tradebot.grpc_server.arbitrage.FutureContractSide|null} [futureContractSide] HftState futureContractSide
-                 * @property {string} activeOrderId HftState activeOrderId
-                 * @property {number|null} [lastPlacePrice] HftState lastPlacePrice
-                 * @property {tradebot.grpc_server.arbitrage.TriggerSignal} triggerSignal HftState triggerSignal
-                 * @property {string} triggerReason HftState triggerReason
-                 * @property {number|null} [predictCloseRatio] HftState predictCloseRatio
-                 */
-
-                /**
-                 * Constructs a new HftState.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HftState.
-                 * @implements IHftState
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHftState=} [properties] Properties to set
-                 */
-                function HftState(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HftState requestId.
-                 * @member {string} requestId
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.requestId = "";
-
-                /**
-                 * HftState platform.
-                 * @member {string} platform
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.platform = "";
-
-                /**
-                 * HftState contract.
-                 * @member {string} contract
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.contract = "";
-
-                /**
-                 * HftState price.
-                 * @member {number} price
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.price = 0;
-
-                /**
-                 * HftState quantity.
-                 * @member {number} quantity
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.quantity = 0;
-
-                /**
-                 * HftState turnover.
-                 * @member {number} turnover
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.turnover = 0;
-
-                /**
-                 * HftState fee.
-                 * @member {number} fee
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.fee = 0;
-
-                /**
-                 * HftState profit.
-                 * @member {number} profit
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.profit = 0;
-
-                /**
-                 * HftState targetFutureContractVolume.
-                 * @member {number} targetFutureContractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.targetFutureContractVolume = 0;
-
-                /**
-                 * HftState dealFutureContractVolume.
-                 * @member {number} dealFutureContractVolume
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.dealFutureContractVolume = 0;
-
-                /**
-                 * HftState createdTimestamp.
-                 * @member {number} createdTimestamp
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.createdTimestamp = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * HftState orderSide.
-                 * @member {tradebot.grpc_server.arbitrage.OrderSide} orderSide
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.orderSide = -1;
-
-                /**
-                 * HftState futureContractSide.
-                 * @member {tradebot.grpc_server.arbitrage.FutureContractSide} futureContractSide
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.futureContractSide = 0;
-
-                /**
-                 * HftState activeOrderId.
-                 * @member {string} activeOrderId
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.activeOrderId = "";
-
-                /**
-                 * HftState lastPlacePrice.
-                 * @member {number} lastPlacePrice
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.lastPlacePrice = 0;
-
-                /**
-                 * HftState triggerSignal.
-                 * @member {tradebot.grpc_server.arbitrage.TriggerSignal} triggerSignal
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.triggerSignal = 0;
-
-                /**
-                 * HftState triggerReason.
-                 * @member {string} triggerReason
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.triggerReason = "";
-
-                /**
-                 * HftState predictCloseRatio.
-                 * @member {number} predictCloseRatio
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 */
-                HftState.prototype.predictCloseRatio = 0;
-
-                /**
-                 * Creates a new HftState instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftState=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HftState} HftState instance
-                 */
-                HftState.create = function create(properties) {
-                    return new HftState(properties);
-                };
-
-                /**
-                 * Encodes the specified HftState message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftState.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftState} message HftState message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftState.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.requestId);
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.platform);
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.contract);
-                    writer.uint32(/* id 4, wireType 1 =*/33).double(message.price);
-                    writer.uint32(/* id 5, wireType 1 =*/41).double(message.quantity);
-                    writer.uint32(/* id 6, wireType 1 =*/49).double(message.turnover);
-                    writer.uint32(/* id 7, wireType 1 =*/57).double(message.fee);
-                    writer.uint32(/* id 8, wireType 1 =*/65).double(message.profit);
-                    writer.uint32(/* id 9, wireType 0 =*/72).int32(message.targetFutureContractVolume);
-                    writer.uint32(/* id 10, wireType 0 =*/80).int32(message.dealFutureContractVolume);
-                    writer.uint32(/* id 11, wireType 0 =*/88).int64(message.createdTimestamp);
-                    writer.uint32(/* id 12, wireType 0 =*/96).int32(message.orderSide);
-                    if (message.futureContractSide != null && Object.hasOwnProperty.call(message, "futureContractSide"))
-                        writer.uint32(/* id 13, wireType 0 =*/104).int32(message.futureContractSide);
-                    writer.uint32(/* id 14, wireType 2 =*/114).string(message.activeOrderId);
-                    if (message.lastPlacePrice != null && Object.hasOwnProperty.call(message, "lastPlacePrice"))
-                        writer.uint32(/* id 15, wireType 1 =*/121).double(message.lastPlacePrice);
-                    writer.uint32(/* id 16, wireType 0 =*/128).int32(message.triggerSignal);
-                    writer.uint32(/* id 17, wireType 2 =*/138).string(message.triggerReason);
-                    if (message.predictCloseRatio != null && Object.hasOwnProperty.call(message, "predictCloseRatio"))
-                        writer.uint32(/* id 18, wireType 1 =*/145).double(message.predictCloseRatio);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HftState message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftState.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftState} message HftState message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftState.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HftState message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HftState} HftState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftState.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HftState();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.requestId = reader.string();
-                            break;
-                        case 2:
-                            message.platform = reader.string();
-                            break;
-                        case 3:
-                            message.contract = reader.string();
-                            break;
-                        case 4:
-                            message.price = reader.double();
-                            break;
-                        case 5:
-                            message.quantity = reader.double();
-                            break;
-                        case 6:
-                            message.turnover = reader.double();
-                            break;
-                        case 7:
-                            message.fee = reader.double();
-                            break;
-                        case 8:
-                            message.profit = reader.double();
-                            break;
-                        case 9:
-                            message.targetFutureContractVolume = reader.int32();
-                            break;
-                        case 10:
-                            message.dealFutureContractVolume = reader.int32();
-                            break;
-                        case 11:
-                            message.createdTimestamp = reader.int64();
-                            break;
-                        case 12:
-                            message.orderSide = reader.int32();
-                            break;
-                        case 13:
-                            message.futureContractSide = reader.int32();
-                            break;
-                        case 14:
-                            message.activeOrderId = reader.string();
-                            break;
-                        case 15:
-                            message.lastPlacePrice = reader.double();
-                            break;
-                        case 16:
-                            message.triggerSignal = reader.int32();
-                            break;
-                        case 17:
-                            message.triggerReason = reader.string();
-                            break;
-                        case 18:
-                            message.predictCloseRatio = reader.double();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("requestId"))
-                        throw $util.ProtocolError("missing required 'requestId'", { instance: message });
-                    if (!message.hasOwnProperty("platform"))
-                        throw $util.ProtocolError("missing required 'platform'", { instance: message });
-                    if (!message.hasOwnProperty("contract"))
-                        throw $util.ProtocolError("missing required 'contract'", { instance: message });
-                    if (!message.hasOwnProperty("price"))
-                        throw $util.ProtocolError("missing required 'price'", { instance: message });
-                    if (!message.hasOwnProperty("quantity"))
-                        throw $util.ProtocolError("missing required 'quantity'", { instance: message });
-                    if (!message.hasOwnProperty("turnover"))
-                        throw $util.ProtocolError("missing required 'turnover'", { instance: message });
-                    if (!message.hasOwnProperty("fee"))
-                        throw $util.ProtocolError("missing required 'fee'", { instance: message });
-                    if (!message.hasOwnProperty("profit"))
-                        throw $util.ProtocolError("missing required 'profit'", { instance: message });
-                    if (!message.hasOwnProperty("targetFutureContractVolume"))
-                        throw $util.ProtocolError("missing required 'targetFutureContractVolume'", { instance: message });
-                    if (!message.hasOwnProperty("dealFutureContractVolume"))
-                        throw $util.ProtocolError("missing required 'dealFutureContractVolume'", { instance: message });
-                    if (!message.hasOwnProperty("createdTimestamp"))
-                        throw $util.ProtocolError("missing required 'createdTimestamp'", { instance: message });
-                    if (!message.hasOwnProperty("orderSide"))
-                        throw $util.ProtocolError("missing required 'orderSide'", { instance: message });
-                    if (!message.hasOwnProperty("activeOrderId"))
-                        throw $util.ProtocolError("missing required 'activeOrderId'", { instance: message });
-                    if (!message.hasOwnProperty("triggerSignal"))
-                        throw $util.ProtocolError("missing required 'triggerSignal'", { instance: message });
-                    if (!message.hasOwnProperty("triggerReason"))
-                        throw $util.ProtocolError("missing required 'triggerReason'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a HftState message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HftState} HftState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftState.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HftState message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HftState.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.requestId))
-                        return "requestId: string expected";
-                    if (!$util.isString(message.platform))
-                        return "platform: string expected";
-                    if (!$util.isString(message.contract))
-                        return "contract: string expected";
-                    if (typeof message.price !== "number")
-                        return "price: number expected";
-                    if (typeof message.quantity !== "number")
-                        return "quantity: number expected";
-                    if (typeof message.turnover !== "number")
-                        return "turnover: number expected";
-                    if (typeof message.fee !== "number")
-                        return "fee: number expected";
-                    if (typeof message.profit !== "number")
-                        return "profit: number expected";
-                    if (!$util.isInteger(message.targetFutureContractVolume))
-                        return "targetFutureContractVolume: integer expected";
-                    if (!$util.isInteger(message.dealFutureContractVolume))
-                        return "dealFutureContractVolume: integer expected";
-                    if (!$util.isInteger(message.createdTimestamp) && !(message.createdTimestamp && $util.isInteger(message.createdTimestamp.low) && $util.isInteger(message.createdTimestamp.high)))
-                        return "createdTimestamp: integer|Long expected";
-                    switch (message.orderSide) {
-                    default:
-                        return "orderSide: enum value expected";
-                    case -1:
-                    case 1:
-                        break;
-                    }
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        switch (message.futureContractSide) {
-                        default:
-                            return "futureContractSide: enum value expected";
-                        case 0:
-                        case -1:
-                        case 1:
-                            break;
-                        }
-                    if (!$util.isString(message.activeOrderId))
-                        return "activeOrderId: string expected";
-                    if (message.lastPlacePrice != null && message.hasOwnProperty("lastPlacePrice"))
-                        if (typeof message.lastPlacePrice !== "number")
-                            return "lastPlacePrice: number expected";
-                    switch (message.triggerSignal) {
-                    default:
-                        return "triggerSignal: enum value expected";
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                        break;
-                    }
-                    if (!$util.isString(message.triggerReason))
-                        return "triggerReason: string expected";
-                    if (message.predictCloseRatio != null && message.hasOwnProperty("predictCloseRatio"))
-                        if (typeof message.predictCloseRatio !== "number")
-                            return "predictCloseRatio: number expected";
-                    return null;
-                };
-
-                /**
-                 * Creates a HftState message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HftState} HftState
-                 */
-                HftState.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HftState)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HftState();
-                    if (object.requestId != null)
-                        message.requestId = String(object.requestId);
-                    if (object.platform != null)
-                        message.platform = String(object.platform);
-                    if (object.contract != null)
-                        message.contract = String(object.contract);
-                    if (object.price != null)
-                        message.price = Number(object.price);
-                    if (object.quantity != null)
-                        message.quantity = Number(object.quantity);
-                    if (object.turnover != null)
-                        message.turnover = Number(object.turnover);
-                    if (object.fee != null)
-                        message.fee = Number(object.fee);
-                    if (object.profit != null)
-                        message.profit = Number(object.profit);
-                    if (object.targetFutureContractVolume != null)
-                        message.targetFutureContractVolume = object.targetFutureContractVolume | 0;
-                    if (object.dealFutureContractVolume != null)
-                        message.dealFutureContractVolume = object.dealFutureContractVolume | 0;
-                    if (object.createdTimestamp != null)
-                        if ($util.Long)
-                            (message.createdTimestamp = $util.Long.fromValue(object.createdTimestamp)).unsigned = false;
-                        else if (typeof object.createdTimestamp === "string")
-                            message.createdTimestamp = parseInt(object.createdTimestamp, 10);
-                        else if (typeof object.createdTimestamp === "number")
-                            message.createdTimestamp = object.createdTimestamp;
-                        else if (typeof object.createdTimestamp === "object")
-                            message.createdTimestamp = new $util.LongBits(object.createdTimestamp.low >>> 0, object.createdTimestamp.high >>> 0).toNumber();
-                    switch (object.orderSide) {
-                    case "SELL":
-                    case -1:
-                        message.orderSide = -1;
-                        break;
-                    case "BUY":
-                    case 1:
-                        message.orderSide = 1;
-                        break;
-                    }
-                    switch (object.futureContractSide) {
-                    case "INVALID_FUTURE_SIDE":
-                    case 0:
-                        message.futureContractSide = 0;
-                        break;
-                    case "CLOSE":
-                    case -1:
-                        message.futureContractSide = -1;
-                        break;
-                    case "OPEN":
-                    case 1:
-                        message.futureContractSide = 1;
-                        break;
-                    }
-                    if (object.activeOrderId != null)
-                        message.activeOrderId = String(object.activeOrderId);
-                    if (object.lastPlacePrice != null)
-                        message.lastPlacePrice = Number(object.lastPlacePrice);
-                    switch (object.triggerSignal) {
-                    case "DEPTH_OPEN":
-                    case 0:
-                        message.triggerSignal = 0;
-                        break;
-                    case "SHORT_TERM_OPEN":
-                    case 1:
-                        message.triggerSignal = 1;
-                        break;
-                    case "TRADE_VOLUME_OPEN":
-                    case 2:
-                        message.triggerSignal = 2;
-                        break;
-                    case "PROFIT_CLOSE":
-                    case 3:
-                        message.triggerSignal = 3;
-                        break;
-                    case "STOP_LOSS_IMMEDIATE":
-                    case 4:
-                        message.triggerSignal = 4;
-                        break;
-                    case "TRY_STOP_LOSS":
-                    case 5:
-                        message.triggerSignal = 5;
-                        break;
-                    case "TRY_MIN_PROFIT":
-                    case 6:
-                        message.triggerSignal = 6;
-                        break;
-                    case "TRY_MIDDLE_PROFIT":
-                    case 7:
-                        message.triggerSignal = 7;
-                        break;
-                    case "TRY_RECOVER_MIDDLE_PROFIT":
-                    case 8:
-                        message.triggerSignal = 8;
-                        break;
-                    case "TRY_SAVE_CURRENT_PROFIT":
-                    case 9:
-                        message.triggerSignal = 9;
-                        break;
-                    case "TRY_REGAIN_MIDDLE_PROFIT":
-                    case 10:
-                        message.triggerSignal = 10;
-                        break;
-                    case "REBOUND_OPEN":
-                    case 11:
-                        message.triggerSignal = 11;
-                        break;
-                    case "GUARD_OPEN":
-                    case 12:
-                        message.triggerSignal = 12;
-                        break;
-                    case "REBOUND_MAKER_OPEN":
-                    case 13:
-                        message.triggerSignal = 13;
-                        break;
-                    case "GUARD_MAKER_OPEN":
-                    case 14:
-                        message.triggerSignal = 14;
-                        break;
-                    case "REBOUND_MAKER_GUESS":
-                    case 15:
-                        message.triggerSignal = 15;
-                        break;
-                    case "MARKET_MAKER_GUESS":
-                    case 16:
-                        message.triggerSignal = 16;
-                        break;
-                    case "REBOUND_MAKER_GUESS_CONTINUE":
-                    case 17:
-                        message.triggerSignal = 17;
-                        break;
-                    case "OPPOSITE_OPEN":
-                    case 18:
-                        message.triggerSignal = 18;
-                        break;
-                    case "REBOUND_MAKER_GUESS_HIGH":
-                    case 19:
-                        message.triggerSignal = 19;
-                        break;
-                    }
-                    if (object.triggerReason != null)
-                        message.triggerReason = String(object.triggerReason);
-                    if (object.predictCloseRatio != null)
-                        message.predictCloseRatio = Number(object.predictCloseRatio);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HftState message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HftState} message HftState
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HftState.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.requestId = "";
-                        object.platform = "";
-                        object.contract = "";
-                        object.price = 0;
-                        object.quantity = 0;
-                        object.turnover = 0;
-                        object.fee = 0;
-                        object.profit = 0;
-                        object.targetFutureContractVolume = 0;
-                        object.dealFutureContractVolume = 0;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.createdTimestamp = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.createdTimestamp = options.longs === String ? "0" : 0;
-                        object.orderSide = options.enums === String ? "SELL" : -1;
-                        object.futureContractSide = options.enums === String ? "INVALID_FUTURE_SIDE" : 0;
-                        object.activeOrderId = "";
-                        object.lastPlacePrice = 0;
-                        object.triggerSignal = options.enums === String ? "DEPTH_OPEN" : 0;
-                        object.triggerReason = "";
-                        object.predictCloseRatio = 0;
-                    }
-                    if (message.requestId != null && message.hasOwnProperty("requestId"))
-                        object.requestId = message.requestId;
-                    if (message.platform != null && message.hasOwnProperty("platform"))
-                        object.platform = message.platform;
-                    if (message.contract != null && message.hasOwnProperty("contract"))
-                        object.contract = message.contract;
-                    if (message.price != null && message.hasOwnProperty("price"))
-                        object.price = options.json && !isFinite(message.price) ? String(message.price) : message.price;
-                    if (message.quantity != null && message.hasOwnProperty("quantity"))
-                        object.quantity = options.json && !isFinite(message.quantity) ? String(message.quantity) : message.quantity;
-                    if (message.turnover != null && message.hasOwnProperty("turnover"))
-                        object.turnover = options.json && !isFinite(message.turnover) ? String(message.turnover) : message.turnover;
-                    if (message.fee != null && message.hasOwnProperty("fee"))
-                        object.fee = options.json && !isFinite(message.fee) ? String(message.fee) : message.fee;
-                    if (message.profit != null && message.hasOwnProperty("profit"))
-                        object.profit = options.json && !isFinite(message.profit) ? String(message.profit) : message.profit;
-                    if (message.targetFutureContractVolume != null && message.hasOwnProperty("targetFutureContractVolume"))
-                        object.targetFutureContractVolume = message.targetFutureContractVolume;
-                    if (message.dealFutureContractVolume != null && message.hasOwnProperty("dealFutureContractVolume"))
-                        object.dealFutureContractVolume = message.dealFutureContractVolume;
-                    if (message.createdTimestamp != null && message.hasOwnProperty("createdTimestamp"))
-                        if (typeof message.createdTimestamp === "number")
-                            object.createdTimestamp = options.longs === String ? String(message.createdTimestamp) : message.createdTimestamp;
-                        else
-                            object.createdTimestamp = options.longs === String ? $util.Long.prototype.toString.call(message.createdTimestamp) : options.longs === Number ? new $util.LongBits(message.createdTimestamp.low >>> 0, message.createdTimestamp.high >>> 0).toNumber() : message.createdTimestamp;
-                    if (message.orderSide != null && message.hasOwnProperty("orderSide"))
-                        object.orderSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.OrderSide[message.orderSide] : message.orderSide;
-                    if (message.futureContractSide != null && message.hasOwnProperty("futureContractSide"))
-                        object.futureContractSide = options.enums === String ? $root.tradebot.grpc_server.arbitrage.FutureContractSide[message.futureContractSide] : message.futureContractSide;
-                    if (message.activeOrderId != null && message.hasOwnProperty("activeOrderId"))
-                        object.activeOrderId = message.activeOrderId;
-                    if (message.lastPlacePrice != null && message.hasOwnProperty("lastPlacePrice"))
-                        object.lastPlacePrice = options.json && !isFinite(message.lastPlacePrice) ? String(message.lastPlacePrice) : message.lastPlacePrice;
-                    if (message.triggerSignal != null && message.hasOwnProperty("triggerSignal"))
-                        object.triggerSignal = options.enums === String ? $root.tradebot.grpc_server.arbitrage.TriggerSignal[message.triggerSignal] : message.triggerSignal;
-                    if (message.triggerReason != null && message.hasOwnProperty("triggerReason"))
-                        object.triggerReason = message.triggerReason;
-                    if (message.predictCloseRatio != null && message.hasOwnProperty("predictCloseRatio"))
-                        object.predictCloseRatio = options.json && !isFinite(message.predictCloseRatio) ? String(message.predictCloseRatio) : message.predictCloseRatio;
-                    return object;
-                };
-
-                /**
-                 * Converts this HftState to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HftState
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HftState.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HftState;
-            })();
-
-            arbitrage.HftOpenState = (function() {
-
-                /**
-                 * Properties of a HftOpenState.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHftOpenState
-                 * @property {tradebot.grpc_server.arbitrage.IHftState} openState HftOpenState openState
-                 * @property {tradebot.grpc_server.arbitrage.IHftState|null} [closeState] HftOpenState closeState
-                 */
-
-                /**
-                 * Constructs a new HftOpenState.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HftOpenState.
-                 * @implements IHftOpenState
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHftOpenState=} [properties] Properties to set
-                 */
-                function HftOpenState(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HftOpenState openState.
-                 * @member {tradebot.grpc_server.arbitrage.IHftState} openState
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @instance
-                 */
-                HftOpenState.prototype.openState = null;
-
-                /**
-                 * HftOpenState closeState.
-                 * @member {tradebot.grpc_server.arbitrage.IHftState|null|undefined} closeState
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @instance
-                 */
-                HftOpenState.prototype.closeState = null;
-
-                /**
-                 * Creates a new HftOpenState instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftOpenState=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HftOpenState} HftOpenState instance
-                 */
-                HftOpenState.create = function create(properties) {
-                    return new HftOpenState(properties);
-                };
-
-                /**
-                 * Encodes the specified HftOpenState message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftOpenState.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftOpenState} message HftOpenState message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftOpenState.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    $root.tradebot.grpc_server.arbitrage.HftState.encode(message.openState, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.closeState != null && Object.hasOwnProperty.call(message, "closeState"))
-                        $root.tradebot.grpc_server.arbitrage.HftState.encode(message.closeState, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HftOpenState message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftOpenState.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftOpenState} message HftOpenState message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftOpenState.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HftOpenState message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HftOpenState} HftOpenState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftOpenState.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HftOpenState();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.openState = $root.tradebot.grpc_server.arbitrage.HftState.decode(reader, reader.uint32());
-                            break;
-                        case 2:
-                            message.closeState = $root.tradebot.grpc_server.arbitrage.HftState.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("openState"))
-                        throw $util.ProtocolError("missing required 'openState'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a HftOpenState message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HftOpenState} HftOpenState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftOpenState.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HftOpenState message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HftOpenState.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.HftState.verify(message.openState);
-                        if (error)
-                            return "openState." + error;
-                    }
-                    if (message.closeState != null && message.hasOwnProperty("closeState")) {
-                        let error = $root.tradebot.grpc_server.arbitrage.HftState.verify(message.closeState);
-                        if (error)
-                            return "closeState." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates a HftOpenState message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HftOpenState} HftOpenState
-                 */
-                HftOpenState.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HftOpenState)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HftOpenState();
-                    if (object.openState != null) {
-                        if (typeof object.openState !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftOpenState.openState: object expected");
-                        message.openState = $root.tradebot.grpc_server.arbitrage.HftState.fromObject(object.openState);
-                    }
-                    if (object.closeState != null) {
-                        if (typeof object.closeState !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftOpenState.closeState: object expected");
-                        message.closeState = $root.tradebot.grpc_server.arbitrage.HftState.fromObject(object.closeState);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HftOpenState message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HftOpenState} message HftOpenState
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HftOpenState.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.openState = null;
-                        object.closeState = null;
-                    }
-                    if (message.openState != null && message.hasOwnProperty("openState"))
-                        object.openState = $root.tradebot.grpc_server.arbitrage.HftState.toObject(message.openState, options);
-                    if (message.closeState != null && message.hasOwnProperty("closeState"))
-                        object.closeState = $root.tradebot.grpc_server.arbitrage.HftState.toObject(message.closeState, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this HftOpenState to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HftOpenState
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HftOpenState.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HftOpenState;
-            })();
-
-            arbitrage.HftPositionInfo = (function() {
-
-                /**
-                 * Properties of a HftPositionInfo.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHftPositionInfo
-                 * @property {Array.<tradebot.grpc_server.arbitrage.IHftOpenState>|null} [openList] HftPositionInfo openList
-                 * @property {Array.<tradebot.grpc_server.arbitrage.IHftState>|null} [openingList] HftPositionInfo openingList
-                 */
-
-                /**
-                 * Constructs a new HftPositionInfo.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HftPositionInfo.
-                 * @implements IHftPositionInfo
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHftPositionInfo=} [properties] Properties to set
-                 */
-                function HftPositionInfo(properties) {
-                    this.openList = [];
-                    this.openingList = [];
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HftPositionInfo openList.
-                 * @member {Array.<tradebot.grpc_server.arbitrage.IHftOpenState>} openList
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @instance
-                 */
-                HftPositionInfo.prototype.openList = $util.emptyArray;
-
-                /**
-                 * HftPositionInfo openingList.
-                 * @member {Array.<tradebot.grpc_server.arbitrage.IHftState>} openingList
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @instance
-                 */
-                HftPositionInfo.prototype.openingList = $util.emptyArray;
-
-                /**
-                 * Creates a new HftPositionInfo instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftPositionInfo=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HftPositionInfo} HftPositionInfo instance
-                 */
-                HftPositionInfo.create = function create(properties) {
-                    return new HftPositionInfo(properties);
-                };
-
-                /**
-                 * Encodes the specified HftPositionInfo message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftPositionInfo.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftPositionInfo} message HftPositionInfo message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftPositionInfo.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.openList != null && message.openList.length)
-                        for (let i = 0; i < message.openList.length; ++i)
-                            $root.tradebot.grpc_server.arbitrage.HftOpenState.encode(message.openList[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    if (message.openingList != null && message.openingList.length)
-                        for (let i = 0; i < message.openingList.length; ++i)
-                            $root.tradebot.grpc_server.arbitrage.HftState.encode(message.openingList[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HftPositionInfo message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftPositionInfo.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftPositionInfo} message HftPositionInfo message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftPositionInfo.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HftPositionInfo message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HftPositionInfo} HftPositionInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftPositionInfo.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HftPositionInfo();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            if (!(message.openList && message.openList.length))
-                                message.openList = [];
-                            message.openList.push($root.tradebot.grpc_server.arbitrage.HftOpenState.decode(reader, reader.uint32()));
-                            break;
-                        case 2:
-                            if (!(message.openingList && message.openingList.length))
-                                message.openingList = [];
-                            message.openingList.push($root.tradebot.grpc_server.arbitrage.HftState.decode(reader, reader.uint32()));
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-
-                /**
-                 * Decodes a HftPositionInfo message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HftPositionInfo} HftPositionInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftPositionInfo.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HftPositionInfo message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HftPositionInfo.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.openList != null && message.hasOwnProperty("openList")) {
-                        if (!Array.isArray(message.openList))
-                            return "openList: array expected";
-                        for (let i = 0; i < message.openList.length; ++i) {
-                            let error = $root.tradebot.grpc_server.arbitrage.HftOpenState.verify(message.openList[i]);
-                            if (error)
-                                return "openList." + error;
-                        }
-                    }
-                    if (message.openingList != null && message.hasOwnProperty("openingList")) {
-                        if (!Array.isArray(message.openingList))
-                            return "openingList: array expected";
-                        for (let i = 0; i < message.openingList.length; ++i) {
-                            let error = $root.tradebot.grpc_server.arbitrage.HftState.verify(message.openingList[i]);
-                            if (error)
-                                return "openingList." + error;
-                        }
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates a HftPositionInfo message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HftPositionInfo} HftPositionInfo
-                 */
-                HftPositionInfo.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HftPositionInfo)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HftPositionInfo();
-                    if (object.openList) {
-                        if (!Array.isArray(object.openList))
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftPositionInfo.openList: array expected");
-                        message.openList = [];
-                        for (let i = 0; i < object.openList.length; ++i) {
-                            if (typeof object.openList[i] !== "object")
-                                throw TypeError(".tradebot.grpc_server.arbitrage.HftPositionInfo.openList: object expected");
-                            message.openList[i] = $root.tradebot.grpc_server.arbitrage.HftOpenState.fromObject(object.openList[i]);
-                        }
-                    }
-                    if (object.openingList) {
-                        if (!Array.isArray(object.openingList))
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftPositionInfo.openingList: array expected");
-                        message.openingList = [];
-                        for (let i = 0; i < object.openingList.length; ++i) {
-                            if (typeof object.openingList[i] !== "object")
-                                throw TypeError(".tradebot.grpc_server.arbitrage.HftPositionInfo.openingList: object expected");
-                            message.openingList[i] = $root.tradebot.grpc_server.arbitrage.HftState.fromObject(object.openingList[i]);
-                        }
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HftPositionInfo message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HftPositionInfo} message HftPositionInfo
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HftPositionInfo.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.arrays || options.defaults) {
-                        object.openList = [];
-                        object.openingList = [];
-                    }
-                    if (message.openList && message.openList.length) {
-                        object.openList = [];
-                        for (let j = 0; j < message.openList.length; ++j)
-                            object.openList[j] = $root.tradebot.grpc_server.arbitrage.HftOpenState.toObject(message.openList[j], options);
-                    }
-                    if (message.openingList && message.openingList.length) {
-                        object.openingList = [];
-                        for (let j = 0; j < message.openingList.length; ++j)
-                            object.openingList[j] = $root.tradebot.grpc_server.arbitrage.HftState.toObject(message.openingList[j], options);
-                    }
-                    return object;
-                };
-
-                /**
-                 * Converts this HftPositionInfo to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HftPositionInfo
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HftPositionInfo.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HftPositionInfo;
-            })();
-
-            arbitrage.AddHoldingRequest = (function() {
-
-                /**
-                 * Properties of an AddHoldingRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IAddHoldingRequest
-                 * @property {string} uuid AddHoldingRequest uuid
-                 * @property {tradebot.grpc_server.arbitrage.ITransaction} transaction AddHoldingRequest transaction
-                 */
-
-                /**
-                 * Constructs a new AddHoldingRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an AddHoldingRequest.
-                 * @implements IAddHoldingRequest
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingRequest=} [properties] Properties to set
-                 */
-                function AddHoldingRequest(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * AddHoldingRequest uuid.
-                 * @member {string} uuid
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @instance
-                 */
-                AddHoldingRequest.prototype.uuid = "";
-
-                /**
-                 * AddHoldingRequest transaction.
-                 * @member {tradebot.grpc_server.arbitrage.ITransaction} transaction
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @instance
-                 */
-                AddHoldingRequest.prototype.transaction = null;
-
-                /**
-                 * Creates a new AddHoldingRequest instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingRequest=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingRequest} AddHoldingRequest instance
-                 */
-                AddHoldingRequest.create = function create(properties) {
-                    return new AddHoldingRequest(properties);
-                };
-
-                /**
-                 * Encodes the specified AddHoldingRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingRequest} message AddHoldingRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AddHoldingRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
-                    $root.tradebot.grpc_server.arbitrage.Transaction.encode(message.transaction, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified AddHoldingRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingRequest} message AddHoldingRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AddHoldingRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an AddHoldingRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingRequest} AddHoldingRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AddHoldingRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.AddHoldingRequest();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.uuid = reader.string();
-                            break;
-                        case 2:
-                            message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("uuid"))
-                        throw $util.ProtocolError("missing required 'uuid'", { instance: message });
-                    if (!message.hasOwnProperty("transaction"))
-                        throw $util.ProtocolError("missing required 'transaction'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an AddHoldingRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingRequest} AddHoldingRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AddHoldingRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an AddHoldingRequest message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                AddHoldingRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.uuid))
-                        return "uuid: string expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Transaction.verify(message.transaction);
-                        if (error)
-                            return "transaction." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates an AddHoldingRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingRequest} AddHoldingRequest
-                 */
-                AddHoldingRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.AddHoldingRequest)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.AddHoldingRequest();
-                    if (object.uuid != null)
-                        message.uuid = String(object.uuid);
-                    if (object.transaction != null) {
-                        if (typeof object.transaction !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.AddHoldingRequest.transaction: object expected");
-                        message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.fromObject(object.transaction);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an AddHoldingRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.AddHoldingRequest} message AddHoldingRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                AddHoldingRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.uuid = "";
-                        object.transaction = null;
-                    }
-                    if (message.uuid != null && message.hasOwnProperty("uuid"))
-                        object.uuid = message.uuid;
-                    if (message.transaction != null && message.hasOwnProperty("transaction"))
-                        object.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.toObject(message.transaction, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this AddHoldingRequest to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                AddHoldingRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return AddHoldingRequest;
-            })();
-
-            arbitrage.AddHoldingResponse = (function() {
-
-                /**
-                 * Properties of an AddHoldingResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IAddHoldingResponse
-                 * @property {string} uuid AddHoldingResponse uuid
-                 * @property {tradebot.grpc_server.arbitrage.ITransaction} transaction AddHoldingResponse transaction
-                 */
-
-                /**
-                 * Constructs a new AddHoldingResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an AddHoldingResponse.
-                 * @implements IAddHoldingResponse
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingResponse=} [properties] Properties to set
-                 */
-                function AddHoldingResponse(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * AddHoldingResponse uuid.
-                 * @member {string} uuid
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @instance
-                 */
-                AddHoldingResponse.prototype.uuid = "";
-
-                /**
-                 * AddHoldingResponse transaction.
-                 * @member {tradebot.grpc_server.arbitrage.ITransaction} transaction
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @instance
-                 */
-                AddHoldingResponse.prototype.transaction = null;
-
-                /**
-                 * Creates a new AddHoldingResponse instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingResponse=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingResponse} AddHoldingResponse instance
-                 */
-                AddHoldingResponse.create = function create(properties) {
-                    return new AddHoldingResponse(properties);
-                };
-
-                /**
-                 * Encodes the specified AddHoldingResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingResponse.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingResponse} message AddHoldingResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AddHoldingResponse.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
-                    $root.tradebot.grpc_server.arbitrage.Transaction.encode(message.transaction, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified AddHoldingResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingResponse.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IAddHoldingResponse} message AddHoldingResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                AddHoldingResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an AddHoldingResponse message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingResponse} AddHoldingResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AddHoldingResponse.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.AddHoldingResponse();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.uuid = reader.string();
-                            break;
-                        case 2:
-                            message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("uuid"))
-                        throw $util.ProtocolError("missing required 'uuid'", { instance: message });
-                    if (!message.hasOwnProperty("transaction"))
-                        throw $util.ProtocolError("missing required 'transaction'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an AddHoldingResponse message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingResponse} AddHoldingResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                AddHoldingResponse.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an AddHoldingResponse message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                AddHoldingResponse.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.uuid))
-                        return "uuid: string expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Transaction.verify(message.transaction);
-                        if (error)
-                            return "transaction." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates an AddHoldingResponse message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.AddHoldingResponse} AddHoldingResponse
-                 */
-                AddHoldingResponse.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.AddHoldingResponse)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.AddHoldingResponse();
-                    if (object.uuid != null)
-                        message.uuid = String(object.uuid);
-                    if (object.transaction != null) {
-                        if (typeof object.transaction !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.AddHoldingResponse.transaction: object expected");
-                        message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.fromObject(object.transaction);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an AddHoldingResponse message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.AddHoldingResponse} message AddHoldingResponse
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                AddHoldingResponse.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.uuid = "";
-                        object.transaction = null;
-                    }
-                    if (message.uuid != null && message.hasOwnProperty("uuid"))
-                        object.uuid = message.uuid;
-                    if (message.transaction != null && message.hasOwnProperty("transaction"))
-                        object.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.toObject(message.transaction, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this AddHoldingResponse to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.AddHoldingResponse
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                AddHoldingResponse.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return AddHoldingResponse;
-            })();
-
-            arbitrage.ArbitrageRequest = (function() {
-
-                /**
-                 * Properties of an ArbitrageRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IArbitrageRequest
-                 * @property {tradebot.grpc_server.arbitrage.ITransaction} transaction ArbitrageRequest transaction
-                 */
-
-                /**
-                 * Constructs a new ArbitrageRequest.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an ArbitrageRequest.
-                 * @implements IArbitrageRequest
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest=} [properties] Properties to set
-                 */
-                function ArbitrageRequest(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * ArbitrageRequest transaction.
-                 * @member {tradebot.grpc_server.arbitrage.ITransaction} transaction
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @instance
-                 */
-                ArbitrageRequest.prototype.transaction = null;
-
-                /**
-                 * Creates a new ArbitrageRequest instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageRequest} ArbitrageRequest instance
-                 */
-                ArbitrageRequest.create = function create(properties) {
-                    return new ArbitrageRequest(properties);
-                };
-
-                /**
-                 * Encodes the specified ArbitrageRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageRequest.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} message ArbitrageRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ArbitrageRequest.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    $root.tradebot.grpc_server.arbitrage.Transaction.encode(message.transaction, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified ArbitrageRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageRequest.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} message ArbitrageRequest message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ArbitrageRequest.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an ArbitrageRequest message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageRequest} ArbitrageRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ArbitrageRequest.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.ArbitrageRequest();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("transaction"))
-                        throw $util.ProtocolError("missing required 'transaction'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an ArbitrageRequest message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageRequest} ArbitrageRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ArbitrageRequest.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an ArbitrageRequest message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ArbitrageRequest.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Transaction.verify(message.transaction);
-                        if (error)
-                            return "transaction." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates an ArbitrageRequest message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageRequest} ArbitrageRequest
-                 */
-                ArbitrageRequest.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.ArbitrageRequest)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.ArbitrageRequest();
-                    if (object.transaction != null) {
-                        if (typeof object.transaction !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.ArbitrageRequest.transaction: object expected");
-                        message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.fromObject(object.transaction);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an ArbitrageRequest message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageRequest} message ArbitrageRequest
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ArbitrageRequest.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults)
-                        object.transaction = null;
-                    if (message.transaction != null && message.hasOwnProperty("transaction"))
-                        object.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.toObject(message.transaction, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this ArbitrageRequest to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageRequest
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ArbitrageRequest.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return ArbitrageRequest;
-            })();
-
-            arbitrage.ArbitrageResponse = (function() {
-
-                /**
-                 * Properties of an ArbitrageResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IArbitrageResponse
-                 * @property {string} uuid ArbitrageResponse uuid
-                 * @property {tradebot.grpc_server.arbitrage.ITransaction} transaction ArbitrageResponse transaction
-                 * @property {tradebot.grpc_server.arbitrage.ErrorCode} errorCode ArbitrageResponse errorCode
-                 * @property {string|null} [errorMsg] ArbitrageResponse errorMsg
-                 */
-
-                /**
-                 * Constructs a new ArbitrageResponse.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an ArbitrageResponse.
-                 * @implements IArbitrageResponse
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageResponse=} [properties] Properties to set
-                 */
-                function ArbitrageResponse(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * ArbitrageResponse uuid.
-                 * @member {string} uuid
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @instance
-                 */
-                ArbitrageResponse.prototype.uuid = "";
-
-                /**
-                 * ArbitrageResponse transaction.
-                 * @member {tradebot.grpc_server.arbitrage.ITransaction} transaction
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @instance
-                 */
-                ArbitrageResponse.prototype.transaction = null;
-
-                /**
-                 * ArbitrageResponse errorCode.
-                 * @member {tradebot.grpc_server.arbitrage.ErrorCode} errorCode
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @instance
-                 */
-                ArbitrageResponse.prototype.errorCode = 10001;
-
-                /**
-                 * ArbitrageResponse errorMsg.
-                 * @member {string} errorMsg
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @instance
-                 */
-                ArbitrageResponse.prototype.errorMsg = "";
-
-                /**
-                 * Creates a new ArbitrageResponse instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageResponse=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageResponse} ArbitrageResponse instance
-                 */
-                ArbitrageResponse.create = function create(properties) {
-                    return new ArbitrageResponse(properties);
-                };
-
-                /**
-                 * Encodes the specified ArbitrageResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageResponse.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageResponse} message ArbitrageResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ArbitrageResponse.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.uuid);
-                    $root.tradebot.grpc_server.arbitrage.Transaction.encode(message.transaction, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.errorCode);
-                    if (message.errorMsg != null && Object.hasOwnProperty.call(message, "errorMsg"))
-                        writer.uint32(/* id 4, wireType 2 =*/34).string(message.errorMsg);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified ArbitrageResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageResponse.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageResponse} message ArbitrageResponse message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ArbitrageResponse.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an ArbitrageResponse message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageResponse} ArbitrageResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ArbitrageResponse.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.ArbitrageResponse();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.uuid = reader.string();
-                            break;
-                        case 2:
-                            message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.decode(reader, reader.uint32());
-                            break;
-                        case 3:
-                            message.errorCode = reader.int32();
-                            break;
-                        case 4:
-                            message.errorMsg = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("uuid"))
-                        throw $util.ProtocolError("missing required 'uuid'", { instance: message });
-                    if (!message.hasOwnProperty("transaction"))
-                        throw $util.ProtocolError("missing required 'transaction'", { instance: message });
-                    if (!message.hasOwnProperty("errorCode"))
-                        throw $util.ProtocolError("missing required 'errorCode'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an ArbitrageResponse message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageResponse} ArbitrageResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ArbitrageResponse.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an ArbitrageResponse message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ArbitrageResponse.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.uuid))
-                        return "uuid: string expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Transaction.verify(message.transaction);
-                        if (error)
-                            return "transaction." + error;
-                    }
-                    switch (message.errorCode) {
-                    default:
-                        return "errorCode: enum value expected";
-                    case 10001:
-                    case 11002:
-                    case 11003:
-                    case 12004:
-                    case 12005:
-                    case 12006:
-                    case 12007:
-                    case 12008:
-                    case 12009:
-                    case 12010:
-                    case 11004:
-                    case 30001:
-                    case 30002:
-                    case 30003:
-                    case 30004:
-                    case 30005:
-                        break;
-                    }
-                    if (message.errorMsg != null && message.hasOwnProperty("errorMsg"))
-                        if (!$util.isString(message.errorMsg))
-                            return "errorMsg: string expected";
-                    return null;
-                };
-
-                /**
-                 * Creates an ArbitrageResponse message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.ArbitrageResponse} ArbitrageResponse
-                 */
-                ArbitrageResponse.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.ArbitrageResponse)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.ArbitrageResponse();
-                    if (object.uuid != null)
-                        message.uuid = String(object.uuid);
-                    if (object.transaction != null) {
-                        if (typeof object.transaction !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.ArbitrageResponse.transaction: object expected");
-                        message.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.fromObject(object.transaction);
-                    }
-                    switch (object.errorCode) {
-                    case "SUCCESS":
-                    case 10001:
-                        message.errorCode = 10001;
-                        break;
-                    case "ARBITRAGE_OPENING_EXIST":
-                    case 11002:
-                        message.errorCode = 11002;
-                        break;
-                    case "ARBITRAGE_OPEN_EXIST":
-                    case 11003:
-                        message.errorCode = 11003;
-                        break;
-                    case "ARBITRAGE_SPOT_DEAL_FAILED":
-                    case 12004:
-                        message.errorCode = 12004;
-                        break;
-                    case "ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL":
-                    case 12005:
-                        message.errorCode = 12005;
-                        break;
-                    case "ARBITRAGE_CLOSE_INEXIST":
-                    case 12006:
-                        message.errorCode = 12006;
-                        break;
-                    case "ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE":
-                    case 12007:
-                        message.errorCode = 12007;
-                        break;
-                    case "ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE":
-                    case 12008:
-                        message.errorCode = 12008;
-                        break;
-                    case "ARBITRAGE_ADD_HOLDING_INEXIST":
-                    case 12009:
-                        message.errorCode = 12009;
-                        break;
-                    case "TRANSFER_AMOUNT_NOT_ENOUGH":
-                    case 12010:
-                        message.errorCode = 12010;
-                        break;
-                    case "ARBITRAGE_OPEN_SPOT_FAILED":
-                    case 11004:
-                        message.errorCode = 11004;
-                        break;
-                    case "REQUEST_IN_OPERATING":
-                    case 30001:
-                        message.errorCode = 30001;
-                        break;
-                    case "TOO_MANY_OPEN_REQUEST":
-                    case 30002:
-                        message.errorCode = 30002;
-                        break;
-                    case "REQUEST_ORDER_NOT_EXIST":
-                    case 30003:
-                        message.errorCode = 30003;
-                        break;
-                    case "TAKER_ORDER_FILLED_ZERO":
-                    case 30004:
-                        message.errorCode = 30004;
-                        break;
-                    case "MAKER_OPEN_FAILED":
-                    case 30005:
-                        message.errorCode = 30005;
-                        break;
-                    }
-                    if (object.errorMsg != null)
-                        message.errorMsg = String(object.errorMsg);
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an ArbitrageResponse message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageResponse} message ArbitrageResponse
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ArbitrageResponse.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.uuid = "";
-                        object.transaction = null;
-                        object.errorCode = options.enums === String ? "SUCCESS" : 10001;
-                        object.errorMsg = "";
-                    }
-                    if (message.uuid != null && message.hasOwnProperty("uuid"))
-                        object.uuid = message.uuid;
-                    if (message.transaction != null && message.hasOwnProperty("transaction"))
-                        object.transaction = $root.tradebot.grpc_server.arbitrage.Transaction.toObject(message.transaction, options);
-                    if (message.errorCode != null && message.hasOwnProperty("errorCode"))
-                        object.errorCode = options.enums === String ? $root.tradebot.grpc_server.arbitrage.ErrorCode[message.errorCode] : message.errorCode;
-                    if (message.errorMsg != null && message.hasOwnProperty("errorMsg"))
-                        object.errorMsg = message.errorMsg;
-                    return object;
-                };
-
-                /**
-                 * Converts this ArbitrageResponse to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageResponse
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ArbitrageResponse.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return ArbitrageResponse;
-            })();
-
-            arbitrage.Level = (function() {
-
-                /**
-                 * Properties of a Level.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface ILevel
-                 * @property {number} digit Level digit
-                 * @property {number} px Level px
-                 * @property {number} qty Level qty
-                 */
-
-                /**
-                 * Constructs a new Level.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a Level.
-                 * @implements ILevel
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.ILevel=} [properties] Properties to set
-                 */
-                function Level(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * Level digit.
-                 * @member {number} digit
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @instance
-                 */
-                Level.prototype.digit = 0;
-
-                /**
-                 * Level px.
-                 * @member {number} px
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @instance
-                 */
-                Level.prototype.px = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * Level qty.
-                 * @member {number} qty
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @instance
-                 */
-                Level.prototype.qty = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * Creates a new Level instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ILevel=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.Level} Level instance
-                 */
-                Level.create = function create(properties) {
-                    return new Level(properties);
-                };
-
-                /**
-                 * Encodes the specified Level message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Level.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ILevel} message Level message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Level.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 0 =*/8).int32(message.digit);
-                    writer.uint32(/* id 2, wireType 0 =*/16).int64(message.px);
-                    writer.uint32(/* id 3, wireType 0 =*/24).int64(message.qty);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified Level message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Level.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.ILevel} message Level message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Level.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a Level message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.Level} Level
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Level.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.Level();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.digit = reader.int32();
-                            break;
-                        case 2:
-                            message.px = reader.int64();
-                            break;
-                        case 3:
-                            message.qty = reader.int64();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("digit"))
-                        throw $util.ProtocolError("missing required 'digit'", { instance: message });
-                    if (!message.hasOwnProperty("px"))
-                        throw $util.ProtocolError("missing required 'px'", { instance: message });
-                    if (!message.hasOwnProperty("qty"))
-                        throw $util.ProtocolError("missing required 'qty'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a Level message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.Level} Level
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Level.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a Level message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Level.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isInteger(message.digit))
-                        return "digit: integer expected";
-                    if (!$util.isInteger(message.px) && !(message.px && $util.isInteger(message.px.low) && $util.isInteger(message.px.high)))
-                        return "px: integer|Long expected";
-                    if (!$util.isInteger(message.qty) && !(message.qty && $util.isInteger(message.qty.low) && $util.isInteger(message.qty.high)))
-                        return "qty: integer|Long expected";
-                    return null;
-                };
-
-                /**
-                 * Creates a Level message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.Level} Level
-                 */
-                Level.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.Level)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.Level();
-                    if (object.digit != null)
-                        message.digit = object.digit | 0;
-                    if (object.px != null)
-                        if ($util.Long)
-                            (message.px = $util.Long.fromValue(object.px)).unsigned = false;
-                        else if (typeof object.px === "string")
-                            message.px = parseInt(object.px, 10);
-                        else if (typeof object.px === "number")
-                            message.px = object.px;
-                        else if (typeof object.px === "object")
-                            message.px = new $util.LongBits(object.px.low >>> 0, object.px.high >>> 0).toNumber();
-                    if (object.qty != null)
-                        if ($util.Long)
-                            (message.qty = $util.Long.fromValue(object.qty)).unsigned = false;
-                        else if (typeof object.qty === "string")
-                            message.qty = parseInt(object.qty, 10);
-                        else if (typeof object.qty === "number")
-                            message.qty = object.qty;
-                        else if (typeof object.qty === "object")
-                            message.qty = new $util.LongBits(object.qty.low >>> 0, object.qty.high >>> 0).toNumber();
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a Level message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.Level} message Level
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Level.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.digit = 0;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.px = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.px = options.longs === String ? "0" : 0;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.qty = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.qty = options.longs === String ? "0" : 0;
-                    }
-                    if (message.digit != null && message.hasOwnProperty("digit"))
-                        object.digit = message.digit;
-                    if (message.px != null && message.hasOwnProperty("px"))
-                        if (typeof message.px === "number")
-                            object.px = options.longs === String ? String(message.px) : message.px;
-                        else
-                            object.px = options.longs === String ? $util.Long.prototype.toString.call(message.px) : options.longs === Number ? new $util.LongBits(message.px.low >>> 0, message.px.high >>> 0).toNumber() : message.px;
-                    if (message.qty != null && message.hasOwnProperty("qty"))
-                        if (typeof message.qty === "number")
-                            object.qty = options.longs === String ? String(message.qty) : message.qty;
-                        else
-                            object.qty = options.longs === String ? $util.Long.prototype.toString.call(message.qty) : options.longs === Number ? new $util.LongBits(message.qty.low >>> 0, message.qty.high >>> 0).toNumber() : message.qty;
-                    return object;
-                };
-
-                /**
-                 * Converts this Level to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.Level
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Level.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return Level;
-            })();
-
-            arbitrage.Orderbook = (function() {
-
-                /**
-                 * Properties of an Orderbook.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IOrderbook
-                 * @property {string} platform Orderbook platform
-                 * @property {string} contract Orderbook contract
-                 * @property {string} currency Orderbook currency
-                 * @property {string} commodity Orderbook commodity
-                 * @property {string|null} [futureContractCode] Orderbook futureContractCode
-                 * @property {Array.<tradebot.grpc_server.arbitrage.ILevel>|null} [bidLevel] Orderbook bidLevel
-                 * @property {Array.<tradebot.grpc_server.arbitrage.ILevel>|null} [askLevel] Orderbook askLevel
-                 * @property {number} ts Orderbook ts
-                 * @property {number} publishTs Orderbook publishTs
-                 */
-
-                /**
-                 * Constructs a new Orderbook.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an Orderbook.
-                 * @implements IOrderbook
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IOrderbook=} [properties] Properties to set
-                 */
-                function Orderbook(properties) {
-                    this.bidLevel = [];
-                    this.askLevel = [];
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * Orderbook platform.
-                 * @member {string} platform
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.platform = "";
-
-                /**
-                 * Orderbook contract.
-                 * @member {string} contract
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.contract = "";
-
-                /**
-                 * Orderbook currency.
-                 * @member {string} currency
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.currency = "";
-
-                /**
-                 * Orderbook commodity.
-                 * @member {string} commodity
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.commodity = "";
-
-                /**
-                 * Orderbook futureContractCode.
-                 * @member {string} futureContractCode
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.futureContractCode = "";
-
-                /**
-                 * Orderbook bidLevel.
-                 * @member {Array.<tradebot.grpc_server.arbitrage.ILevel>} bidLevel
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.bidLevel = $util.emptyArray;
-
-                /**
-                 * Orderbook askLevel.
-                 * @member {Array.<tradebot.grpc_server.arbitrage.ILevel>} askLevel
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.askLevel = $util.emptyArray;
-
-                /**
-                 * Orderbook ts.
-                 * @member {number} ts
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.ts = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * Orderbook publishTs.
-                 * @member {number} publishTs
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 */
-                Orderbook.prototype.publishTs = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
-
-                /**
-                 * Creates a new Orderbook instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrderbook=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.Orderbook} Orderbook instance
-                 */
-                Orderbook.create = function create(properties) {
-                    return new Orderbook(properties);
-                };
-
-                /**
-                 * Encodes the specified Orderbook message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Orderbook.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrderbook} message Orderbook message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Orderbook.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.platform);
-                    writer.uint32(/* id 2, wireType 2 =*/18).string(message.contract);
-                    writer.uint32(/* id 3, wireType 2 =*/26).string(message.currency);
-                    writer.uint32(/* id 4, wireType 2 =*/34).string(message.commodity);
-                    if (message.futureContractCode != null && Object.hasOwnProperty.call(message, "futureContractCode"))
-                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.futureContractCode);
-                    if (message.bidLevel != null && message.bidLevel.length)
-                        for (let i = 0; i < message.bidLevel.length; ++i)
-                            $root.tradebot.grpc_server.arbitrage.Level.encode(message.bidLevel[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-                    if (message.askLevel != null && message.askLevel.length)
-                        for (let i = 0; i < message.askLevel.length; ++i)
-                            $root.tradebot.grpc_server.arbitrage.Level.encode(message.askLevel[i], writer.uint32(/* id 7, wireType 2 =*/58).fork()).ldelim();
-                    writer.uint32(/* id 8, wireType 0 =*/64).int64(message.ts);
-                    writer.uint32(/* id 9, wireType 0 =*/72).int64(message.publishTs);
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified Orderbook message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Orderbook.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IOrderbook} message Orderbook message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                Orderbook.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes an Orderbook message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.Orderbook} Orderbook
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Orderbook.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.Orderbook();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.platform = reader.string();
-                            break;
-                        case 2:
-                            message.contract = reader.string();
-                            break;
-                        case 3:
-                            message.currency = reader.string();
-                            break;
-                        case 4:
-                            message.commodity = reader.string();
-                            break;
-                        case 5:
-                            message.futureContractCode = reader.string();
-                            break;
-                        case 6:
-                            if (!(message.bidLevel && message.bidLevel.length))
-                                message.bidLevel = [];
-                            message.bidLevel.push($root.tradebot.grpc_server.arbitrage.Level.decode(reader, reader.uint32()));
-                            break;
-                        case 7:
-                            if (!(message.askLevel && message.askLevel.length))
-                                message.askLevel = [];
-                            message.askLevel.push($root.tradebot.grpc_server.arbitrage.Level.decode(reader, reader.uint32()));
-                            break;
-                        case 8:
-                            message.ts = reader.int64();
-                            break;
-                        case 9:
-                            message.publishTs = reader.int64();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("platform"))
-                        throw $util.ProtocolError("missing required 'platform'", { instance: message });
-                    if (!message.hasOwnProperty("contract"))
-                        throw $util.ProtocolError("missing required 'contract'", { instance: message });
-                    if (!message.hasOwnProperty("currency"))
-                        throw $util.ProtocolError("missing required 'currency'", { instance: message });
-                    if (!message.hasOwnProperty("commodity"))
-                        throw $util.ProtocolError("missing required 'commodity'", { instance: message });
-                    if (!message.hasOwnProperty("ts"))
-                        throw $util.ProtocolError("missing required 'ts'", { instance: message });
-                    if (!message.hasOwnProperty("publishTs"))
-                        throw $util.ProtocolError("missing required 'publishTs'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes an Orderbook message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.Orderbook} Orderbook
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                Orderbook.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies an Orderbook message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                Orderbook.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (!$util.isString(message.platform))
-                        return "platform: string expected";
-                    if (!$util.isString(message.contract))
-                        return "contract: string expected";
-                    if (!$util.isString(message.currency))
-                        return "currency: string expected";
-                    if (!$util.isString(message.commodity))
-                        return "commodity: string expected";
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        if (!$util.isString(message.futureContractCode))
-                            return "futureContractCode: string expected";
-                    if (message.bidLevel != null && message.hasOwnProperty("bidLevel")) {
-                        if (!Array.isArray(message.bidLevel))
-                            return "bidLevel: array expected";
-                        for (let i = 0; i < message.bidLevel.length; ++i) {
-                            let error = $root.tradebot.grpc_server.arbitrage.Level.verify(message.bidLevel[i]);
-                            if (error)
-                                return "bidLevel." + error;
-                        }
-                    }
-                    if (message.askLevel != null && message.hasOwnProperty("askLevel")) {
-                        if (!Array.isArray(message.askLevel))
-                            return "askLevel: array expected";
-                        for (let i = 0; i < message.askLevel.length; ++i) {
-                            let error = $root.tradebot.grpc_server.arbitrage.Level.verify(message.askLevel[i]);
-                            if (error)
-                                return "askLevel." + error;
-                        }
-                    }
-                    if (!$util.isInteger(message.ts) && !(message.ts && $util.isInteger(message.ts.low) && $util.isInteger(message.ts.high)))
-                        return "ts: integer|Long expected";
-                    if (!$util.isInteger(message.publishTs) && !(message.publishTs && $util.isInteger(message.publishTs.low) && $util.isInteger(message.publishTs.high)))
-                        return "publishTs: integer|Long expected";
-                    return null;
-                };
-
-                /**
-                 * Creates an Orderbook message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.Orderbook} Orderbook
-                 */
-                Orderbook.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.Orderbook)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.Orderbook();
-                    if (object.platform != null)
-                        message.platform = String(object.platform);
-                    if (object.contract != null)
-                        message.contract = String(object.contract);
-                    if (object.currency != null)
-                        message.currency = String(object.currency);
-                    if (object.commodity != null)
-                        message.commodity = String(object.commodity);
-                    if (object.futureContractCode != null)
-                        message.futureContractCode = String(object.futureContractCode);
-                    if (object.bidLevel) {
-                        if (!Array.isArray(object.bidLevel))
-                            throw TypeError(".tradebot.grpc_server.arbitrage.Orderbook.bidLevel: array expected");
-                        message.bidLevel = [];
-                        for (let i = 0; i < object.bidLevel.length; ++i) {
-                            if (typeof object.bidLevel[i] !== "object")
-                                throw TypeError(".tradebot.grpc_server.arbitrage.Orderbook.bidLevel: object expected");
-                            message.bidLevel[i] = $root.tradebot.grpc_server.arbitrage.Level.fromObject(object.bidLevel[i]);
-                        }
-                    }
-                    if (object.askLevel) {
-                        if (!Array.isArray(object.askLevel))
-                            throw TypeError(".tradebot.grpc_server.arbitrage.Orderbook.askLevel: array expected");
-                        message.askLevel = [];
-                        for (let i = 0; i < object.askLevel.length; ++i) {
-                            if (typeof object.askLevel[i] !== "object")
-                                throw TypeError(".tradebot.grpc_server.arbitrage.Orderbook.askLevel: object expected");
-                            message.askLevel[i] = $root.tradebot.grpc_server.arbitrage.Level.fromObject(object.askLevel[i]);
-                        }
-                    }
-                    if (object.ts != null)
-                        if ($util.Long)
-                            (message.ts = $util.Long.fromValue(object.ts)).unsigned = false;
-                        else if (typeof object.ts === "string")
-                            message.ts = parseInt(object.ts, 10);
-                        else if (typeof object.ts === "number")
-                            message.ts = object.ts;
-                        else if (typeof object.ts === "object")
-                            message.ts = new $util.LongBits(object.ts.low >>> 0, object.ts.high >>> 0).toNumber();
-                    if (object.publishTs != null)
-                        if ($util.Long)
-                            (message.publishTs = $util.Long.fromValue(object.publishTs)).unsigned = false;
-                        else if (typeof object.publishTs === "string")
-                            message.publishTs = parseInt(object.publishTs, 10);
-                        else if (typeof object.publishTs === "number")
-                            message.publishTs = object.publishTs;
-                        else if (typeof object.publishTs === "object")
-                            message.publishTs = new $util.LongBits(object.publishTs.low >>> 0, object.publishTs.high >>> 0).toNumber();
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from an Orderbook message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.Orderbook} message Orderbook
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                Orderbook.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.arrays || options.defaults) {
-                        object.bidLevel = [];
-                        object.askLevel = [];
-                    }
-                    if (options.defaults) {
-                        object.platform = "";
-                        object.contract = "";
-                        object.currency = "";
-                        object.commodity = "";
-                        object.futureContractCode = "";
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.ts = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.ts = options.longs === String ? "0" : 0;
-                        if ($util.Long) {
-                            let long = new $util.Long(0, 0, false);
-                            object.publishTs = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                        } else
-                            object.publishTs = options.longs === String ? "0" : 0;
-                    }
-                    if (message.platform != null && message.hasOwnProperty("platform"))
-                        object.platform = message.platform;
-                    if (message.contract != null && message.hasOwnProperty("contract"))
-                        object.contract = message.contract;
-                    if (message.currency != null && message.hasOwnProperty("currency"))
-                        object.currency = message.currency;
-                    if (message.commodity != null && message.hasOwnProperty("commodity"))
-                        object.commodity = message.commodity;
-                    if (message.futureContractCode != null && message.hasOwnProperty("futureContractCode"))
-                        object.futureContractCode = message.futureContractCode;
-                    if (message.bidLevel && message.bidLevel.length) {
-                        object.bidLevel = [];
-                        for (let j = 0; j < message.bidLevel.length; ++j)
-                            object.bidLevel[j] = $root.tradebot.grpc_server.arbitrage.Level.toObject(message.bidLevel[j], options);
-                    }
-                    if (message.askLevel && message.askLevel.length) {
-                        object.askLevel = [];
-                        for (let j = 0; j < message.askLevel.length; ++j)
-                            object.askLevel[j] = $root.tradebot.grpc_server.arbitrage.Level.toObject(message.askLevel[j], options);
-                    }
-                    if (message.ts != null && message.hasOwnProperty("ts"))
-                        if (typeof message.ts === "number")
-                            object.ts = options.longs === String ? String(message.ts) : message.ts;
-                        else
-                            object.ts = options.longs === String ? $util.Long.prototype.toString.call(message.ts) : options.longs === Number ? new $util.LongBits(message.ts.low >>> 0, message.ts.high >>> 0).toNumber() : message.ts;
-                    if (message.publishTs != null && message.hasOwnProperty("publishTs"))
-                        if (typeof message.publishTs === "number")
-                            object.publishTs = options.longs === String ? String(message.publishTs) : message.publishTs;
-                        else
-                            object.publishTs = options.longs === String ? $util.Long.prototype.toString.call(message.publishTs) : options.longs === Number ? new $util.LongBits(message.publishTs.low >>> 0, message.publishTs.high >>> 0).toNumber() : message.publishTs;
-                    return object;
-                };
-
-                /**
-                 * Converts this Orderbook to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.Orderbook
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                Orderbook.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return Orderbook;
-            })();
-
-            arbitrage.HftMarketData = (function() {
-
-                /**
-                 * Properties of a HftMarketData.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @interface IHftMarketData
-                 * @property {tradebot.grpc_server.arbitrage.IOrderbook} orderbook HftMarketData orderbook
-                 * @property {tradebot.grpc_server.arbitrage.IHftPositionInfo} positionInfo HftMarketData positionInfo
-                 */
-
-                /**
-                 * Constructs a new HftMarketData.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents a HftMarketData.
-                 * @implements IHftMarketData
-                 * @constructor
-                 * @param {tradebot.grpc_server.arbitrage.IHftMarketData=} [properties] Properties to set
-                 */
-                function HftMarketData(properties) {
-                    if (properties)
-                        for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-
-                /**
-                 * HftMarketData orderbook.
-                 * @member {tradebot.grpc_server.arbitrage.IOrderbook} orderbook
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @instance
-                 */
-                HftMarketData.prototype.orderbook = null;
-
-                /**
-                 * HftMarketData positionInfo.
-                 * @member {tradebot.grpc_server.arbitrage.IHftPositionInfo} positionInfo
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @instance
-                 */
-                HftMarketData.prototype.positionInfo = null;
-
-                /**
-                 * Creates a new HftMarketData instance using the specified properties.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftMarketData=} [properties] Properties to set
-                 * @returns {tradebot.grpc_server.arbitrage.HftMarketData} HftMarketData instance
-                 */
-                HftMarketData.create = function create(properties) {
-                    return new HftMarketData(properties);
-                };
-
-                /**
-                 * Encodes the specified HftMarketData message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftMarketData.verify|verify} messages.
-                 * @function encode
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftMarketData} message HftMarketData message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftMarketData.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    $root.tradebot.grpc_server.arbitrage.Orderbook.encode(message.orderbook, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                    $root.tradebot.grpc_server.arbitrage.HftPositionInfo.encode(message.positionInfo, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                    return writer;
-                };
-
-                /**
-                 * Encodes the specified HftMarketData message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftMarketData.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.IHftMarketData} message HftMarketData message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                HftMarketData.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-
-                /**
-                 * Decodes a HftMarketData message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {tradebot.grpc_server.arbitrage.HftMarketData} HftMarketData
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftMarketData.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    let end = length === undefined ? reader.len : reader.pos + length, message = new $root.tradebot.grpc_server.arbitrage.HftMarketData();
-                    while (reader.pos < end) {
-                        let tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.orderbook = $root.tradebot.grpc_server.arbitrage.Orderbook.decode(reader, reader.uint32());
-                            break;
-                        case 2:
-                            message.positionInfo = $root.tradebot.grpc_server.arbitrage.HftPositionInfo.decode(reader, reader.uint32());
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    if (!message.hasOwnProperty("orderbook"))
-                        throw $util.ProtocolError("missing required 'orderbook'", { instance: message });
-                    if (!message.hasOwnProperty("positionInfo"))
-                        throw $util.ProtocolError("missing required 'positionInfo'", { instance: message });
-                    return message;
-                };
-
-                /**
-                 * Decodes a HftMarketData message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {tradebot.grpc_server.arbitrage.HftMarketData} HftMarketData
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                HftMarketData.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-
-                /**
-                 * Verifies a HftMarketData message.
-                 * @function verify
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                HftMarketData.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.Orderbook.verify(message.orderbook);
-                        if (error)
-                            return "orderbook." + error;
-                    }
-                    {
-                        let error = $root.tradebot.grpc_server.arbitrage.HftPositionInfo.verify(message.positionInfo);
-                        if (error)
-                            return "positionInfo." + error;
-                    }
-                    return null;
-                };
-
-                /**
-                 * Creates a HftMarketData message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {tradebot.grpc_server.arbitrage.HftMarketData} HftMarketData
-                 */
-                HftMarketData.fromObject = function fromObject(object) {
-                    if (object instanceof $root.tradebot.grpc_server.arbitrage.HftMarketData)
-                        return object;
-                    let message = new $root.tradebot.grpc_server.arbitrage.HftMarketData();
-                    if (object.orderbook != null) {
-                        if (typeof object.orderbook !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftMarketData.orderbook: object expected");
-                        message.orderbook = $root.tradebot.grpc_server.arbitrage.Orderbook.fromObject(object.orderbook);
-                    }
-                    if (object.positionInfo != null) {
-                        if (typeof object.positionInfo !== "object")
-                            throw TypeError(".tradebot.grpc_server.arbitrage.HftMarketData.positionInfo: object expected");
-                        message.positionInfo = $root.tradebot.grpc_server.arbitrage.HftPositionInfo.fromObject(object.positionInfo);
-                    }
-                    return message;
-                };
-
-                /**
-                 * Creates a plain object from a HftMarketData message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @static
-                 * @param {tradebot.grpc_server.arbitrage.HftMarketData} message HftMarketData
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                HftMarketData.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    let object = {};
-                    if (options.defaults) {
-                        object.orderbook = null;
-                        object.positionInfo = null;
-                    }
-                    if (message.orderbook != null && message.hasOwnProperty("orderbook"))
-                        object.orderbook = $root.tradebot.grpc_server.arbitrage.Orderbook.toObject(message.orderbook, options);
-                    if (message.positionInfo != null && message.hasOwnProperty("positionInfo"))
-                        object.positionInfo = $root.tradebot.grpc_server.arbitrage.HftPositionInfo.toObject(message.positionInfo, options);
-                    return object;
-                };
-
-                /**
-                 * Converts this HftMarketData to JSON.
-                 * @function toJSON
-                 * @memberof tradebot.grpc_server.arbitrage.HftMarketData
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                HftMarketData.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-
-                return HftMarketData;
-            })();
-
-            arbitrage.ArbitrageService = (function() {
-
-                /**
-                 * Constructs a new ArbitrageService service.
-                 * @memberof tradebot.grpc_server.arbitrage
-                 * @classdesc Represents an ArbitrageService
-                 * @extends $protobuf.rpc.Service
-                 * @constructor
-                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-                 */
-                function ArbitrageService(rpcImpl, requestDelimited, responseDelimited) {
-                    $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
-                }
-
-                (ArbitrageService.prototype = Object.create($protobuf.rpc.Service.prototype)).constructor = ArbitrageService;
-
-                /**
-                 * Creates new ArbitrageService service using the specified rpc implementation.
-                 * @function create
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @static
-                 * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
-                 * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
-                 * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
-                 * @returns {ArbitrageService} RPC service. Useful where requests and/or responses are streamed.
-                 */
-                ArbitrageService.create = function create(rpcImpl, requestDelimited, responseDelimited) {
-                    return new this(rpcImpl, requestDelimited, responseDelimited);
-                };
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#add_holding}.
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @typedef add_holdingCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageResponse} [response] ArbitrageResponse
-                 */
-
-                /**
-                 * Calls add_holding.
-                 * @function add_holding
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageService.add_holdingCallback} callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(ArbitrageService.prototype.add_holding = function add_holding(request, callback) {
-                    return this.rpcCall(add_holding, $root.tradebot.grpc_server.arbitrage.ArbitrageRequest, $root.tradebot.grpc_server.arbitrage.ArbitrageResponse, request, callback);
-                }, "name", { value: "add_holding" });
-
-                /**
-                 * Calls add_holding.
-                 * @function add_holding
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @returns {Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>} Promise
-                 * @variation 2
-                 */
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#open_arbitrage}.
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @typedef open_arbitrageCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageResponse} [response] ArbitrageResponse
-                 */
-
-                /**
-                 * Calls open_arbitrage.
-                 * @function open_arbitrage
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageService.open_arbitrageCallback} callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(ArbitrageService.prototype.open_arbitrage = function open_arbitrage(request, callback) {
-                    return this.rpcCall(open_arbitrage, $root.tradebot.grpc_server.arbitrage.ArbitrageRequest, $root.tradebot.grpc_server.arbitrage.ArbitrageResponse, request, callback);
-                }, "name", { value: "open_arbitrage" });
-
-                /**
-                 * Calls open_arbitrage.
-                 * @function open_arbitrage
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @returns {Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>} Promise
-                 * @variation 2
-                 */
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#close_arbitrage}.
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @typedef close_arbitrageCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageResponse} [response] ArbitrageResponse
-                 */
-
-                /**
-                 * Calls close_arbitrage.
-                 * @function close_arbitrage
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageService.close_arbitrageCallback} callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(ArbitrageService.prototype.close_arbitrage = function close_arbitrage(request, callback) {
-                    return this.rpcCall(close_arbitrage, $root.tradebot.grpc_server.arbitrage.ArbitrageRequest, $root.tradebot.grpc_server.arbitrage.ArbitrageResponse, request, callback);
-                }, "name", { value: "close_arbitrage" });
-
-                /**
-                 * Calls close_arbitrage.
-                 * @function close_arbitrage
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IArbitrageRequest} request ArbitrageRequest message or plain object
-                 * @returns {Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>} Promise
-                 * @variation 2
-                 */
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#open_position}.
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @typedef open_positionCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {tradebot.grpc_server.arbitrage.HighTradeResponse} [response] HighTradeResponse
-                 */
-
-                /**
-                 * Calls open_position.
-                 * @function open_position
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} request HighTradeRequest message or plain object
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageService.open_positionCallback} callback Node-style callback called with the error, if any, and HighTradeResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(ArbitrageService.prototype.open_position = function open_position(request, callback) {
-                    return this.rpcCall(open_position, $root.tradebot.grpc_server.arbitrage.HighTradeRequest, $root.tradebot.grpc_server.arbitrage.HighTradeResponse, request, callback);
-                }, "name", { value: "open_position" });
-
-                /**
-                 * Calls open_position.
-                 * @function open_position
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} request HighTradeRequest message or plain object
-                 * @returns {Promise<tradebot.grpc_server.arbitrage.HighTradeResponse>} Promise
-                 * @variation 2
-                 */
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#close_position}.
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @typedef close_positionCallback
-                 * @type {function}
-                 * @param {Error|null} error Error, if any
-                 * @param {tradebot.grpc_server.arbitrage.HighTradeResponse} [response] HighTradeResponse
-                 */
-
-                /**
-                 * Calls close_position.
-                 * @function close_position
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} request HighTradeRequest message or plain object
-                 * @param {tradebot.grpc_server.arbitrage.ArbitrageService.close_positionCallback} callback Node-style callback called with the error, if any, and HighTradeResponse
-                 * @returns {undefined}
-                 * @variation 1
-                 */
-                Object.defineProperty(ArbitrageService.prototype.close_position = function close_position(request, callback) {
-                    return this.rpcCall(close_position, $root.tradebot.grpc_server.arbitrage.HighTradeRequest, $root.tradebot.grpc_server.arbitrage.HighTradeResponse, request, callback);
-                }, "name", { value: "close_position" });
-
-                /**
-                 * Calls close_position.
-                 * @function close_position
-                 * @memberof tradebot.grpc_server.arbitrage.ArbitrageService
-                 * @instance
-                 * @param {tradebot.grpc_server.arbitrage.IHighTradeRequest} request HighTradeRequest message or plain object
-                 * @returns {Promise<tradebot.grpc_server.arbitrage.HighTradeResponse>} Promise
-                 * @variation 2
-                 */
-
-                return ArbitrageService;
-            })();
-
-            return arbitrage;
-        })();
-
-        return grpc_server;
-    })();
-
-    return tradebot;
-})();
 
 export const tradeconfig = $root.tradeconfig = (() => {
 
@@ -17796,6 +11586,865 @@ export const marketdata = $root.marketdata = (() => {
     })();
 
     return marketdata;
+})();
+
+export const innerapi = $root.innerapi = (() => {
+
+    /**
+     * Namespace innerapi.
+     * @exports innerapi
+     * @namespace
+     */
+    const innerapi = {};
+
+    innerapi.GetBuySellVolumeReq = (function() {
+
+        /**
+         * Properties of a GetBuySellVolumeReq.
+         * @memberof innerapi
+         * @interface IGetBuySellVolumeReq
+         * @property {string|null} [symbolId] GetBuySellVolumeReq symbolId
+         * @property {number|null} [startSec] GetBuySellVolumeReq startSec
+         * @property {number|null} [aggrIntervalSec] GetBuySellVolumeReq aggrIntervalSec
+         * @property {string|null} [source] GetBuySellVolumeReq source
+         */
+
+        /**
+         * Constructs a new GetBuySellVolumeReq.
+         * @memberof innerapi
+         * @classdesc Represents a GetBuySellVolumeReq.
+         * @implements IGetBuySellVolumeReq
+         * @constructor
+         * @param {innerapi.IGetBuySellVolumeReq=} [properties] Properties to set
+         */
+        function GetBuySellVolumeReq(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetBuySellVolumeReq symbolId.
+         * @member {string} symbolId
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @instance
+         */
+        GetBuySellVolumeReq.prototype.symbolId = "";
+
+        /**
+         * GetBuySellVolumeReq startSec.
+         * @member {number} startSec
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @instance
+         */
+        GetBuySellVolumeReq.prototype.startSec = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * GetBuySellVolumeReq aggrIntervalSec.
+         * @member {number} aggrIntervalSec
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @instance
+         */
+        GetBuySellVolumeReq.prototype.aggrIntervalSec = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * GetBuySellVolumeReq source.
+         * @member {string} source
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @instance
+         */
+        GetBuySellVolumeReq.prototype.source = "";
+
+        /**
+         * Creates a new GetBuySellVolumeReq instance using the specified properties.
+         * @function create
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {innerapi.IGetBuySellVolumeReq=} [properties] Properties to set
+         * @returns {innerapi.GetBuySellVolumeReq} GetBuySellVolumeReq instance
+         */
+        GetBuySellVolumeReq.create = function create(properties) {
+            return new GetBuySellVolumeReq(properties);
+        };
+
+        /**
+         * Encodes the specified GetBuySellVolumeReq message. Does not implicitly {@link innerapi.GetBuySellVolumeReq.verify|verify} messages.
+         * @function encode
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {innerapi.IGetBuySellVolumeReq} message GetBuySellVolumeReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBuySellVolumeReq.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.symbolId != null && Object.hasOwnProperty.call(message, "symbolId"))
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.symbolId);
+            if (message.startSec != null && Object.hasOwnProperty.call(message, "startSec"))
+                writer.uint32(/* id 2, wireType 0 =*/16).uint64(message.startSec);
+            if (message.aggrIntervalSec != null && Object.hasOwnProperty.call(message, "aggrIntervalSec"))
+                writer.uint32(/* id 3, wireType 0 =*/24).uint64(message.aggrIntervalSec);
+            if (message.source != null && Object.hasOwnProperty.call(message, "source"))
+                writer.uint32(/* id 100, wireType 2 =*/802).string(message.source);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetBuySellVolumeReq message, length delimited. Does not implicitly {@link innerapi.GetBuySellVolumeReq.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {innerapi.IGetBuySellVolumeReq} message GetBuySellVolumeReq message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBuySellVolumeReq.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetBuySellVolumeReq message from the specified reader or buffer.
+         * @function decode
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {innerapi.GetBuySellVolumeReq} GetBuySellVolumeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBuySellVolumeReq.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.innerapi.GetBuySellVolumeReq();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.symbolId = reader.string();
+                    break;
+                case 2:
+                    message.startSec = reader.uint64();
+                    break;
+                case 3:
+                    message.aggrIntervalSec = reader.uint64();
+                    break;
+                case 100:
+                    message.source = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetBuySellVolumeReq message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {innerapi.GetBuySellVolumeReq} GetBuySellVolumeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBuySellVolumeReq.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetBuySellVolumeReq message.
+         * @function verify
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetBuySellVolumeReq.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.symbolId != null && message.hasOwnProperty("symbolId"))
+                if (!$util.isString(message.symbolId))
+                    return "symbolId: string expected";
+            if (message.startSec != null && message.hasOwnProperty("startSec"))
+                if (!$util.isInteger(message.startSec) && !(message.startSec && $util.isInteger(message.startSec.low) && $util.isInteger(message.startSec.high)))
+                    return "startSec: integer|Long expected";
+            if (message.aggrIntervalSec != null && message.hasOwnProperty("aggrIntervalSec"))
+                if (!$util.isInteger(message.aggrIntervalSec) && !(message.aggrIntervalSec && $util.isInteger(message.aggrIntervalSec.low) && $util.isInteger(message.aggrIntervalSec.high)))
+                    return "aggrIntervalSec: integer|Long expected";
+            if (message.source != null && message.hasOwnProperty("source"))
+                if (!$util.isString(message.source))
+                    return "source: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetBuySellVolumeReq message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {innerapi.GetBuySellVolumeReq} GetBuySellVolumeReq
+         */
+        GetBuySellVolumeReq.fromObject = function fromObject(object) {
+            if (object instanceof $root.innerapi.GetBuySellVolumeReq)
+                return object;
+            let message = new $root.innerapi.GetBuySellVolumeReq();
+            if (object.symbolId != null)
+                message.symbolId = String(object.symbolId);
+            if (object.startSec != null)
+                if ($util.Long)
+                    (message.startSec = $util.Long.fromValue(object.startSec)).unsigned = true;
+                else if (typeof object.startSec === "string")
+                    message.startSec = parseInt(object.startSec, 10);
+                else if (typeof object.startSec === "number")
+                    message.startSec = object.startSec;
+                else if (typeof object.startSec === "object")
+                    message.startSec = new $util.LongBits(object.startSec.low >>> 0, object.startSec.high >>> 0).toNumber(true);
+            if (object.aggrIntervalSec != null)
+                if ($util.Long)
+                    (message.aggrIntervalSec = $util.Long.fromValue(object.aggrIntervalSec)).unsigned = true;
+                else if (typeof object.aggrIntervalSec === "string")
+                    message.aggrIntervalSec = parseInt(object.aggrIntervalSec, 10);
+                else if (typeof object.aggrIntervalSec === "number")
+                    message.aggrIntervalSec = object.aggrIntervalSec;
+                else if (typeof object.aggrIntervalSec === "object")
+                    message.aggrIntervalSec = new $util.LongBits(object.aggrIntervalSec.low >>> 0, object.aggrIntervalSec.high >>> 0).toNumber(true);
+            if (object.source != null)
+                message.source = String(object.source);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetBuySellVolumeReq message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @static
+         * @param {innerapi.GetBuySellVolumeReq} message GetBuySellVolumeReq
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetBuySellVolumeReq.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.symbolId = "";
+                if ($util.Long) {
+                    let long = new $util.Long(0, 0, true);
+                    object.startSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.startSec = options.longs === String ? "0" : 0;
+                if ($util.Long) {
+                    let long = new $util.Long(0, 0, true);
+                    object.aggrIntervalSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.aggrIntervalSec = options.longs === String ? "0" : 0;
+                object.source = "";
+            }
+            if (message.symbolId != null && message.hasOwnProperty("symbolId"))
+                object.symbolId = message.symbolId;
+            if (message.startSec != null && message.hasOwnProperty("startSec"))
+                if (typeof message.startSec === "number")
+                    object.startSec = options.longs === String ? String(message.startSec) : message.startSec;
+                else
+                    object.startSec = options.longs === String ? $util.Long.prototype.toString.call(message.startSec) : options.longs === Number ? new $util.LongBits(message.startSec.low >>> 0, message.startSec.high >>> 0).toNumber(true) : message.startSec;
+            if (message.aggrIntervalSec != null && message.hasOwnProperty("aggrIntervalSec"))
+                if (typeof message.aggrIntervalSec === "number")
+                    object.aggrIntervalSec = options.longs === String ? String(message.aggrIntervalSec) : message.aggrIntervalSec;
+                else
+                    object.aggrIntervalSec = options.longs === String ? $util.Long.prototype.toString.call(message.aggrIntervalSec) : options.longs === Number ? new $util.LongBits(message.aggrIntervalSec.low >>> 0, message.aggrIntervalSec.high >>> 0).toNumber(true) : message.aggrIntervalSec;
+            if (message.source != null && message.hasOwnProperty("source"))
+                object.source = message.source;
+            return object;
+        };
+
+        /**
+         * Converts this GetBuySellVolumeReq to JSON.
+         * @function toJSON
+         * @memberof innerapi.GetBuySellVolumeReq
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetBuySellVolumeReq.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return GetBuySellVolumeReq;
+    })();
+
+    innerapi.BuySellVolume = (function() {
+
+        /**
+         * Properties of a BuySellVolume.
+         * @memberof innerapi
+         * @interface IBuySellVolume
+         * @property {number|null} [buyVolume] BuySellVolume buyVolume
+         * @property {number|null} [sellVolume] BuySellVolume sellVolume
+         * @property {number|null} [buyTurnover] BuySellVolume buyTurnover
+         * @property {number|null} [sellTurnover] BuySellVolume sellTurnover
+         * @property {number|null} [buyCnt] BuySellVolume buyCnt
+         * @property {number|null} [sellCnt] BuySellVolume sellCnt
+         * @property {number|null} [startSec] BuySellVolume startSec
+         */
+
+        /**
+         * Constructs a new BuySellVolume.
+         * @memberof innerapi
+         * @classdesc Represents a BuySellVolume.
+         * @implements IBuySellVolume
+         * @constructor
+         * @param {innerapi.IBuySellVolume=} [properties] Properties to set
+         */
+        function BuySellVolume(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * BuySellVolume buyVolume.
+         * @member {number} buyVolume
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.buyVolume = 0;
+
+        /**
+         * BuySellVolume sellVolume.
+         * @member {number} sellVolume
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.sellVolume = 0;
+
+        /**
+         * BuySellVolume buyTurnover.
+         * @member {number} buyTurnover
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.buyTurnover = 0;
+
+        /**
+         * BuySellVolume sellTurnover.
+         * @member {number} sellTurnover
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.sellTurnover = 0;
+
+        /**
+         * BuySellVolume buyCnt.
+         * @member {number} buyCnt
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.buyCnt = 0;
+
+        /**
+         * BuySellVolume sellCnt.
+         * @member {number} sellCnt
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.sellCnt = 0;
+
+        /**
+         * BuySellVolume startSec.
+         * @member {number} startSec
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         */
+        BuySellVolume.prototype.startSec = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+        /**
+         * Creates a new BuySellVolume instance using the specified properties.
+         * @function create
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {innerapi.IBuySellVolume=} [properties] Properties to set
+         * @returns {innerapi.BuySellVolume} BuySellVolume instance
+         */
+        BuySellVolume.create = function create(properties) {
+            return new BuySellVolume(properties);
+        };
+
+        /**
+         * Encodes the specified BuySellVolume message. Does not implicitly {@link innerapi.BuySellVolume.verify|verify} messages.
+         * @function encode
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {innerapi.IBuySellVolume} message BuySellVolume message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BuySellVolume.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.buyVolume != null && Object.hasOwnProperty.call(message, "buyVolume"))
+                writer.uint32(/* id 1, wireType 1 =*/9).double(message.buyVolume);
+            if (message.sellVolume != null && Object.hasOwnProperty.call(message, "sellVolume"))
+                writer.uint32(/* id 2, wireType 1 =*/17).double(message.sellVolume);
+            if (message.buyTurnover != null && Object.hasOwnProperty.call(message, "buyTurnover"))
+                writer.uint32(/* id 3, wireType 1 =*/25).double(message.buyTurnover);
+            if (message.sellTurnover != null && Object.hasOwnProperty.call(message, "sellTurnover"))
+                writer.uint32(/* id 4, wireType 1 =*/33).double(message.sellTurnover);
+            if (message.buyCnt != null && Object.hasOwnProperty.call(message, "buyCnt"))
+                writer.uint32(/* id 5, wireType 0 =*/40).int32(message.buyCnt);
+            if (message.sellCnt != null && Object.hasOwnProperty.call(message, "sellCnt"))
+                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.sellCnt);
+            if (message.startSec != null && Object.hasOwnProperty.call(message, "startSec"))
+                writer.uint32(/* id 7, wireType 0 =*/56).uint64(message.startSec);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified BuySellVolume message, length delimited. Does not implicitly {@link innerapi.BuySellVolume.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {innerapi.IBuySellVolume} message BuySellVolume message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        BuySellVolume.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a BuySellVolume message from the specified reader or buffer.
+         * @function decode
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {innerapi.BuySellVolume} BuySellVolume
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BuySellVolume.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.innerapi.BuySellVolume();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    message.buyVolume = reader.double();
+                    break;
+                case 2:
+                    message.sellVolume = reader.double();
+                    break;
+                case 3:
+                    message.buyTurnover = reader.double();
+                    break;
+                case 4:
+                    message.sellTurnover = reader.double();
+                    break;
+                case 5:
+                    message.buyCnt = reader.int32();
+                    break;
+                case 6:
+                    message.sellCnt = reader.int32();
+                    break;
+                case 7:
+                    message.startSec = reader.uint64();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a BuySellVolume message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {innerapi.BuySellVolume} BuySellVolume
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        BuySellVolume.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a BuySellVolume message.
+         * @function verify
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        BuySellVolume.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.buyVolume != null && message.hasOwnProperty("buyVolume"))
+                if (typeof message.buyVolume !== "number")
+                    return "buyVolume: number expected";
+            if (message.sellVolume != null && message.hasOwnProperty("sellVolume"))
+                if (typeof message.sellVolume !== "number")
+                    return "sellVolume: number expected";
+            if (message.buyTurnover != null && message.hasOwnProperty("buyTurnover"))
+                if (typeof message.buyTurnover !== "number")
+                    return "buyTurnover: number expected";
+            if (message.sellTurnover != null && message.hasOwnProperty("sellTurnover"))
+                if (typeof message.sellTurnover !== "number")
+                    return "sellTurnover: number expected";
+            if (message.buyCnt != null && message.hasOwnProperty("buyCnt"))
+                if (!$util.isInteger(message.buyCnt))
+                    return "buyCnt: integer expected";
+            if (message.sellCnt != null && message.hasOwnProperty("sellCnt"))
+                if (!$util.isInteger(message.sellCnt))
+                    return "sellCnt: integer expected";
+            if (message.startSec != null && message.hasOwnProperty("startSec"))
+                if (!$util.isInteger(message.startSec) && !(message.startSec && $util.isInteger(message.startSec.low) && $util.isInteger(message.startSec.high)))
+                    return "startSec: integer|Long expected";
+            return null;
+        };
+
+        /**
+         * Creates a BuySellVolume message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {innerapi.BuySellVolume} BuySellVolume
+         */
+        BuySellVolume.fromObject = function fromObject(object) {
+            if (object instanceof $root.innerapi.BuySellVolume)
+                return object;
+            let message = new $root.innerapi.BuySellVolume();
+            if (object.buyVolume != null)
+                message.buyVolume = Number(object.buyVolume);
+            if (object.sellVolume != null)
+                message.sellVolume = Number(object.sellVolume);
+            if (object.buyTurnover != null)
+                message.buyTurnover = Number(object.buyTurnover);
+            if (object.sellTurnover != null)
+                message.sellTurnover = Number(object.sellTurnover);
+            if (object.buyCnt != null)
+                message.buyCnt = object.buyCnt | 0;
+            if (object.sellCnt != null)
+                message.sellCnt = object.sellCnt | 0;
+            if (object.startSec != null)
+                if ($util.Long)
+                    (message.startSec = $util.Long.fromValue(object.startSec)).unsigned = true;
+                else if (typeof object.startSec === "string")
+                    message.startSec = parseInt(object.startSec, 10);
+                else if (typeof object.startSec === "number")
+                    message.startSec = object.startSec;
+                else if (typeof object.startSec === "object")
+                    message.startSec = new $util.LongBits(object.startSec.low >>> 0, object.startSec.high >>> 0).toNumber(true);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a BuySellVolume message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof innerapi.BuySellVolume
+         * @static
+         * @param {innerapi.BuySellVolume} message BuySellVolume
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        BuySellVolume.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.buyVolume = 0;
+                object.sellVolume = 0;
+                object.buyTurnover = 0;
+                object.sellTurnover = 0;
+                object.buyCnt = 0;
+                object.sellCnt = 0;
+                if ($util.Long) {
+                    let long = new $util.Long(0, 0, true);
+                    object.startSec = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
+                } else
+                    object.startSec = options.longs === String ? "0" : 0;
+            }
+            if (message.buyVolume != null && message.hasOwnProperty("buyVolume"))
+                object.buyVolume = options.json && !isFinite(message.buyVolume) ? String(message.buyVolume) : message.buyVolume;
+            if (message.sellVolume != null && message.hasOwnProperty("sellVolume"))
+                object.sellVolume = options.json && !isFinite(message.sellVolume) ? String(message.sellVolume) : message.sellVolume;
+            if (message.buyTurnover != null && message.hasOwnProperty("buyTurnover"))
+                object.buyTurnover = options.json && !isFinite(message.buyTurnover) ? String(message.buyTurnover) : message.buyTurnover;
+            if (message.sellTurnover != null && message.hasOwnProperty("sellTurnover"))
+                object.sellTurnover = options.json && !isFinite(message.sellTurnover) ? String(message.sellTurnover) : message.sellTurnover;
+            if (message.buyCnt != null && message.hasOwnProperty("buyCnt"))
+                object.buyCnt = message.buyCnt;
+            if (message.sellCnt != null && message.hasOwnProperty("sellCnt"))
+                object.sellCnt = message.sellCnt;
+            if (message.startSec != null && message.hasOwnProperty("startSec"))
+                if (typeof message.startSec === "number")
+                    object.startSec = options.longs === String ? String(message.startSec) : message.startSec;
+                else
+                    object.startSec = options.longs === String ? $util.Long.prototype.toString.call(message.startSec) : options.longs === Number ? new $util.LongBits(message.startSec.low >>> 0, message.startSec.high >>> 0).toNumber(true) : message.startSec;
+            return object;
+        };
+
+        /**
+         * Converts this BuySellVolume to JSON.
+         * @function toJSON
+         * @memberof innerapi.BuySellVolume
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        BuySellVolume.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return BuySellVolume;
+    })();
+
+    innerapi.GetBuySellVolumeResp = (function() {
+
+        /**
+         * Properties of a GetBuySellVolumeResp.
+         * @memberof innerapi
+         * @interface IGetBuySellVolumeResp
+         * @property {Array.<innerapi.IBuySellVolume>|null} [statistics] GetBuySellVolumeResp statistics
+         * @property {string|null} [base64encodedData] GetBuySellVolumeResp base64encodedData
+         */
+
+        /**
+         * Constructs a new GetBuySellVolumeResp.
+         * @memberof innerapi
+         * @classdesc Represents a GetBuySellVolumeResp.
+         * @implements IGetBuySellVolumeResp
+         * @constructor
+         * @param {innerapi.IGetBuySellVolumeResp=} [properties] Properties to set
+         */
+        function GetBuySellVolumeResp(properties) {
+            this.statistics = [];
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * GetBuySellVolumeResp statistics.
+         * @member {Array.<innerapi.IBuySellVolume>} statistics
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @instance
+         */
+        GetBuySellVolumeResp.prototype.statistics = $util.emptyArray;
+
+        /**
+         * GetBuySellVolumeResp base64encodedData.
+         * @member {string} base64encodedData
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @instance
+         */
+        GetBuySellVolumeResp.prototype.base64encodedData = "";
+
+        /**
+         * Creates a new GetBuySellVolumeResp instance using the specified properties.
+         * @function create
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {innerapi.IGetBuySellVolumeResp=} [properties] Properties to set
+         * @returns {innerapi.GetBuySellVolumeResp} GetBuySellVolumeResp instance
+         */
+        GetBuySellVolumeResp.create = function create(properties) {
+            return new GetBuySellVolumeResp(properties);
+        };
+
+        /**
+         * Encodes the specified GetBuySellVolumeResp message. Does not implicitly {@link innerapi.GetBuySellVolumeResp.verify|verify} messages.
+         * @function encode
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {innerapi.IGetBuySellVolumeResp} message GetBuySellVolumeResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBuySellVolumeResp.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.statistics != null && message.statistics.length)
+                for (let i = 0; i < message.statistics.length; ++i)
+                    $root.innerapi.BuySellVolume.encode(message.statistics[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+            if (message.base64encodedData != null && Object.hasOwnProperty.call(message, "base64encodedData"))
+                writer.uint32(/* id 2, wireType 2 =*/18).string(message.base64encodedData);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified GetBuySellVolumeResp message, length delimited. Does not implicitly {@link innerapi.GetBuySellVolumeResp.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {innerapi.IGetBuySellVolumeResp} message GetBuySellVolumeResp message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        GetBuySellVolumeResp.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes a GetBuySellVolumeResp message from the specified reader or buffer.
+         * @function decode
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {innerapi.GetBuySellVolumeResp} GetBuySellVolumeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBuySellVolumeResp.decode = function decode(reader, length) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.innerapi.GetBuySellVolumeResp();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                switch (tag >>> 3) {
+                case 1:
+                    if (!(message.statistics && message.statistics.length))
+                        message.statistics = [];
+                    message.statistics.push($root.innerapi.BuySellVolume.decode(reader, reader.uint32()));
+                    break;
+                case 2:
+                    message.base64encodedData = reader.string();
+                    break;
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes a GetBuySellVolumeResp message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {innerapi.GetBuySellVolumeResp} GetBuySellVolumeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        GetBuySellVolumeResp.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies a GetBuySellVolumeResp message.
+         * @function verify
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        GetBuySellVolumeResp.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.statistics != null && message.hasOwnProperty("statistics")) {
+                if (!Array.isArray(message.statistics))
+                    return "statistics: array expected";
+                for (let i = 0; i < message.statistics.length; ++i) {
+                    let error = $root.innerapi.BuySellVolume.verify(message.statistics[i]);
+                    if (error)
+                        return "statistics." + error;
+                }
+            }
+            if (message.base64encodedData != null && message.hasOwnProperty("base64encodedData"))
+                if (!$util.isString(message.base64encodedData))
+                    return "base64encodedData: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a GetBuySellVolumeResp message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {innerapi.GetBuySellVolumeResp} GetBuySellVolumeResp
+         */
+        GetBuySellVolumeResp.fromObject = function fromObject(object) {
+            if (object instanceof $root.innerapi.GetBuySellVolumeResp)
+                return object;
+            let message = new $root.innerapi.GetBuySellVolumeResp();
+            if (object.statistics) {
+                if (!Array.isArray(object.statistics))
+                    throw TypeError(".innerapi.GetBuySellVolumeResp.statistics: array expected");
+                message.statistics = [];
+                for (let i = 0; i < object.statistics.length; ++i) {
+                    if (typeof object.statistics[i] !== "object")
+                        throw TypeError(".innerapi.GetBuySellVolumeResp.statistics: object expected");
+                    message.statistics[i] = $root.innerapi.BuySellVolume.fromObject(object.statistics[i]);
+                }
+            }
+            if (object.base64encodedData != null)
+                message.base64encodedData = String(object.base64encodedData);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a GetBuySellVolumeResp message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @static
+         * @param {innerapi.GetBuySellVolumeResp} message GetBuySellVolumeResp
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        GetBuySellVolumeResp.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.arrays || options.defaults)
+                object.statistics = [];
+            if (options.defaults)
+                object.base64encodedData = "";
+            if (message.statistics && message.statistics.length) {
+                object.statistics = [];
+                for (let j = 0; j < message.statistics.length; ++j)
+                    object.statistics[j] = $root.innerapi.BuySellVolume.toObject(message.statistics[j], options);
+            }
+            if (message.base64encodedData != null && message.hasOwnProperty("base64encodedData"))
+                object.base64encodedData = message.base64encodedData;
+            return object;
+        };
+
+        /**
+         * Converts this GetBuySellVolumeResp to JSON.
+         * @function toJSON
+         * @memberof innerapi.GetBuySellVolumeResp
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        GetBuySellVolumeResp.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        return GetBuySellVolumeResp;
+    })();
+
+    return innerapi;
 })();
 
 export const google = $root.google = (() => {

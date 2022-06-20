@@ -1,2092 +1,4 @@
-/* eslint-disable */
-// @ts-nocheck
 import * as $protobuf from "protobufjs";
-/** Namespace tradebot. */
-export namespace tradebot {
-
-    /** Namespace grpc_server. */
-    namespace grpc_server {
-
-        /** Namespace arbitrage. */
-        namespace arbitrage {
-
-            /** ErrorCode enum. */
-            enum ErrorCode {
-                SUCCESS = 10001,
-                ARBITRAGE_OPENING_EXIST = 11002,
-                ARBITRAGE_OPEN_EXIST = 11003,
-                ARBITRAGE_SPOT_DEAL_FAILED = 12004,
-                ARBITRAGE_CLOSE_TOO_MORE_UNREALIZED_PNL = 12005,
-                ARBITRAGE_CLOSE_INEXIST = 12006,
-                ARBITRAGE_CLOSE_STILL_UNREALIZED_BALANCE = 12007,
-                ARBITRAGE_CLOSE_STILL_UNSETTLED_BALANCE = 12008,
-                ARBITRAGE_ADD_HOLDING_INEXIST = 12009,
-                TRANSFER_AMOUNT_NOT_ENOUGH = 12010,
-                ARBITRAGE_OPEN_SPOT_FAILED = 11004,
-                REQUEST_IN_OPERATING = 30001,
-                TOO_MANY_OPEN_REQUEST = 30002,
-                REQUEST_ORDER_NOT_EXIST = 30003,
-                TAKER_ORDER_FILLED_ZERO = 30004,
-                MAKER_OPEN_FAILED = 30005
-            }
-
-            /** OrderSide enum. */
-            enum OrderSide {
-                SELL = -1,
-                BUY = 1
-            }
-
-            /** PositionType enum. */
-            enum PositionType {
-                LONG = 1,
-                SHORT = -1
-            }
-
-            /** FutureContractSide enum. */
-            enum FutureContractSide {
-                INVALID_FUTURE_SIDE = 0,
-                CLOSE = -1,
-                OPEN = 1
-            }
-
-            /** PostOnlyType enum. */
-            enum PostOnlyType {
-                CANCEL_IF_NOT_POSSIBLE = 1,
-                CANCEL_WHEN_FORCE = 2,
-                CANCEL_EXCEED_BEST_ASK = 3,
-                CANCEL_LESS_BEST_ASK = 4,
-                CANCEL_EXCEED_BEST_BID = 5,
-                CANCEL_LESS_BEST_BID = 6,
-                FILLED_OR_CANCELED = 7,
-                TRY_CANCEL_MAKER = 8,
-                REPLACE_OPENING = 9,
-                CANCEL_OPENING = 10
-            }
-
-            /** OrderActiveType enum. */
-            enum OrderActiveType {
-                WAITING_DEAL = 1,
-                ORDER_HEDGE_ACTIVE = 2
-            }
-
-            /** FutureContractType enum. */
-            enum FutureContractType {
-                INVALID_TYPE = 0,
-                THIS_WEEK = 1,
-                NEXT_WEEK = 2,
-                QUARTER = 3,
-                FOREVER = 4
-            }
-
-            /** Properties of an Order. */
-            interface IOrder {
-
-                /** Order contract */
-                contract: string;
-
-                /** Order commodity */
-                commodity: string;
-
-                /** Order currency */
-                currency: string;
-
-                /** Order price */
-                price: string;
-
-                /** Order quantity */
-                quantity: string;
-
-                /** Order turnover */
-                turnover: string;
-
-                /** Order fee */
-                fee: string;
-
-                /** Order orderSide */
-                orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** Order createdTimestamp */
-                createdTimestamp: number;
-
-                /** Order contractVolume */
-                contractVolume?: (number|null);
-
-                /** Order futureContractSide */
-                futureContractSide?: (tradebot.grpc_server.arbitrage.FutureContractSide|null);
-
-                /** Order futureContractType */
-                futureContractType?: (tradebot.grpc_server.arbitrage.FutureContractType|null);
-
-                /** Order futureContractCode */
-                futureContractCode?: (string|null);
-
-                /** Order leverRate */
-                leverRate?: (number|null);
-
-                /** Order platform */
-                platform: string;
-
-                /** Order clientOrderId */
-                clientOrderId?: (string|null);
-            }
-
-            /** Represents an Order. */
-            class Order implements IOrder {
-
-                /**
-                 * Constructs a new Order.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IOrder);
-
-                /** Order contract. */
-                public contract: string;
-
-                /** Order commodity. */
-                public commodity: string;
-
-                /** Order currency. */
-                public currency: string;
-
-                /** Order price. */
-                public price: string;
-
-                /** Order quantity. */
-                public quantity: string;
-
-                /** Order turnover. */
-                public turnover: string;
-
-                /** Order fee. */
-                public fee: string;
-
-                /** Order orderSide. */
-                public orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** Order createdTimestamp. */
-                public createdTimestamp: number;
-
-                /** Order contractVolume. */
-                public contractVolume: number;
-
-                /** Order futureContractSide. */
-                public futureContractSide: tradebot.grpc_server.arbitrage.FutureContractSide;
-
-                /** Order futureContractType. */
-                public futureContractType: tradebot.grpc_server.arbitrage.FutureContractType;
-
-                /** Order futureContractCode. */
-                public futureContractCode: string;
-
-                /** Order leverRate. */
-                public leverRate: number;
-
-                /** Order platform. */
-                public platform: string;
-
-                /** Order clientOrderId. */
-                public clientOrderId: string;
-
-                /**
-                 * Creates a new Order instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Order instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IOrder): tradebot.grpc_server.arbitrage.Order;
-
-                /**
-                 * Encodes the specified Order message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Order.verify|verify} messages.
-                 * @param message Order message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IOrder, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Order message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Order.verify|verify} messages.
-                 * @param message Order message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IOrder, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an Order message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Order
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.Order;
-
-                /**
-                 * Decodes an Order message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Order
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.Order;
-
-                /**
-                 * Verifies an Order message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an Order message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Order
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.Order;
-
-                /**
-                 * Creates a plain object from an Order message. Also converts values to other types if specified.
-                 * @param message Order
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.Order, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Order to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** RequestType enum. */
-            enum RequestType {
-                ADD_HOLDING_REQUEST = 1,
-                OPEN_REQUEST = 2,
-                CLOSE_REQUEST = 3,
-                OPEN_POSITION = 4,
-                CLOSE_POSITION = 5
-            }
-
-            /** Properties of a Transaction. */
-            interface ITransaction {
-
-                /** Transaction spotOrder */
-                spotOrder: tradebot.grpc_server.arbitrage.IOrder;
-
-                /** Transaction futureOrder */
-                futureOrder: tradebot.grpc_server.arbitrage.IOrder;
-
-                /** Transaction minBasisRatio */
-                minBasisRatio?: (string|null);
-
-                /** Transaction maxBasisRatio */
-                maxBasisRatio?: (string|null);
-
-                /** Transaction openPosition */
-                openPosition?: (string|null);
-            }
-
-            /** Represents a Transaction. */
-            class Transaction implements ITransaction {
-
-                /**
-                 * Constructs a new Transaction.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.ITransaction);
-
-                /** Transaction spotOrder. */
-                public spotOrder: tradebot.grpc_server.arbitrage.IOrder;
-
-                /** Transaction futureOrder. */
-                public futureOrder: tradebot.grpc_server.arbitrage.IOrder;
-
-                /** Transaction minBasisRatio. */
-                public minBasisRatio: string;
-
-                /** Transaction maxBasisRatio. */
-                public maxBasisRatio: string;
-
-                /** Transaction openPosition. */
-                public openPosition: string;
-
-                /**
-                 * Creates a new Transaction instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Transaction instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.ITransaction): tradebot.grpc_server.arbitrage.Transaction;
-
-                /**
-                 * Encodes the specified Transaction message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Transaction.verify|verify} messages.
-                 * @param message Transaction message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.ITransaction, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Transaction message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Transaction.verify|verify} messages.
-                 * @param message Transaction message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.ITransaction, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a Transaction message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Transaction
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.Transaction;
-
-                /**
-                 * Decodes a Transaction message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Transaction
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.Transaction;
-
-                /**
-                 * Verifies a Transaction message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a Transaction message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Transaction
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.Transaction;
-
-                /**
-                 * Creates a plain object from a Transaction message. Also converts values to other types if specified.
-                 * @param message Transaction
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.Transaction, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Transaction to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** TriggerSignal enum. */
-            enum TriggerSignal {
-                DEPTH_OPEN = 0,
-                SHORT_TERM_OPEN = 1,
-                TRADE_VOLUME_OPEN = 2,
-                PROFIT_CLOSE = 3,
-                STOP_LOSS_IMMEDIATE = 4,
-                TRY_STOP_LOSS = 5,
-                TRY_MIN_PROFIT = 6,
-                TRY_MIDDLE_PROFIT = 7,
-                TRY_RECOVER_MIDDLE_PROFIT = 8,
-                TRY_SAVE_CURRENT_PROFIT = 9,
-                TRY_REGAIN_MIDDLE_PROFIT = 10,
-                REBOUND_OPEN = 11,
-                GUARD_OPEN = 12,
-                REBOUND_MAKER_OPEN = 13,
-                GUARD_MAKER_OPEN = 14,
-                REBOUND_MAKER_GUESS = 15,
-                MARKET_MAKER_GUESS = 16,
-                REBOUND_MAKER_GUESS_CONTINUE = 17,
-                OPPOSITE_OPEN = 18,
-                REBOUND_MAKER_GUESS_HIGH = 19
-            }
-
-            /** RequestCommand enum. */
-            enum RequestCommand {
-                NEW_PLACE = 0,
-                REPLACE = 1,
-                QUERY = 2,
-                CANCEL_MAKER = 3
-            }
-
-            /** PlaceOrderType enum. */
-            enum PlaceOrderType {
-                BE_TAKER = 0,
-                BE_MAKER = 1
-            }
-
-            /** Properties of a HighTradeRequest. */
-            interface IHighTradeRequest {
-
-                /** HighTradeRequest requestId */
-                requestId: string;
-
-                /** HighTradeRequest createdTimestamp */
-                createdTimestamp: number;
-
-                /** HighTradeRequest requestTimestamp */
-                requestTimestamp: number;
-
-                /** HighTradeRequest platform */
-                platform: string;
-
-                /** HighTradeRequest contract */
-                contract: string;
-
-                /** HighTradeRequest commodity */
-                commodity: string;
-
-                /** HighTradeRequest currency */
-                currency: string;
-
-                /** HighTradeRequest price */
-                price: string;
-
-                /** HighTradeRequest quantity */
-                quantity: string;
-
-                /** HighTradeRequest futureContractVolume */
-                futureContractVolume?: (number|null);
-
-                /** HighTradeRequest orderSide */
-                orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HighTradeRequest futureContractSide */
-                futureContractSide?: (tradebot.grpc_server.arbitrage.FutureContractSide|null);
-
-                /** HighTradeRequest futureContractType */
-                futureContractType?: (tradebot.grpc_server.arbitrage.FutureContractType|null);
-
-                /** HighTradeRequest futureContractCode */
-                futureContractCode?: (string|null);
-
-                /** HighTradeRequest leverRate */
-                leverRate?: (number|null);
-
-                /** HighTradeRequest clientOrderId */
-                clientOrderId?: (string|null);
-
-                /** HighTradeRequest lastOrderId */
-                lastOrderId?: (string|null);
-
-                /** HighTradeRequest placeOrderType */
-                placeOrderType: tradebot.grpc_server.arbitrage.PlaceOrderType;
-
-                /** HighTradeRequest requestCommand */
-                requestCommand: tradebot.grpc_server.arbitrage.RequestCommand;
-
-                /** HighTradeRequest triggerSignal */
-                triggerSignal?: (tradebot.grpc_server.arbitrage.TriggerSignal|null);
-
-                /** HighTradeRequest triggerReason */
-                triggerReason?: (string|null);
-
-                /** HighTradeRequest predictCloseRatio */
-                predictCloseRatio?: (string|null);
-            }
-
-            /** Represents a HighTradeRequest. */
-            class HighTradeRequest implements IHighTradeRequest {
-
-                /**
-                 * Constructs a new HighTradeRequest.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHighTradeRequest);
-
-                /** HighTradeRequest requestId. */
-                public requestId: string;
-
-                /** HighTradeRequest createdTimestamp. */
-                public createdTimestamp: number;
-
-                /** HighTradeRequest requestTimestamp. */
-                public requestTimestamp: number;
-
-                /** HighTradeRequest platform. */
-                public platform: string;
-
-                /** HighTradeRequest contract. */
-                public contract: string;
-
-                /** HighTradeRequest commodity. */
-                public commodity: string;
-
-                /** HighTradeRequest currency. */
-                public currency: string;
-
-                /** HighTradeRequest price. */
-                public price: string;
-
-                /** HighTradeRequest quantity. */
-                public quantity: string;
-
-                /** HighTradeRequest futureContractVolume. */
-                public futureContractVolume: number;
-
-                /** HighTradeRequest orderSide. */
-                public orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HighTradeRequest futureContractSide. */
-                public futureContractSide: tradebot.grpc_server.arbitrage.FutureContractSide;
-
-                /** HighTradeRequest futureContractType. */
-                public futureContractType: tradebot.grpc_server.arbitrage.FutureContractType;
-
-                /** HighTradeRequest futureContractCode. */
-                public futureContractCode: string;
-
-                /** HighTradeRequest leverRate. */
-                public leverRate: number;
-
-                /** HighTradeRequest clientOrderId. */
-                public clientOrderId: string;
-
-                /** HighTradeRequest lastOrderId. */
-                public lastOrderId: string;
-
-                /** HighTradeRequest placeOrderType. */
-                public placeOrderType: tradebot.grpc_server.arbitrage.PlaceOrderType;
-
-                /** HighTradeRequest requestCommand. */
-                public requestCommand: tradebot.grpc_server.arbitrage.RequestCommand;
-
-                /** HighTradeRequest triggerSignal. */
-                public triggerSignal: tradebot.grpc_server.arbitrage.TriggerSignal;
-
-                /** HighTradeRequest triggerReason. */
-                public triggerReason: string;
-
-                /** HighTradeRequest predictCloseRatio. */
-                public predictCloseRatio: string;
-
-                /**
-                 * Creates a new HighTradeRequest instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HighTradeRequest instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHighTradeRequest): tradebot.grpc_server.arbitrage.HighTradeRequest;
-
-                /**
-                 * Encodes the specified HighTradeRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeRequest.verify|verify} messages.
-                 * @param message HighTradeRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHighTradeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HighTradeRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeRequest.verify|verify} messages.
-                 * @param message HighTradeRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHighTradeRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HighTradeRequest message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HighTradeRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HighTradeRequest;
-
-                /**
-                 * Decodes a HighTradeRequest message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HighTradeRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HighTradeRequest;
-
-                /**
-                 * Verifies a HighTradeRequest message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HighTradeRequest message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HighTradeRequest
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HighTradeRequest;
-
-                /**
-                 * Creates a plain object from a HighTradeRequest message. Also converts values to other types if specified.
-                 * @param message HighTradeRequest
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HighTradeRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HighTradeRequest to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a HighTradeResponse. */
-            interface IHighTradeResponse {
-
-                /** HighTradeResponse requestId */
-                requestId: string;
-
-                /** HighTradeResponse requestTimestamp */
-                requestTimestamp: number;
-
-                /** HighTradeResponse responseTimestamp */
-                responseTimestamp: number;
-
-                /** HighTradeResponse requestCommand */
-                requestCommand: tradebot.grpc_server.arbitrage.RequestCommand;
-
-                /** HighTradeResponse platform */
-                platform: string;
-
-                /** HighTradeResponse contract */
-                contract: string;
-
-                /** HighTradeResponse targetPrice */
-                targetPrice: string;
-
-                /** HighTradeResponse targetFutureContractVolume */
-                targetFutureContractVolume: number;
-
-                /** HighTradeResponse dealPrice */
-                dealPrice: string;
-
-                /** HighTradeResponse dealQuantity */
-                dealQuantity: string;
-
-                /** HighTradeResponse dealTurnover */
-                dealTurnover: string;
-
-                /** HighTradeResponse dealFee */
-                dealFee: string;
-
-                /** HighTradeResponse profit */
-                profit?: (string|null);
-
-                /** HighTradeResponse dealFutureContractVolume */
-                dealFutureContractVolume?: (number|null);
-
-                /** HighTradeResponse orderSide */
-                orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HighTradeResponse futureContractSide */
-                futureContractSide?: (tradebot.grpc_server.arbitrage.FutureContractSide|null);
-
-                /** HighTradeResponse activeOrderId */
-                activeOrderId?: (string|null);
-
-                /** HighTradeResponse triggerSignal */
-                triggerSignal?: (tradebot.grpc_server.arbitrage.TriggerSignal|null);
-
-                /** HighTradeResponse triggerReason */
-                triggerReason?: (string|null);
-
-                /** HighTradeResponse errMsg */
-                errMsg?: (string|null);
-
-                /** HighTradeResponse errCode */
-                errCode?: (tradebot.grpc_server.arbitrage.ErrorCode|null);
-            }
-
-            /** Represents a HighTradeResponse. */
-            class HighTradeResponse implements IHighTradeResponse {
-
-                /**
-                 * Constructs a new HighTradeResponse.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHighTradeResponse);
-
-                /** HighTradeResponse requestId. */
-                public requestId: string;
-
-                /** HighTradeResponse requestTimestamp. */
-                public requestTimestamp: number;
-
-                /** HighTradeResponse responseTimestamp. */
-                public responseTimestamp: number;
-
-                /** HighTradeResponse requestCommand. */
-                public requestCommand: tradebot.grpc_server.arbitrage.RequestCommand;
-
-                /** HighTradeResponse platform. */
-                public platform: string;
-
-                /** HighTradeResponse contract. */
-                public contract: string;
-
-                /** HighTradeResponse targetPrice. */
-                public targetPrice: string;
-
-                /** HighTradeResponse targetFutureContractVolume. */
-                public targetFutureContractVolume: number;
-
-                /** HighTradeResponse dealPrice. */
-                public dealPrice: string;
-
-                /** HighTradeResponse dealQuantity. */
-                public dealQuantity: string;
-
-                /** HighTradeResponse dealTurnover. */
-                public dealTurnover: string;
-
-                /** HighTradeResponse dealFee. */
-                public dealFee: string;
-
-                /** HighTradeResponse profit. */
-                public profit: string;
-
-                /** HighTradeResponse dealFutureContractVolume. */
-                public dealFutureContractVolume: number;
-
-                /** HighTradeResponse orderSide. */
-                public orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HighTradeResponse futureContractSide. */
-                public futureContractSide: tradebot.grpc_server.arbitrage.FutureContractSide;
-
-                /** HighTradeResponse activeOrderId. */
-                public activeOrderId: string;
-
-                /** HighTradeResponse triggerSignal. */
-                public triggerSignal: tradebot.grpc_server.arbitrage.TriggerSignal;
-
-                /** HighTradeResponse triggerReason. */
-                public triggerReason: string;
-
-                /** HighTradeResponse errMsg. */
-                public errMsg: string;
-
-                /** HighTradeResponse errCode. */
-                public errCode: tradebot.grpc_server.arbitrage.ErrorCode;
-
-                /**
-                 * Creates a new HighTradeResponse instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HighTradeResponse instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHighTradeResponse): tradebot.grpc_server.arbitrage.HighTradeResponse;
-
-                /**
-                 * Encodes the specified HighTradeResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeResponse.verify|verify} messages.
-                 * @param message HighTradeResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHighTradeResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HighTradeResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HighTradeResponse.verify|verify} messages.
-                 * @param message HighTradeResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHighTradeResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HighTradeResponse message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HighTradeResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HighTradeResponse;
-
-                /**
-                 * Decodes a HighTradeResponse message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HighTradeResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HighTradeResponse;
-
-                /**
-                 * Verifies a HighTradeResponse message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HighTradeResponse message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HighTradeResponse
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HighTradeResponse;
-
-                /**
-                 * Creates a plain object from a HighTradeResponse message. Also converts values to other types if specified.
-                 * @param message HighTradeResponse
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HighTradeResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HighTradeResponse to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a HftState. */
-            interface IHftState {
-
-                /** HftState requestId */
-                requestId: string;
-
-                /** HftState platform */
-                platform: string;
-
-                /** HftState contract */
-                contract: string;
-
-                /** HftState price */
-                price: number;
-
-                /** HftState quantity */
-                quantity: number;
-
-                /** HftState turnover */
-                turnover: number;
-
-                /** HftState fee */
-                fee: number;
-
-                /** HftState profit */
-                profit: number;
-
-                /** HftState targetFutureContractVolume */
-                targetFutureContractVolume: number;
-
-                /** HftState dealFutureContractVolume */
-                dealFutureContractVolume: number;
-
-                /** HftState createdTimestamp */
-                createdTimestamp: number;
-
-                /** HftState orderSide */
-                orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HftState futureContractSide */
-                futureContractSide?: (tradebot.grpc_server.arbitrage.FutureContractSide|null);
-
-                /** HftState activeOrderId */
-                activeOrderId: string;
-
-                /** HftState lastPlacePrice */
-                lastPlacePrice?: (number|null);
-
-                /** HftState triggerSignal */
-                triggerSignal: tradebot.grpc_server.arbitrage.TriggerSignal;
-
-                /** HftState triggerReason */
-                triggerReason: string;
-
-                /** HftState predictCloseRatio */
-                predictCloseRatio?: (number|null);
-            }
-
-            /** Represents a HftState. */
-            class HftState implements IHftState {
-
-                /**
-                 * Constructs a new HftState.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHftState);
-
-                /** HftState requestId. */
-                public requestId: string;
-
-                /** HftState platform. */
-                public platform: string;
-
-                /** HftState contract. */
-                public contract: string;
-
-                /** HftState price. */
-                public price: number;
-
-                /** HftState quantity. */
-                public quantity: number;
-
-                /** HftState turnover. */
-                public turnover: number;
-
-                /** HftState fee. */
-                public fee: number;
-
-                /** HftState profit. */
-                public profit: number;
-
-                /** HftState targetFutureContractVolume. */
-                public targetFutureContractVolume: number;
-
-                /** HftState dealFutureContractVolume. */
-                public dealFutureContractVolume: number;
-
-                /** HftState createdTimestamp. */
-                public createdTimestamp: number;
-
-                /** HftState orderSide. */
-                public orderSide: tradebot.grpc_server.arbitrage.OrderSide;
-
-                /** HftState futureContractSide. */
-                public futureContractSide: tradebot.grpc_server.arbitrage.FutureContractSide;
-
-                /** HftState activeOrderId. */
-                public activeOrderId: string;
-
-                /** HftState lastPlacePrice. */
-                public lastPlacePrice: number;
-
-                /** HftState triggerSignal. */
-                public triggerSignal: tradebot.grpc_server.arbitrage.TriggerSignal;
-
-                /** HftState triggerReason. */
-                public triggerReason: string;
-
-                /** HftState predictCloseRatio. */
-                public predictCloseRatio: number;
-
-                /**
-                 * Creates a new HftState instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HftState instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHftState): tradebot.grpc_server.arbitrage.HftState;
-
-                /**
-                 * Encodes the specified HftState message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftState.verify|verify} messages.
-                 * @param message HftState message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHftState, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HftState message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftState.verify|verify} messages.
-                 * @param message HftState message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHftState, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HftState message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HftState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HftState;
-
-                /**
-                 * Decodes a HftState message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HftState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HftState;
-
-                /**
-                 * Verifies a HftState message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HftState message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HftState
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HftState;
-
-                /**
-                 * Creates a plain object from a HftState message. Also converts values to other types if specified.
-                 * @param message HftState
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HftState, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HftState to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a HftOpenState. */
-            interface IHftOpenState {
-
-                /** HftOpenState openState */
-                openState: tradebot.grpc_server.arbitrage.IHftState;
-
-                /** HftOpenState closeState */
-                closeState?: (tradebot.grpc_server.arbitrage.IHftState|null);
-            }
-
-            /** Represents a HftOpenState. */
-            class HftOpenState implements IHftOpenState {
-
-                /**
-                 * Constructs a new HftOpenState.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHftOpenState);
-
-                /** HftOpenState openState. */
-                public openState: tradebot.grpc_server.arbitrage.IHftState;
-
-                /** HftOpenState closeState. */
-                public closeState?: (tradebot.grpc_server.arbitrage.IHftState|null);
-
-                /**
-                 * Creates a new HftOpenState instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HftOpenState instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHftOpenState): tradebot.grpc_server.arbitrage.HftOpenState;
-
-                /**
-                 * Encodes the specified HftOpenState message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftOpenState.verify|verify} messages.
-                 * @param message HftOpenState message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHftOpenState, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HftOpenState message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftOpenState.verify|verify} messages.
-                 * @param message HftOpenState message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHftOpenState, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HftOpenState message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HftOpenState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HftOpenState;
-
-                /**
-                 * Decodes a HftOpenState message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HftOpenState
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HftOpenState;
-
-                /**
-                 * Verifies a HftOpenState message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HftOpenState message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HftOpenState
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HftOpenState;
-
-                /**
-                 * Creates a plain object from a HftOpenState message. Also converts values to other types if specified.
-                 * @param message HftOpenState
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HftOpenState, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HftOpenState to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a HftPositionInfo. */
-            interface IHftPositionInfo {
-
-                /** HftPositionInfo openList */
-                openList?: (tradebot.grpc_server.arbitrage.IHftOpenState[]|null);
-
-                /** HftPositionInfo openingList */
-                openingList?: (tradebot.grpc_server.arbitrage.IHftState[]|null);
-            }
-
-            /** Represents a HftPositionInfo. */
-            class HftPositionInfo implements IHftPositionInfo {
-
-                /**
-                 * Constructs a new HftPositionInfo.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHftPositionInfo);
-
-                /** HftPositionInfo openList. */
-                public openList: tradebot.grpc_server.arbitrage.IHftOpenState[];
-
-                /** HftPositionInfo openingList. */
-                public openingList: tradebot.grpc_server.arbitrage.IHftState[];
-
-                /**
-                 * Creates a new HftPositionInfo instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HftPositionInfo instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHftPositionInfo): tradebot.grpc_server.arbitrage.HftPositionInfo;
-
-                /**
-                 * Encodes the specified HftPositionInfo message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftPositionInfo.verify|verify} messages.
-                 * @param message HftPositionInfo message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHftPositionInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HftPositionInfo message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftPositionInfo.verify|verify} messages.
-                 * @param message HftPositionInfo message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHftPositionInfo, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HftPositionInfo message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HftPositionInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HftPositionInfo;
-
-                /**
-                 * Decodes a HftPositionInfo message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HftPositionInfo
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HftPositionInfo;
-
-                /**
-                 * Verifies a HftPositionInfo message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HftPositionInfo message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HftPositionInfo
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HftPositionInfo;
-
-                /**
-                 * Creates a plain object from a HftPositionInfo message. Also converts values to other types if specified.
-                 * @param message HftPositionInfo
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HftPositionInfo, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HftPositionInfo to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of an AddHoldingRequest. */
-            interface IAddHoldingRequest {
-
-                /** AddHoldingRequest uuid */
-                uuid: string;
-
-                /** AddHoldingRequest transaction */
-                transaction: tradebot.grpc_server.arbitrage.ITransaction;
-            }
-
-            /** Represents an AddHoldingRequest. */
-            class AddHoldingRequest implements IAddHoldingRequest {
-
-                /**
-                 * Constructs a new AddHoldingRequest.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IAddHoldingRequest);
-
-                /** AddHoldingRequest uuid. */
-                public uuid: string;
-
-                /** AddHoldingRequest transaction. */
-                public transaction: tradebot.grpc_server.arbitrage.ITransaction;
-
-                /**
-                 * Creates a new AddHoldingRequest instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns AddHoldingRequest instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IAddHoldingRequest): tradebot.grpc_server.arbitrage.AddHoldingRequest;
-
-                /**
-                 * Encodes the specified AddHoldingRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingRequest.verify|verify} messages.
-                 * @param message AddHoldingRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IAddHoldingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified AddHoldingRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingRequest.verify|verify} messages.
-                 * @param message AddHoldingRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IAddHoldingRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an AddHoldingRequest message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns AddHoldingRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.AddHoldingRequest;
-
-                /**
-                 * Decodes an AddHoldingRequest message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns AddHoldingRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.AddHoldingRequest;
-
-                /**
-                 * Verifies an AddHoldingRequest message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an AddHoldingRequest message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns AddHoldingRequest
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.AddHoldingRequest;
-
-                /**
-                 * Creates a plain object from an AddHoldingRequest message. Also converts values to other types if specified.
-                 * @param message AddHoldingRequest
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.AddHoldingRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this AddHoldingRequest to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of an AddHoldingResponse. */
-            interface IAddHoldingResponse {
-
-                /** AddHoldingResponse uuid */
-                uuid: string;
-
-                /** AddHoldingResponse transaction */
-                transaction: tradebot.grpc_server.arbitrage.ITransaction;
-            }
-
-            /** Represents an AddHoldingResponse. */
-            class AddHoldingResponse implements IAddHoldingResponse {
-
-                /**
-                 * Constructs a new AddHoldingResponse.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IAddHoldingResponse);
-
-                /** AddHoldingResponse uuid. */
-                public uuid: string;
-
-                /** AddHoldingResponse transaction. */
-                public transaction: tradebot.grpc_server.arbitrage.ITransaction;
-
-                /**
-                 * Creates a new AddHoldingResponse instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns AddHoldingResponse instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IAddHoldingResponse): tradebot.grpc_server.arbitrage.AddHoldingResponse;
-
-                /**
-                 * Encodes the specified AddHoldingResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingResponse.verify|verify} messages.
-                 * @param message AddHoldingResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IAddHoldingResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified AddHoldingResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.AddHoldingResponse.verify|verify} messages.
-                 * @param message AddHoldingResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IAddHoldingResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an AddHoldingResponse message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns AddHoldingResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.AddHoldingResponse;
-
-                /**
-                 * Decodes an AddHoldingResponse message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns AddHoldingResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.AddHoldingResponse;
-
-                /**
-                 * Verifies an AddHoldingResponse message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an AddHoldingResponse message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns AddHoldingResponse
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.AddHoldingResponse;
-
-                /**
-                 * Creates a plain object from an AddHoldingResponse message. Also converts values to other types if specified.
-                 * @param message AddHoldingResponse
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.AddHoldingResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this AddHoldingResponse to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of an ArbitrageRequest. */
-            interface IArbitrageRequest {
-
-                /** ArbitrageRequest transaction */
-                transaction: tradebot.grpc_server.arbitrage.ITransaction;
-            }
-
-            /** Represents an ArbitrageRequest. */
-            class ArbitrageRequest implements IArbitrageRequest {
-
-                /**
-                 * Constructs a new ArbitrageRequest.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IArbitrageRequest);
-
-                /** ArbitrageRequest transaction. */
-                public transaction: tradebot.grpc_server.arbitrage.ITransaction;
-
-                /**
-                 * Creates a new ArbitrageRequest instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns ArbitrageRequest instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IArbitrageRequest): tradebot.grpc_server.arbitrage.ArbitrageRequest;
-
-                /**
-                 * Encodes the specified ArbitrageRequest message. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageRequest.verify|verify} messages.
-                 * @param message ArbitrageRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IArbitrageRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified ArbitrageRequest message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageRequest.verify|verify} messages.
-                 * @param message ArbitrageRequest message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IArbitrageRequest, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an ArbitrageRequest message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns ArbitrageRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.ArbitrageRequest;
-
-                /**
-                 * Decodes an ArbitrageRequest message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns ArbitrageRequest
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.ArbitrageRequest;
-
-                /**
-                 * Verifies an ArbitrageRequest message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an ArbitrageRequest message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns ArbitrageRequest
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.ArbitrageRequest;
-
-                /**
-                 * Creates a plain object from an ArbitrageRequest message. Also converts values to other types if specified.
-                 * @param message ArbitrageRequest
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.ArbitrageRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this ArbitrageRequest to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of an ArbitrageResponse. */
-            interface IArbitrageResponse {
-
-                /** ArbitrageResponse uuid */
-                uuid: string;
-
-                /** ArbitrageResponse transaction */
-                transaction: tradebot.grpc_server.arbitrage.ITransaction;
-
-                /** ArbitrageResponse errorCode */
-                errorCode: tradebot.grpc_server.arbitrage.ErrorCode;
-
-                /** ArbitrageResponse errorMsg */
-                errorMsg?: (string|null);
-            }
-
-            /** Represents an ArbitrageResponse. */
-            class ArbitrageResponse implements IArbitrageResponse {
-
-                /**
-                 * Constructs a new ArbitrageResponse.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IArbitrageResponse);
-
-                /** ArbitrageResponse uuid. */
-                public uuid: string;
-
-                /** ArbitrageResponse transaction. */
-                public transaction: tradebot.grpc_server.arbitrage.ITransaction;
-
-                /** ArbitrageResponse errorCode. */
-                public errorCode: tradebot.grpc_server.arbitrage.ErrorCode;
-
-                /** ArbitrageResponse errorMsg. */
-                public errorMsg: string;
-
-                /**
-                 * Creates a new ArbitrageResponse instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns ArbitrageResponse instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IArbitrageResponse): tradebot.grpc_server.arbitrage.ArbitrageResponse;
-
-                /**
-                 * Encodes the specified ArbitrageResponse message. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageResponse.verify|verify} messages.
-                 * @param message ArbitrageResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IArbitrageResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified ArbitrageResponse message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.ArbitrageResponse.verify|verify} messages.
-                 * @param message ArbitrageResponse message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IArbitrageResponse, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an ArbitrageResponse message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns ArbitrageResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.ArbitrageResponse;
-
-                /**
-                 * Decodes an ArbitrageResponse message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns ArbitrageResponse
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.ArbitrageResponse;
-
-                /**
-                 * Verifies an ArbitrageResponse message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an ArbitrageResponse message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns ArbitrageResponse
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.ArbitrageResponse;
-
-                /**
-                 * Creates a plain object from an ArbitrageResponse message. Also converts values to other types if specified.
-                 * @param message ArbitrageResponse
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.ArbitrageResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this ArbitrageResponse to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a Level. */
-            interface ILevel {
-
-                /** Level digit */
-                digit: number;
-
-                /** Level px */
-                px: number;
-
-                /** Level qty */
-                qty: number;
-            }
-
-            /** Represents a Level. */
-            class Level implements ILevel {
-
-                /**
-                 * Constructs a new Level.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.ILevel);
-
-                /** Level digit. */
-                public digit: number;
-
-                /** Level px. */
-                public px: number;
-
-                /** Level qty. */
-                public qty: number;
-
-                /**
-                 * Creates a new Level instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Level instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.ILevel): tradebot.grpc_server.arbitrage.Level;
-
-                /**
-                 * Encodes the specified Level message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Level.verify|verify} messages.
-                 * @param message Level message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.ILevel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Level message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Level.verify|verify} messages.
-                 * @param message Level message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.ILevel, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a Level message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Level
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.Level;
-
-                /**
-                 * Decodes a Level message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Level
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.Level;
-
-                /**
-                 * Verifies a Level message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a Level message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Level
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.Level;
-
-                /**
-                 * Creates a plain object from a Level message. Also converts values to other types if specified.
-                 * @param message Level
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.Level, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Level to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of an Orderbook. */
-            interface IOrderbook {
-
-                /** Orderbook platform */
-                platform: string;
-
-                /** Orderbook contract */
-                contract: string;
-
-                /** Orderbook currency */
-                currency: string;
-
-                /** Orderbook commodity */
-                commodity: string;
-
-                /** Orderbook futureContractCode */
-                futureContractCode?: (string|null);
-
-                /** Orderbook bidLevel */
-                bidLevel?: (tradebot.grpc_server.arbitrage.ILevel[]|null);
-
-                /** Orderbook askLevel */
-                askLevel?: (tradebot.grpc_server.arbitrage.ILevel[]|null);
-
-                /** Orderbook ts */
-                ts: number;
-
-                /** Orderbook publishTs */
-                publishTs: number;
-            }
-
-            /** Represents an Orderbook. */
-            class Orderbook implements IOrderbook {
-
-                /**
-                 * Constructs a new Orderbook.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IOrderbook);
-
-                /** Orderbook platform. */
-                public platform: string;
-
-                /** Orderbook contract. */
-                public contract: string;
-
-                /** Orderbook currency. */
-                public currency: string;
-
-                /** Orderbook commodity. */
-                public commodity: string;
-
-                /** Orderbook futureContractCode. */
-                public futureContractCode: string;
-
-                /** Orderbook bidLevel. */
-                public bidLevel: tradebot.grpc_server.arbitrage.ILevel[];
-
-                /** Orderbook askLevel. */
-                public askLevel: tradebot.grpc_server.arbitrage.ILevel[];
-
-                /** Orderbook ts. */
-                public ts: number;
-
-                /** Orderbook publishTs. */
-                public publishTs: number;
-
-                /**
-                 * Creates a new Orderbook instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns Orderbook instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IOrderbook): tradebot.grpc_server.arbitrage.Orderbook;
-
-                /**
-                 * Encodes the specified Orderbook message. Does not implicitly {@link tradebot.grpc_server.arbitrage.Orderbook.verify|verify} messages.
-                 * @param message Orderbook message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IOrderbook, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified Orderbook message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.Orderbook.verify|verify} messages.
-                 * @param message Orderbook message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IOrderbook, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes an Orderbook message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns Orderbook
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.Orderbook;
-
-                /**
-                 * Decodes an Orderbook message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns Orderbook
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.Orderbook;
-
-                /**
-                 * Verifies an Orderbook message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates an Orderbook message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns Orderbook
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.Orderbook;
-
-                /**
-                 * Creates a plain object from an Orderbook message. Also converts values to other types if specified.
-                 * @param message Orderbook
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.Orderbook, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this Orderbook to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Properties of a HftMarketData. */
-            interface IHftMarketData {
-
-                /** HftMarketData orderbook */
-                orderbook: tradebot.grpc_server.arbitrage.IOrderbook;
-
-                /** HftMarketData positionInfo */
-                positionInfo: tradebot.grpc_server.arbitrage.IHftPositionInfo;
-            }
-
-            /** Represents a HftMarketData. */
-            class HftMarketData implements IHftMarketData {
-
-                /**
-                 * Constructs a new HftMarketData.
-                 * @param [properties] Properties to set
-                 */
-                constructor(properties?: tradebot.grpc_server.arbitrage.IHftMarketData);
-
-                /** HftMarketData orderbook. */
-                public orderbook: tradebot.grpc_server.arbitrage.IOrderbook;
-
-                /** HftMarketData positionInfo. */
-                public positionInfo: tradebot.grpc_server.arbitrage.IHftPositionInfo;
-
-                /**
-                 * Creates a new HftMarketData instance using the specified properties.
-                 * @param [properties] Properties to set
-                 * @returns HftMarketData instance
-                 */
-                public static create(properties?: tradebot.grpc_server.arbitrage.IHftMarketData): tradebot.grpc_server.arbitrage.HftMarketData;
-
-                /**
-                 * Encodes the specified HftMarketData message. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftMarketData.verify|verify} messages.
-                 * @param message HftMarketData message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encode(message: tradebot.grpc_server.arbitrage.IHftMarketData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Encodes the specified HftMarketData message, length delimited. Does not implicitly {@link tradebot.grpc_server.arbitrage.HftMarketData.verify|verify} messages.
-                 * @param message HftMarketData message or plain object to encode
-                 * @param [writer] Writer to encode to
-                 * @returns Writer
-                 */
-                public static encodeDelimited(message: tradebot.grpc_server.arbitrage.IHftMarketData, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                /**
-                 * Decodes a HftMarketData message from the specified reader or buffer.
-                 * @param reader Reader or buffer to decode from
-                 * @param [length] Message length if known beforehand
-                 * @returns HftMarketData
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): tradebot.grpc_server.arbitrage.HftMarketData;
-
-                /**
-                 * Decodes a HftMarketData message from the specified reader or buffer, length delimited.
-                 * @param reader Reader or buffer to decode from
-                 * @returns HftMarketData
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): tradebot.grpc_server.arbitrage.HftMarketData;
-
-                /**
-                 * Verifies a HftMarketData message.
-                 * @param message Plain object to verify
-                 * @returns `null` if valid, otherwise the reason why it is not
-                 */
-                public static verify(message: { [k: string]: any }): (string|null);
-
-                /**
-                 * Creates a HftMarketData message from a plain object. Also converts values to their respective internal types.
-                 * @param object Plain object
-                 * @returns HftMarketData
-                 */
-                public static fromObject(object: { [k: string]: any }): tradebot.grpc_server.arbitrage.HftMarketData;
-
-                /**
-                 * Creates a plain object from a HftMarketData message. Also converts values to other types if specified.
-                 * @param message HftMarketData
-                 * @param [options] Conversion options
-                 * @returns Plain object
-                 */
-                public static toObject(message: tradebot.grpc_server.arbitrage.HftMarketData, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                /**
-                 * Converts this HftMarketData to JSON.
-                 * @returns JSON object
-                 */
-                public toJSON(): { [k: string]: any };
-            }
-
-            /** Represents an ArbitrageService */
-            class ArbitrageService extends $protobuf.rpc.Service {
-
-                /**
-                 * Constructs a new ArbitrageService service.
-                 * @param rpcImpl RPC implementation
-                 * @param [requestDelimited=false] Whether requests are length-delimited
-                 * @param [responseDelimited=false] Whether responses are length-delimited
-                 */
-                constructor(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean);
-
-                /**
-                 * Creates new ArbitrageService service using the specified rpc implementation.
-                 * @param rpcImpl RPC implementation
-                 * @param [requestDelimited=false] Whether requests are length-delimited
-                 * @param [responseDelimited=false] Whether responses are length-delimited
-                 * @returns RPC service. Useful where requests and/or responses are streamed.
-                 */
-                public static create(rpcImpl: $protobuf.RPCImpl, requestDelimited?: boolean, responseDelimited?: boolean): ArbitrageService;
-
-                /**
-                 * Calls add_holding.
-                 * @param request ArbitrageRequest message or plain object
-                 * @param callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 */
-                public add_holding(request: tradebot.grpc_server.arbitrage.IArbitrageRequest, callback: tradebot.grpc_server.arbitrage.ArbitrageService.add_holdingCallback): void;
-
-                /**
-                 * Calls add_holding.
-                 * @param request ArbitrageRequest message or plain object
-                 * @returns Promise
-                 */
-                public add_holding(request: tradebot.grpc_server.arbitrage.IArbitrageRequest): Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>;
-
-                /**
-                 * Calls open_arbitrage.
-                 * @param request ArbitrageRequest message or plain object
-                 * @param callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 */
-                public open_arbitrage(request: tradebot.grpc_server.arbitrage.IArbitrageRequest, callback: tradebot.grpc_server.arbitrage.ArbitrageService.open_arbitrageCallback): void;
-
-                /**
-                 * Calls open_arbitrage.
-                 * @param request ArbitrageRequest message or plain object
-                 * @returns Promise
-                 */
-                public open_arbitrage(request: tradebot.grpc_server.arbitrage.IArbitrageRequest): Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>;
-
-                /**
-                 * Calls close_arbitrage.
-                 * @param request ArbitrageRequest message or plain object
-                 * @param callback Node-style callback called with the error, if any, and ArbitrageResponse
-                 */
-                public close_arbitrage(request: tradebot.grpc_server.arbitrage.IArbitrageRequest, callback: tradebot.grpc_server.arbitrage.ArbitrageService.close_arbitrageCallback): void;
-
-                /**
-                 * Calls close_arbitrage.
-                 * @param request ArbitrageRequest message or plain object
-                 * @returns Promise
-                 */
-                public close_arbitrage(request: tradebot.grpc_server.arbitrage.IArbitrageRequest): Promise<tradebot.grpc_server.arbitrage.ArbitrageResponse>;
-
-                /**
-                 * Calls open_position.
-                 * @param request HighTradeRequest message or plain object
-                 * @param callback Node-style callback called with the error, if any, and HighTradeResponse
-                 */
-                public open_position(request: tradebot.grpc_server.arbitrage.IHighTradeRequest, callback: tradebot.grpc_server.arbitrage.ArbitrageService.open_positionCallback): void;
-
-                /**
-                 * Calls open_position.
-                 * @param request HighTradeRequest message or plain object
-                 * @returns Promise
-                 */
-                public open_position(request: tradebot.grpc_server.arbitrage.IHighTradeRequest): Promise<tradebot.grpc_server.arbitrage.HighTradeResponse>;
-
-                /**
-                 * Calls close_position.
-                 * @param request HighTradeRequest message or plain object
-                 * @param callback Node-style callback called with the error, if any, and HighTradeResponse
-                 */
-                public close_position(request: tradebot.grpc_server.arbitrage.IHighTradeRequest, callback: tradebot.grpc_server.arbitrage.ArbitrageService.close_positionCallback): void;
-
-                /**
-                 * Calls close_position.
-                 * @param request HighTradeRequest message or plain object
-                 * @returns Promise
-                 */
-                public close_position(request: tradebot.grpc_server.arbitrage.IHighTradeRequest): Promise<tradebot.grpc_server.arbitrage.HighTradeResponse>;
-            }
-
-            namespace ArbitrageService {
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#add_holding}.
-                 * @param error Error, if any
-                 * @param [response] ArbitrageResponse
-                 */
-                type add_holdingCallback = (error: (Error|null), response?: tradebot.grpc_server.arbitrage.ArbitrageResponse) => void;
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#open_arbitrage}.
-                 * @param error Error, if any
-                 * @param [response] ArbitrageResponse
-                 */
-                type open_arbitrageCallback = (error: (Error|null), response?: tradebot.grpc_server.arbitrage.ArbitrageResponse) => void;
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#close_arbitrage}.
-                 * @param error Error, if any
-                 * @param [response] ArbitrageResponse
-                 */
-                type close_arbitrageCallback = (error: (Error|null), response?: tradebot.grpc_server.arbitrage.ArbitrageResponse) => void;
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#open_position}.
-                 * @param error Error, if any
-                 * @param [response] HighTradeResponse
-                 */
-                type open_positionCallback = (error: (Error|null), response?: tradebot.grpc_server.arbitrage.HighTradeResponse) => void;
-
-                /**
-                 * Callback as used by {@link tradebot.grpc_server.arbitrage.ArbitrageService#close_position}.
-                 * @param error Error, if any
-                 * @param [response] HighTradeResponse
-                 */
-                type close_positionCallback = (error: (Error|null), response?: tradebot.grpc_server.arbitrage.HighTradeResponse) => void;
-            }
-        }
-    }
-}
-
 /** Namespace tradeconfig. */
 export namespace tradeconfig {
 
@@ -6148,6 +4060,340 @@ export namespace marketdata {
 
         /**
          * Converts this HistoryMarketDataIndex to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+}
+
+/** Namespace innerapi. */
+export namespace innerapi {
+
+    /** Properties of a GetBuySellVolumeReq. */
+    interface IGetBuySellVolumeReq {
+
+        /** GetBuySellVolumeReq symbolId */
+        symbolId?: (string|null);
+
+        /** GetBuySellVolumeReq startSec */
+        startSec?: (number|null);
+
+        /** GetBuySellVolumeReq aggrIntervalSec */
+        aggrIntervalSec?: (number|null);
+
+        /** GetBuySellVolumeReq source */
+        source?: (string|null);
+    }
+
+    /** Represents a GetBuySellVolumeReq. */
+    class GetBuySellVolumeReq implements IGetBuySellVolumeReq {
+
+        /**
+         * Constructs a new GetBuySellVolumeReq.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: innerapi.IGetBuySellVolumeReq);
+
+        /** GetBuySellVolumeReq symbolId. */
+        public symbolId: string;
+
+        /** GetBuySellVolumeReq startSec. */
+        public startSec: number;
+
+        /** GetBuySellVolumeReq aggrIntervalSec. */
+        public aggrIntervalSec: number;
+
+        /** GetBuySellVolumeReq source. */
+        public source: string;
+
+        /**
+         * Creates a new GetBuySellVolumeReq instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetBuySellVolumeReq instance
+         */
+        public static create(properties?: innerapi.IGetBuySellVolumeReq): innerapi.GetBuySellVolumeReq;
+
+        /**
+         * Encodes the specified GetBuySellVolumeReq message. Does not implicitly {@link innerapi.GetBuySellVolumeReq.verify|verify} messages.
+         * @param message GetBuySellVolumeReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: innerapi.IGetBuySellVolumeReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetBuySellVolumeReq message, length delimited. Does not implicitly {@link innerapi.GetBuySellVolumeReq.verify|verify} messages.
+         * @param message GetBuySellVolumeReq message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: innerapi.IGetBuySellVolumeReq, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetBuySellVolumeReq message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetBuySellVolumeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): innerapi.GetBuySellVolumeReq;
+
+        /**
+         * Decodes a GetBuySellVolumeReq message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetBuySellVolumeReq
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): innerapi.GetBuySellVolumeReq;
+
+        /**
+         * Verifies a GetBuySellVolumeReq message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetBuySellVolumeReq message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetBuySellVolumeReq
+         */
+        public static fromObject(object: { [k: string]: any }): innerapi.GetBuySellVolumeReq;
+
+        /**
+         * Creates a plain object from a GetBuySellVolumeReq message. Also converts values to other types if specified.
+         * @param message GetBuySellVolumeReq
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: innerapi.GetBuySellVolumeReq, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetBuySellVolumeReq to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a BuySellVolume. */
+    interface IBuySellVolume {
+
+        /** BuySellVolume buyVolume */
+        buyVolume?: (number|null);
+
+        /** BuySellVolume sellVolume */
+        sellVolume?: (number|null);
+
+        /** BuySellVolume buyTurnover */
+        buyTurnover?: (number|null);
+
+        /** BuySellVolume sellTurnover */
+        sellTurnover?: (number|null);
+
+        /** BuySellVolume buyCnt */
+        buyCnt?: (number|null);
+
+        /** BuySellVolume sellCnt */
+        sellCnt?: (number|null);
+
+        /** BuySellVolume startSec */
+        startSec?: (number|null);
+    }
+
+    /** Represents a BuySellVolume. */
+    class BuySellVolume implements IBuySellVolume {
+
+        /**
+         * Constructs a new BuySellVolume.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: innerapi.IBuySellVolume);
+
+        /** BuySellVolume buyVolume. */
+        public buyVolume: number;
+
+        /** BuySellVolume sellVolume. */
+        public sellVolume: number;
+
+        /** BuySellVolume buyTurnover. */
+        public buyTurnover: number;
+
+        /** BuySellVolume sellTurnover. */
+        public sellTurnover: number;
+
+        /** BuySellVolume buyCnt. */
+        public buyCnt: number;
+
+        /** BuySellVolume sellCnt. */
+        public sellCnt: number;
+
+        /** BuySellVolume startSec. */
+        public startSec: number;
+
+        /**
+         * Creates a new BuySellVolume instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns BuySellVolume instance
+         */
+        public static create(properties?: innerapi.IBuySellVolume): innerapi.BuySellVolume;
+
+        /**
+         * Encodes the specified BuySellVolume message. Does not implicitly {@link innerapi.BuySellVolume.verify|verify} messages.
+         * @param message BuySellVolume message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: innerapi.IBuySellVolume, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified BuySellVolume message, length delimited. Does not implicitly {@link innerapi.BuySellVolume.verify|verify} messages.
+         * @param message BuySellVolume message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: innerapi.IBuySellVolume, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a BuySellVolume message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns BuySellVolume
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): innerapi.BuySellVolume;
+
+        /**
+         * Decodes a BuySellVolume message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns BuySellVolume
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): innerapi.BuySellVolume;
+
+        /**
+         * Verifies a BuySellVolume message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a BuySellVolume message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns BuySellVolume
+         */
+        public static fromObject(object: { [k: string]: any }): innerapi.BuySellVolume;
+
+        /**
+         * Creates a plain object from a BuySellVolume message. Also converts values to other types if specified.
+         * @param message BuySellVolume
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: innerapi.BuySellVolume, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this BuySellVolume to JSON.
+         * @returns JSON object
+         */
+        public toJSON(): { [k: string]: any };
+    }
+
+    /** Properties of a GetBuySellVolumeResp. */
+    interface IGetBuySellVolumeResp {
+
+        /** GetBuySellVolumeResp statistics */
+        statistics?: (innerapi.IBuySellVolume[]|null);
+
+        /** GetBuySellVolumeResp base64encodedData */
+        base64encodedData?: (string|null);
+    }
+
+    /** Represents a GetBuySellVolumeResp. */
+    class GetBuySellVolumeResp implements IGetBuySellVolumeResp {
+
+        /**
+         * Constructs a new GetBuySellVolumeResp.
+         * @param [properties] Properties to set
+         */
+        constructor(properties?: innerapi.IGetBuySellVolumeResp);
+
+        /** GetBuySellVolumeResp statistics. */
+        public statistics: innerapi.IBuySellVolume[];
+
+        /** GetBuySellVolumeResp base64encodedData. */
+        public base64encodedData: string;
+
+        /**
+         * Creates a new GetBuySellVolumeResp instance using the specified properties.
+         * @param [properties] Properties to set
+         * @returns GetBuySellVolumeResp instance
+         */
+        public static create(properties?: innerapi.IGetBuySellVolumeResp): innerapi.GetBuySellVolumeResp;
+
+        /**
+         * Encodes the specified GetBuySellVolumeResp message. Does not implicitly {@link innerapi.GetBuySellVolumeResp.verify|verify} messages.
+         * @param message GetBuySellVolumeResp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encode(message: innerapi.IGetBuySellVolumeResp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Encodes the specified GetBuySellVolumeResp message, length delimited. Does not implicitly {@link innerapi.GetBuySellVolumeResp.verify|verify} messages.
+         * @param message GetBuySellVolumeResp message or plain object to encode
+         * @param [writer] Writer to encode to
+         * @returns Writer
+         */
+        public static encodeDelimited(message: innerapi.IGetBuySellVolumeResp, writer?: $protobuf.Writer): $protobuf.Writer;
+
+        /**
+         * Decodes a GetBuySellVolumeResp message from the specified reader or buffer.
+         * @param reader Reader or buffer to decode from
+         * @param [length] Message length if known beforehand
+         * @returns GetBuySellVolumeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): innerapi.GetBuySellVolumeResp;
+
+        /**
+         * Decodes a GetBuySellVolumeResp message from the specified reader or buffer, length delimited.
+         * @param reader Reader or buffer to decode from
+         * @returns GetBuySellVolumeResp
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): innerapi.GetBuySellVolumeResp;
+
+        /**
+         * Verifies a GetBuySellVolumeResp message.
+         * @param message Plain object to verify
+         * @returns `null` if valid, otherwise the reason why it is not
+         */
+        public static verify(message: { [k: string]: any }): (string|null);
+
+        /**
+         * Creates a GetBuySellVolumeResp message from a plain object. Also converts values to their respective internal types.
+         * @param object Plain object
+         * @returns GetBuySellVolumeResp
+         */
+        public static fromObject(object: { [k: string]: any }): innerapi.GetBuySellVolumeResp;
+
+        /**
+         * Creates a plain object from a GetBuySellVolumeResp message. Also converts values to other types if specified.
+         * @param message GetBuySellVolumeResp
+         * @param [options] Conversion options
+         * @returns Plain object
+         */
+        public static toObject(message: innerapi.GetBuySellVolumeResp, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+        /**
+         * Converts this GetBuySellVolumeResp to JSON.
          * @returns JSON object
          */
         public toJSON(): { [k: string]: any };
