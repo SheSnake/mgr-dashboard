@@ -53,6 +53,10 @@ export default class extends mixins(ResizeMixin) {
         symbolId: '4',
         innerSymbol: 'XTC-BYBIT'
       }),
+      symbology.SymbolInfoPo.create({
+        symbolId: '7',
+        innerSymbol: 'DOGE-BYBIT'
+      }),
     ]
     this.aggrIntervalSecOptions = [
       {
