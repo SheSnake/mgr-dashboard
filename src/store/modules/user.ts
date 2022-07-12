@@ -4,7 +4,10 @@ import { getToken, setToken, removeToken } from '@/utils/cookies'
 import router, { resetRouter } from '@/router'
 import { PermissionModule } from './permission'
 import { TagsViewModule } from './tags-view'
+import { ApiClient } from '@/api/innerservice'
 import store from '@/store'
+import { loginapi } from '@/proto/gateway/loginapi'
+import crypto from 'crypto'
 
 export interface IUserState {
   token: string
@@ -55,12 +58,26 @@ class User extends VuexModule implements IUserState {
   }
 
   @Action
-  public async Login(userInfo: { username: string, password: string}) {
+  public async Login(userInfo: { username: string; password: string}) {
     let { username, password } = userInfo
     username = username.trim()
-    const { data } = await login({ username, password })
-    setToken(data.accessToken)
-    this.SET_TOKEN(data.accessToken)
+    // const { data } = await login({ username, password })
+    const req = loginapi.LoginPasswordReq.create({
+      username: username,
+      password: password,
+    })
+    const JS_SALT = '231edsfs4!!sxz.'
+    const sha256 = crypto.createHash('sha256')
+    sha256.update(`${password}${JS_SALT}`)
+    req.password = sha256.digest('hex').toUpperCase()
+    const resp = await ApiClient.LoginByPassword(req)
+    console.log(resp)
+    if (resp.errorcode !== 0) {
+      console.log('login fail')
+    }
+
+    // setToken(data.accessToken)
+    // this.SET_TOKEN(data.accessToken)
   }
 
   @Action

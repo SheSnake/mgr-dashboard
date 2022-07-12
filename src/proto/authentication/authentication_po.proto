@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package authentication;
+
+option go_package = "/datatype";
+
+message SidPayload {
+  uint64 r1 = 1;
+  uint64 r2 = 2;
+  uint64 uid = 3;
+  uint64 usec = 4;
+}
+
+message CsrfPayload {
+  uint64 r1 = 1;
+  uint64 r2 = 2;
+  uint64 usec = 3;
+}
+
+message LoginSessionPo {
+	// @inject_tag: db:"id"
+  string id = 1;
+	// @inject_tag: db:"sid"
+  string sid = 2;
+	// @inject_tag: db:"uid"
+  uint64 uid = 3;
+	// @inject_tag: db:"expired_sec"
+  uint64 expired_sec = 4;
+	// @inject_tag: db:"device_info"
+  string device_info = 5;
+	// @inject_tag: db:"state"
+  uint32 state = 6;
+	// @inject_tag: db:"data_version"
+  uint64 data_version = 98;
+	// @inject_tag: db:"create_usec"
+  uint64 create_usec = 99;
+	// @inject_tag: db:"update_usec"
+  uint64 update_usec = 100;
+}
+
+message PasswordAuthPo {
+	// @inject_tag: db:"id"
+  uint64 id = 1;
+	// @inject_tag: db:"uid"
+  uint64 uid = 2;
+	// @inject_tag: db:"username"
+  string username = 3;
+	// @inject_tag: db:"password"
+  string password = 4;
+	// @inject_tag: db:"js_salt_password"
+  string js_salt_password = 5;
+	// @inject_tag: db:"state"
+  uint32 state = 6;
+	// @inject_tag: db:"data_version"
+  uint64 data_version = 98;
+	// @inject_tag: db:"create_usec"
+  uint64 create_usec = 99;
+	// @inject_tag: db:"update_usec"
+  uint64 update_usec = 100;
+}

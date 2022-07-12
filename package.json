@@ -11,7 +11,7 @@
     "build:stage": "vue-cli-service build --mode staging",
     "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
     "mock": "cd mock && ts-node-dev mock-server.ts",
-    "proto": "pbjs -p proto -t static-module --force-number -w es6 -o src/proto/proto.js  src/proto/*.proto && pbts -o src/proto/proto.d.ts src/proto/proto.js"
+    "proto": "pbjstool.sh"
   },
   "dependencies": {
     "@tinymce/tinymce-vue": "^3.2.6",

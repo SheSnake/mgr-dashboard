@@ -92,9 +92,14 @@ export default class extends mixins(ResizeMixin) {
 
   private setOptions() {
     this.list.forEach((x : innerapi.IBuySellVolume) => {
-      // eslint-disable-next-line
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       x.startDate = moment(x.startSec as any * 1000).format('YYYYMMDD HH:mm')
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       x.avgBuyPrice = (x.buyTurnover || 0) / (x.buyVolume || 1)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       x.avgSellPrice = (x.sellTurnover || 0) / (x.sellVolume || 1)
     })
     this.chart?.setOption({

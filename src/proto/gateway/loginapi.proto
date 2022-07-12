@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package loginapi;
+
+option go_package = "/datatype";
+
+message LoginPasswordReq {
+  // @inject_tag: form:"username"
+  string username = 1;
+  // @inject_tag: form:"password"
+  string password = 2;
+  // @inject_tag: form:"device_info"
+  uint64 end_usec = 3;
+  // @inject_tag: form:"source"
+  string source = 100;
+}
+
+message LoginPasswordResp {
+  // @inject_tag: form:"sid"
+  string sid = 1;
+  // @inject_tag: form:"errorcode"
+  uint64 errorcode = 100;
+}
