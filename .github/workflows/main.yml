@@ -46,6 +46,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Run deploy
         run: |
           echo Add other actions to build,
