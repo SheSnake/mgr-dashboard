@@ -39,16 +39,16 @@ jobs:
           echo test, and deploy your project.
           ls
           
-      - name: Yarn install
-      - uses: Borales/actions-yarn@v3.0.0
+      #- name: Yarn install
+      #- uses: Borales/actions-yarn@v3.0.0
       - uses: actions/setup-node@v3    
         with:
           node-version: '14'
-          cmd: install
+          cmd: npm install --global yarn && yarn install
 
-      - name: Yarn build
-      - uses: Borales/actions-yarn@v3.0.0
-        with:
-          node-version: '14'
-          cmd: build:prod     
+      #- name: Yarn build
+      #- uses: Borales/actions-yarn@v3.0.0
+      #  with:
+      #    node-version: '14'
+      #    cmd: build:prod     
           
