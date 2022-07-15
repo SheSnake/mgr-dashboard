@@ -50,5 +50,5 @@ jobs:
       - name: Yarn build
         uses: Borales/actions-yarn@v3.0.0
         with:
-          cmd: build:prod     
+          cmd: nvm use 14 && build:prod     
           
