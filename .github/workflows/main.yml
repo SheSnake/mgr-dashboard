@@ -44,7 +44,8 @@ jobs:
       - name: yarn install 
         run: npm install --global yarn && yarn install
 
-      #- name: Yarn build
+      - name: Yarn build
+        run: yarn build:prod
       #- uses: Borales/actions-yarn@v3.0.0
       #  with:
       #    node-version: '14'
