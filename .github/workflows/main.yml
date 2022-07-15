@@ -39,7 +39,9 @@ jobs:
         run: npm install --global yarn && yarn install
 
       - name: Yarn build
-        run: yarn build:prod
+        run: | 
+          yarn build:prod
+          ls
         
   deploy:
     # The type of runner that the job will run on
