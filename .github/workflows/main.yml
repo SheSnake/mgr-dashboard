@@ -41,14 +41,14 @@ jobs:
           
       - name: Yarn install
       - uses: Borales/actions-yarn@v3.0.0
-      - uses: actions/setup-node@v3    
+      #- uses: actions/setup-node@v3    
         with:
           node-version: '14'
           cmd: install
 
       - name: Yarn build
       - uses: Borales/actions-yarn@v3.0.0
-      - uses: actions/setup-node@v3
+      #- uses: actions/setup-node@v3
         with:
           node-version: '14'
           cmd: build:prod     
