@@ -41,10 +41,8 @@ jobs:
           
       #- name: Yarn install
       #- uses: Borales/actions-yarn@v3.0.0
-      - uses: actions/setup-node@v3    
-        with:
-          node-version: '14'
-          cmd: npm install --global yarn && yarn install
+      - name: yarn install 
+        run: npm install --global yarn && yarn install
 
       #- name: Yarn build
       #- uses: Borales/actions-yarn@v3.0.0
