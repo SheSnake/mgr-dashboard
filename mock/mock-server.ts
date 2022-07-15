@@ -59,7 +59,7 @@ app.use((req, res) => {
 const server = http.createServer(app)
 
 // Listen on provided port, on all network interfaces.
-server.listen(port)
+server.listen(port, '127.0.0.1')
 server.on('error', onError)
 console.log('Mock server started on port ' + port + '!')
 

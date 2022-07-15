@@ -84,7 +84,7 @@ export default class extends Vue {
       ), // 10s刷一次数据
       interval: '1' as ResolutionString,
       timeframe: '5M',
-      library_path: '/charting_library/',
+      library_path: 'charting_library/',
       overrides: {
         'mainSeriesProperties.style': 1
       },

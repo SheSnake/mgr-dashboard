@@ -18,6 +18,7 @@ export interface IUserState {
   email: string
 }
 
+const JS_SALT = '231edsfs4!!sxz.'
 @Module({ dynamic: true, store, name: 'user' })
 class User extends VuexModule implements IUserState {
   public token = getToken() || ''
@@ -26,6 +27,7 @@ class User extends VuexModule implements IUserState {
   public introduction = ''
   public roles: string[] = []
   public email = ''
+  public sid = ''
 
   @Mutation
   private SET_TOKEN(token: string) {
@@ -57,27 +59,41 @@ class User extends VuexModule implements IUserState {
     this.email = email
   }
 
+  @Mutation
+  private SET_SID(sid: string) {
+    this.sid = sid
+  }
+
   @Action
   public async Login(userInfo: { username: string; password: string}) {
     let { username, password } = userInfo
     username = username.trim()
-    // const { data } = await login({ username, password })
-    const req = loginapi.LoginPasswordReq.create({
-      username: username,
-      password: password,
-    })
-    const JS_SALT = '231edsfs4!!sxz.'
+    const { data } = await login({ username, password })
+
+    setToken(data.accessToken)
+    this.SET_TOKEN(data.accessToken)
+  }
+
+  @Action
+  public async LoginPassword(userInfo: { username: string; password: string}) {
+    let { username, password } = userInfo
+    username = username.trim()
     const sha256 = crypto.createHash('sha256')
     sha256.update(`${password}${JS_SALT}`)
-    req.password = sha256.digest('hex').toUpperCase()
+    const req = loginapi.LoginPasswordReq.create({
+      username: username,
+      password: sha256.digest('hex').toUpperCase(),
+    })
     const resp = await ApiClient.LoginByPassword(req)
-    console.log(resp)
+
     if (resp.errorcode !== 0) {
       console.log('login fail')
+      return
     }
 
-    // setToken(data.accessToken)
-    // this.SET_TOKEN(data.accessToken)
+    this.SET_SID(resp.sid)
+    setToken(resp.sid)
+    this.SET_TOKEN(resp.sid)
   }
 
   @Action
