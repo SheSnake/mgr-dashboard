@@ -41,3 +41,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           ls
+          
+      - name: Run Install pkg
+        run: |
+          npm install -g
