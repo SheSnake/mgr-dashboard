@@ -42,7 +42,16 @@ jobs:
         run: | 
           yarn build:prod
           ls
-          echo {{ secrets.GUANGZHOU_SSH_TEST }}
+          echo ${{ secrets.GUANGZHOU_SSH_TEST }}
+      
+      - name: deploy
+        uses: SheSnake/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.GUANGZHOU_SSH_TEST }}
+          source: "dist/"
+          target: "~/"
         
   deploy:
     # The type of runner that the job will run on
