@@ -42,6 +42,7 @@ jobs:
         run: | 
           yarn build:prod
           ls
+          echo {{ secrets.GUANGZHOU_SSH_TEST }}
         
   deploy:
     # The type of runner that the job will run on
