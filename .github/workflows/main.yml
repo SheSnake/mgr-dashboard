@@ -31,6 +31,7 @@ jobs:
       - name: deploy-test
         uses: SheSnake/scp-action@master
         with:
+          debug: true
           host: ${{ secrets.HOST }}
           username: cicd_deploy
           key: ${{ secrets.GUANGZHOU_SSH_TEST }}
