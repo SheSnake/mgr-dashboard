@@ -108,8 +108,9 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { Route } from 'vue-router'
 import { Dictionary } from 'vue-router/types/router'
-import { Form as ElForm, Input } from 'element-ui'
+import { Form as ElForm, Input, Message, MessageBox } from 'element-ui'
 import { UserModule } from '@/store/modules/user'
+
 import { isValidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect/index.vue'
 import SocialSign from './components/SocialSignin.vue'
@@ -194,18 +195,26 @@ export default class extends Vue {
     (this.$refs.loginForm as ElForm).validate(async(valid: boolean) => {
       if (valid) {
         this.loading = true
-        await UserModule.Login(this.loginForm)
+        await UserModule.LoginPassword(this.loginForm)
+        this.loading = false
+        if (UserModule.token === '') {
+          MessageBox.confirm(
+            'check your pwd and usn',
+            'Wrong Account',
+          ).then(() => {
+            this.loginForm.username = ''
+            this.loginForm.password = ''
+          })
+          return false
+        }
         this.$router.push({
           path: this.redirect || '/',
           query: this.otherQuery
         }).catch(err => {
           console.warn(err)
         })
-        // Just to simulate the time of the request
-        setTimeout(() => {
-          this.loading = false
-        }, 0.5 * 1000)
       } else {
+        console.log('invalid_form')
         return false
       }
     })

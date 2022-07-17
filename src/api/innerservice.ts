@@ -56,7 +56,7 @@ class Service {
       }
     )
     return ax.post(
-      '/inner/v1/login',
+      '/v1/login',
       loginapi.LoginPasswordReq.toObject(req)
     )
   }

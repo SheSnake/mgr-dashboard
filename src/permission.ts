@@ -46,6 +46,7 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
           })
           // Hack: ensure addRoutes is complete
           // Set the replace: true, so the navigation will not leave a history record
+          console.log('to:', to)
           next({ ...to, replace: true })
         } catch (err) {
           // Remove token and redirect to login page
@@ -65,6 +66,7 @@ router.beforeEach(async(to: Route, _: Route, next: any) => {
       next()
     } else {
       // Other pages that do not have permission to access are redirected to the login page.
+      console.log('not_token_should_login')
       next(`/login?redirect=${to.path}`)
       NProgress.done()
     }
